@@ -200,7 +200,11 @@
         sourcecode="no"
         output="HTML:frames:default">
       <fileset dir="${src.dir}">
-        <include name="**/*.php" />
+        <include name="third_party/**/*.php" />
+        <include name="Google/Api/Ads/Common/**/*.php" />
+        <include name="Google/Api/Ads/Dfp/Lib/**/*.php" />
+        <include name="Google/Api/Ads/Dfp/Util/**/*.php" />
+        <include name="Google/Api/Ads/Dfp/${version}/**/*.php" />
       </fileset>
       <projdocfileset dir=".">
         <include name="README" />
