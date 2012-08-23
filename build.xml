@@ -176,6 +176,20 @@
   </target>
 
   <!-- =================================================================== -->
+  <!-- Target: run tests for v201208                                       -->
+  <!-- =================================================================== -->
+  <target name="test-v201208" depends="init">
+    <phpunit haltonfailure="false" printsummary="true">
+      <batchtest>
+        <fileset dir="${tests.dir}">
+          <include name="**/v201208/*Test.php"/>
+        </fileset>
+      </batchtest>
+      <formatter type="xml" todir="report" outfile="test_results_v201208.xml"/>
+    </phpunit>
+  </target>
+
+  <!-- =================================================================== -->
   <!-- Target: run tests for core library                                  -->
   <!-- =================================================================== -->
   <target name="test-core" depends="init">
@@ -333,3 +347,4 @@
     </tar>
   </target>
 </project>
+
