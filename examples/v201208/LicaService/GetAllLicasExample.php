@@ -1,7 +1,8 @@
 <?php
 /**
  * This example gets all line item creative associations (LICA). To create
- * LICAs, run CreateLicasExample.php.
+ * LICAs, run CreateLicasExample.php or
+ * AssociateCreativeSetToLineItemExample.php
  *
  * Tags: LineItemCreativeAssociationService.getLineItemCreativeAssociationsByStatement
  *
@@ -27,10 +28,8 @@
  * @copyright  2012, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal <api.arogal@gmail.com>
- * @author     Eric Koleda <api.ekoleda@gmail.com>
+ * @author     Vincent Tsao <vtsao@google.com>
  */
-
 error_reporting(E_STRICT | E_ALL);
 
 // You can set the include path to src directory or reference
@@ -70,10 +69,15 @@ try {
     if (isset($page->results)) {
       $i = $page->startIndex;
       foreach ($page->results as $lica) {
-        print $i . ') LICA with line item ID "' . $lica->lineItemId
-            . '", creative ID "' . $lica->creativeId
-            . '", and status "' . $lica->status
-            . "\" was created.\n";
+        if (isset($lica->creativeSetId)) {
+          printf("%d) LICA with line item ID %d, creative set ID %d, and " .
+              "status %s was found.\n", $i, $lica->lineItemId,
+              $lica->creativeSetId, $lica->status);
+        } else {
+          printf("%d) LICA with line item ID %d, creative ID %d, and status " .
+              "%s was found.\n", $i, $lica->lineItemId, $lica->creativeId,
+              $lica->status);
+        }
         $i++;
       }
     }

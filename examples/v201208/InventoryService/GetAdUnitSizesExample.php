@@ -56,22 +56,21 @@ try {
       array('targetPlatform' => new TextValue('WEB')));
 
   // Create a statement to only select web ad units sizes.
-  $filterStatement = new Statement("WHERE targetPlatform = :targetPlatform ",
+  $filterStatement = new Statement("WHERE targetPlatform = :targetPlatform",
       $vars);
 
   // Get all ad unit sizes by statement.
-  $page = $inventoryService->getAdUnitSizesByStatement($filterStatement);
+  $adUnitSizes = $inventoryService->getAdUnitSizesByStatement($filterStatement);
 
   // Display results.
-  if (isset($page->results)) {
-    foreach ($page->results as $adUnitSize) {
-      printf("Web ad unit size of dimensions %d x %d was found.\n",
-          $adUnitSize->size->width,
-          $adUnitSize->size->height);
-    }
-  } else {
-    print "No ad unit sizes found.\n";
+  $i = 0;
+  foreach ($adUnitSizes as $adUnitSize) {
+    printf("%d) Web ad unit size of dimensions %s was found.\n", $i,
+        $adUnitSize->fullDisplayString);
+    $i++;
   }
+
+  printf ("Number of ad unit sizes found: %d\n", count($adUnitSizes));
 } catch (Exception $e) {
   print $e->getMessage() . "\n";
 }
