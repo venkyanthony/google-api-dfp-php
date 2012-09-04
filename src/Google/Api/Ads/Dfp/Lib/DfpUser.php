@@ -46,7 +46,7 @@ class DfpUser extends AdsUser {
    * The version of this client library.
    * @var string
    */
-  const LIB_VERSION = '2.14.0';
+  const LIB_VERSION = '2.14.1';
 
   /**
    * The name of this client library.

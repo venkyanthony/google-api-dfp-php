@@ -1,3 +1,12 @@
+2.14.1:
+- Added link to the DFP developer site in auth.ini that explains property
+  values.
+- Updated comments for example for MakeTestNetworkExample.php.
+- Updated GetAdUnitSizesExample.php, CreateMobileAdUnitExample.php, and
+  GetAllLicasExample.php.
+- Added new examples AssociateCreativeSetToLineItemExample.php and
+  RunReportWithCustomFields.php.
+
 2.14.0:
 - Added support for v201208.
 
