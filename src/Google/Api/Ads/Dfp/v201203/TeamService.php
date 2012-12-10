@@ -24,7 +24,7 @@
  * @copyright  2012, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
+ * @author     Vincent Tsao <api.vtsao@gmail.com>
  */
 
 /** Required classes. **/
@@ -114,7 +114,6 @@ class ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiError')) parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -152,7 +151,7 @@ class ApiVersionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiVersionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -229,7 +228,6 @@ class ApplicationException {
   }
 
   public function __construct($message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApplicationException')) parent::__construct();
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
   }
@@ -297,7 +295,6 @@ class Authentication {
   }
 
   public function __construct($AuthenticationType = NULL) {
-    if(get_parent_class('Authentication')) parent::__construct();
     $this->AuthenticationType = $AuthenticationType;
   }
 }}
@@ -332,7 +329,7 @@ class AuthenticationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AuthenticationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -373,7 +370,7 @@ class ClientLogin extends Authentication {
   }
 
   public function __construct($token = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('ClientLogin')) parent::__construct();
+    parent::__construct();
     $this->token = $token;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -409,7 +406,7 @@ class CommonError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CommonError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -460,7 +457,6 @@ class Date {
   }
 
   public function __construct($year = NULL, $month = NULL, $day = NULL) {
-    if(get_parent_class('Date')) parent::__construct();
     $this->year = $year;
     $this->month = $month;
     $this->day = $day;
@@ -521,7 +517,6 @@ class DfpDateTime {
   }
 
   public function __construct($date = NULL, $hour = NULL, $minute = NULL, $second = NULL, $timeZoneID = NULL) {
-    if(get_parent_class('DfpDateTime')) parent::__construct();
     $this->date = $date;
     $this->hour = $hour;
     $this->minute = $minute;
@@ -562,7 +557,7 @@ class InternalApiError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InternalApiError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -601,7 +596,7 @@ class NotNullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NotNullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -640,7 +635,7 @@ class NullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -681,7 +676,7 @@ class DfpOAuth extends Authentication {
   }
 
   public function __construct($parameters = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('DfpOAuth')) parent::__construct();
+    parent::__construct();
     $this->parameters = $parameters;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -717,7 +712,7 @@ class PermissionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PermissionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -757,7 +752,7 @@ class PublisherQueryLanguageContextError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageContextError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -797,7 +792,7 @@ class PublisherQueryLanguageSyntaxError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageSyntaxError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -837,7 +832,7 @@ class QuotaError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('QuotaError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -876,7 +871,7 @@ class RequiredError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -915,7 +910,7 @@ class ServerError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ServerError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -966,7 +961,6 @@ class SoapRequestHeader {
   }
 
   public function __construct($networkCode = NULL, $applicationName = NULL, $authentication = NULL) {
-    if(get_parent_class('SoapRequestHeader')) parent::__construct();
     $this->networkCode = $networkCode;
     $this->applicationName = $applicationName;
     $this->authentication = $authentication;
@@ -1009,7 +1003,6 @@ class SoapResponseHeader {
   }
 
   public function __construct($requestId = NULL, $responseTime = NULL) {
-    if(get_parent_class('SoapResponseHeader')) parent::__construct();
     $this->requestId = $requestId;
     $this->responseTime = $responseTime;
   }
@@ -1072,7 +1065,6 @@ class Statement {
   }
 
   public function __construct($query = NULL, $values = NULL) {
-    if(get_parent_class('Statement')) parent::__construct();
     $this->query = $query;
     $this->values = $values;
   }
@@ -1108,7 +1100,7 @@ class StatementError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('StatementError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1154,7 +1146,6 @@ class String_ValueMapEntry {
   }
 
   public function __construct($key = NULL, $value = NULL) {
-    if(get_parent_class('String_ValueMapEntry')) parent::__construct();
     $this->key = $key;
     $this->value = $value;
   }
@@ -1163,7 +1154,7 @@ class String_ValueMapEntry {
 if (!class_exists("Team", FALSE)) {
 /**
  * A {@code Team} defines a grouping of users and what entities they have access
- * to.
+ * to. Users are added to teams with {@link UserTeamAssociation} objects.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -1233,7 +1224,6 @@ class Team {
   }
 
   public function __construct($id = NULL, $name = NULL, $description = NULL, $hasAllCompanies = NULL, $hasAllInventory = NULL, $userIds = NULL, $companyIds = NULL, $adUnitIds = NULL) {
-    if(get_parent_class('Team')) parent::__construct();
     $this->id = $id;
     $this->name = $name;
     $this->description = $description;
@@ -1275,7 +1265,7 @@ class TeamError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('TeamError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1326,7 +1316,6 @@ class TeamPage {
   }
 
   public function __construct($totalResultSetSize = NULL, $startIndex = NULL, $results = NULL) {
-    if(get_parent_class('TeamPage')) parent::__construct();
     $this->totalResultSetSize = $totalResultSetSize;
     $this->startIndex = $startIndex;
     $this->results = $results;
@@ -1357,7 +1346,7 @@ class TypeError extends ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('TypeError')) parent::__construct();
+    parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -1389,7 +1378,7 @@ class UniqueError extends ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('UniqueError')) parent::__construct();
+    parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -1459,7 +1448,6 @@ class Value {
   }
 
   public function __construct($ValueType = NULL) {
-    if(get_parent_class('Value')) parent::__construct();
     $this->ValueType = $ValueType;
   }
 }}
@@ -1489,7 +1477,6 @@ class ApiVersionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ApiVersionErrorReason')) parent::__construct();
   }
 }}
 
@@ -1520,7 +1507,6 @@ class AuthenticationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AuthenticationErrorReason')) parent::__construct();
   }
 }}
 
@@ -1548,7 +1534,6 @@ class CommonErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CommonErrorReason')) parent::__construct();
   }
 }}
 
@@ -1576,7 +1561,6 @@ class InternalApiErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InternalApiErrorReason')) parent::__construct();
   }
 }}
 
@@ -1604,7 +1588,6 @@ class NotNullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NotNullErrorReason')) parent::__construct();
   }
 }}
 
@@ -1632,7 +1615,6 @@ class NullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NullErrorReason')) parent::__construct();
   }
 }}
 
@@ -1660,7 +1642,6 @@ class PermissionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PermissionErrorReason')) parent::__construct();
   }
 }}
 
@@ -1688,7 +1669,6 @@ class PublisherQueryLanguageContextErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageContextErrorReason')) parent::__construct();
   }
 }}
 
@@ -1716,7 +1696,6 @@ class PublisherQueryLanguageSyntaxErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageSyntaxErrorReason')) parent::__construct();
   }
 }}
 
@@ -1746,7 +1725,6 @@ class QuotaErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('QuotaErrorReason')) parent::__construct();
   }
 }}
 
@@ -1774,7 +1752,6 @@ class RequiredErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredErrorReason')) parent::__construct();
   }
 }}
 
@@ -1802,7 +1779,6 @@ class ServerErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ServerErrorReason')) parent::__construct();
   }
 }}
 
@@ -1830,7 +1806,6 @@ class StatementErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('StatementErrorReason')) parent::__construct();
   }
 }}
 
@@ -1858,7 +1833,6 @@ class TeamErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('TeamErrorReason')) parent::__construct();
   }
 }}
 
@@ -1900,7 +1874,6 @@ class createTeam {
   }
 
   public function __construct($team = NULL) {
-    if(get_parent_class('createTeam')) parent::__construct();
     $this->team = $team;
   }
 }}
@@ -1935,7 +1908,6 @@ class createTeamResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('createTeamResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -1978,7 +1950,6 @@ class createTeams {
   }
 
   public function __construct($teams = NULL) {
-    if(get_parent_class('createTeams')) parent::__construct();
     $this->teams = $teams;
   }
 }}
@@ -2013,7 +1984,6 @@ class createTeamsResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('createTeamsResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -2051,7 +2021,6 @@ class getTeam {
   }
 
   public function __construct($teamId = NULL) {
-    if(get_parent_class('getTeam')) parent::__construct();
     $this->teamId = $teamId;
   }
 }}
@@ -2086,7 +2055,6 @@ class getTeamResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getTeamResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -2145,7 +2113,6 @@ class getTeamsByStatement {
   }
 
   public function __construct($filterStatement = NULL) {
-    if(get_parent_class('getTeamsByStatement')) parent::__construct();
     $this->filterStatement = $filterStatement;
   }
 }}
@@ -2180,7 +2147,6 @@ class getTeamsByStatementResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getTeamsByStatementResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -2218,7 +2184,6 @@ class updateTeam {
   }
 
   public function __construct($team = NULL) {
-    if(get_parent_class('updateTeam')) parent::__construct();
     $this->team = $team;
   }
 }}
@@ -2253,7 +2218,6 @@ class updateTeamResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('updateTeamResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -2291,7 +2255,6 @@ class updateTeams {
   }
 
   public function __construct($teams = NULL) {
-    if(get_parent_class('updateTeams')) parent::__construct();
     $this->teams = $teams;
   }
 }}
@@ -2326,7 +2289,6 @@ class updateTeamsResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('updateTeamsResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -2361,7 +2323,7 @@ class ApiException extends ApplicationException {
   }
 
   public function __construct($errors = NULL, $message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApiException')) parent::__construct();
+    parent::__construct();
     $this->errors = $errors;
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
@@ -2398,7 +2360,7 @@ class BooleanValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('BooleanValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -2434,7 +2396,7 @@ class DateTimeValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('DateTimeValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -2470,7 +2432,7 @@ class NumberValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('NumberValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -2506,7 +2468,7 @@ class TextValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('TextValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -2716,5 +2678,3 @@ class TeamService extends DfpSoapClient {
 
 
 }}
-
-?>

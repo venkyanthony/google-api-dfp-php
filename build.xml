@@ -92,48 +92,6 @@
   </target>
 
   <!-- =================================================================== -->
-  <!-- Target: run tests for v201108                                       -->
-  <!-- =================================================================== -->
-  <target name="test-v201108" depends="init">
-    <phpunit haltonfailure="false" printsummary="true">
-      <batchtest>
-        <fileset dir="${tests.dir}">
-          <include name="**/v201108/*Test.php"/>
-        </fileset>
-      </batchtest>
-      <formatter type="xml" todir="report" outfile="test_results_v201108.xml"/>
-    </phpunit>
-  </target>
-
-  <!-- =================================================================== -->
-  <!-- Target: run tests for v201111                                       -->
-  <!-- =================================================================== -->
-  <target name="test-v201111" depends="init">
-    <phpunit haltonfailure="false" printsummary="true">
-      <batchtest>
-        <fileset dir="${tests.dir}">
-          <include name="**/v201111/*Test.php"/>
-        </fileset>
-      </batchtest>
-      <formatter type="xml" todir="report" outfile="test_results_v201111.xml"/>
-    </phpunit>
-  </target>
-
-  <!-- =================================================================== -->
-  <!-- Target: run tests for v201201                                       -->
-  <!-- =================================================================== -->
-  <target name="test-v201201" depends="init">
-    <phpunit haltonfailure="false" printsummary="true">
-      <batchtest>
-        <fileset dir="${tests.dir}">
-          <include name="**/v201201/*Test.php"/>
-        </fileset>
-      </batchtest>
-      <formatter type="xml" todir="report" outfile="test_results_v201201.xml"/>
-    </phpunit>
-  </target>
-
-  <!-- =================================================================== -->
   <!-- Target: run tests for v201203                                       -->
   <!-- =================================================================== -->
   <target name="test-v201203" depends="init">
@@ -186,6 +144,20 @@
         </fileset>
       </batchtest>
       <formatter type="xml" todir="report" outfile="test_results_v201208.xml"/>
+    </phpunit>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Target: run tests for v201211                                       -->
+  <!-- =================================================================== -->
+  <target name="test-v201211" depends="init">
+    <phpunit haltonfailure="false" printsummary="true">
+      <batchtest>
+        <fileset dir="${tests.dir}">
+          <include name="**/v201211/*Test.php"/>
+        </fileset>
+      </batchtest>
+      <formatter type="xml" todir="report" outfile="test_results_v201211.xml"/>
     </phpunit>
   </target>
 

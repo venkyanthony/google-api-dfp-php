@@ -24,7 +24,7 @@
  * @copyright  2012, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
+ * @author     Vincent Tsao <api.vtsao@gmail.com>
  */
 
 /** Required classes. **/
@@ -114,7 +114,6 @@ class ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiError')) parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -152,7 +151,7 @@ class ApiVersionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiVersionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -229,7 +228,6 @@ class ApplicationException {
   }
 
   public function __construct($message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApplicationException')) parent::__construct();
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
   }
@@ -297,7 +295,6 @@ class Authentication {
   }
 
   public function __construct($AuthenticationType = NULL) {
-    if(get_parent_class('Authentication')) parent::__construct();
     $this->AuthenticationType = $AuthenticationType;
   }
 }}
@@ -332,7 +329,7 @@ class AuthenticationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AuthenticationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -373,7 +370,7 @@ class ClientLogin extends Authentication {
   }
 
   public function __construct($token = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('ClientLogin')) parent::__construct();
+    parent::__construct();
     $this->token = $token;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -409,7 +406,7 @@ class CommonError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CommonError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -450,7 +447,47 @@ class InternalApiError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InternalApiError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("InvalidEmailError", FALSE)) {
+/**
+ * Caused by supplying a value for an email attribute that is not a valid
+ * email address.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201206
+ */
+class InvalidEmailError extends ApiError {
+  /**
+   * @access public
+   * @var tnsInvalidEmailErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201206";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InvalidEmailError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -537,7 +574,6 @@ class Network {
   }
 
   public function __construct($id = NULL, $displayName = NULL, $networkCode = NULL, $propertyCode = NULL, $timeZone = NULL, $currencyCode = NULL, $effectiveRootAdUnitId = NULL, $contentBrowseCustomTargetingKeyId = NULL, $isTest = NULL) {
-    if(get_parent_class('Network')) parent::__construct();
     $this->id = $id;
     $this->displayName = $displayName;
     $this->networkCode = $networkCode;
@@ -580,7 +616,7 @@ class NotNullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NotNullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -621,7 +657,7 @@ class DfpOAuth extends Authentication {
   }
 
   public function __construct($parameters = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('DfpOAuth')) parent::__construct();
+    parent::__construct();
     $this->parameters = $parameters;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -657,7 +693,7 @@ class ParseError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ParseError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -696,7 +732,7 @@ class PermissionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PermissionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -736,7 +772,7 @@ class PublisherQueryLanguageContextError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageContextError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -776,7 +812,7 @@ class PublisherQueryLanguageSyntaxError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageSyntaxError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -816,7 +852,7 @@ class QuotaError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('QuotaError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -855,7 +891,47 @@ class RequiredError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("RequiredNumberError", FALSE)) {
+/**
+ * A list of all errors to be used in conjunction with required number
+ * validators.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201206
+ */
+class RequiredNumberError extends ApiError {
+  /**
+   * @access public
+   * @var tnsRequiredNumberErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201206";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredNumberError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -894,7 +970,7 @@ class ServerError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ServerError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -945,7 +1021,6 @@ class SoapRequestHeader {
   }
 
   public function __construct($networkCode = NULL, $applicationName = NULL, $authentication = NULL) {
-    if(get_parent_class('SoapRequestHeader')) parent::__construct();
     $this->networkCode = $networkCode;
     $this->applicationName = $applicationName;
     $this->authentication = $authentication;
@@ -988,7 +1063,6 @@ class SoapResponseHeader {
   }
 
   public function __construct($requestId = NULL, $responseTime = NULL) {
-    if(get_parent_class('SoapResponseHeader')) parent::__construct();
     $this->requestId = $requestId;
     $this->responseTime = $responseTime;
   }
@@ -1024,7 +1098,46 @@ class StatementError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('StatementError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("StringLengthError", FALSE)) {
+/**
+ * Errors for Strings which do not meet given length constraints.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201206
+ */
+class StringLengthError extends ApiError {
+  /**
+   * @access public
+   * @var tnsStringLengthErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201206";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "StringLengthError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1057,7 +1170,7 @@ class TypeError extends ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('TypeError')) parent::__construct();
+    parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -1090,7 +1203,6 @@ class ApiVersionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ApiVersionErrorReason')) parent::__construct();
   }
 }}
 
@@ -1121,7 +1233,6 @@ class AuthenticationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AuthenticationErrorReason')) parent::__construct();
   }
 }}
 
@@ -1149,7 +1260,6 @@ class CommonErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CommonErrorReason')) parent::__construct();
   }
 }}
 
@@ -1177,7 +1287,33 @@ class InternalApiErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InternalApiErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("InvalidEmailErrorReason", FALSE)) {
+/**
+ * Describes reasons for an email to be invalid.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201206
+ */
+class InvalidEmailErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201206";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InvalidEmailError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -1205,7 +1341,6 @@ class NotNullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NotNullErrorReason')) parent::__construct();
   }
 }}
 
@@ -1233,7 +1368,6 @@ class ParseErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ParseErrorReason')) parent::__construct();
   }
 }}
 
@@ -1261,7 +1395,6 @@ class PermissionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PermissionErrorReason')) parent::__construct();
   }
 }}
 
@@ -1289,7 +1422,6 @@ class PublisherQueryLanguageContextErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageContextErrorReason')) parent::__construct();
   }
 }}
 
@@ -1317,7 +1449,6 @@ class PublisherQueryLanguageSyntaxErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageSyntaxErrorReason')) parent::__construct();
   }
 }}
 
@@ -1347,7 +1478,6 @@ class QuotaErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('QuotaErrorReason')) parent::__construct();
   }
 }}
 
@@ -1375,7 +1505,33 @@ class RequiredErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("RequiredNumberErrorReason", FALSE)) {
+/**
+ * Describes reasons for a number to be invalid.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201206
+ */
+class RequiredNumberErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201206";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredNumberError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -1403,7 +1559,6 @@ class ServerErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ServerErrorReason')) parent::__construct();
   }
 }}
 
@@ -1431,7 +1586,33 @@ class StatementErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('StatementErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("StringLengthErrorReason", FALSE)) {
+/**
+ * The value returned if the actual value is not exposed by the requested API version.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201206
+ */
+class StringLengthErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201206";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "StringLengthError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -1466,7 +1647,6 @@ class getAllNetworks {
   }
 
   public function __construct() {
-    if(get_parent_class('getAllNetworks')) parent::__construct();
   }
 }}
 
@@ -1500,7 +1680,6 @@ class getAllNetworksResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getAllNetworksResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -1531,7 +1710,6 @@ class getCurrentNetwork {
   }
 
   public function __construct() {
-    if(get_parent_class('getCurrentNetwork')) parent::__construct();
   }
 }}
 
@@ -1565,7 +1743,6 @@ class getCurrentNetworkResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getCurrentNetworkResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -1614,7 +1791,6 @@ class makeTestNetwork {
   }
 
   public function __construct() {
-    if(get_parent_class('makeTestNetwork')) parent::__construct();
   }
 }}
 
@@ -1648,7 +1824,6 @@ class makeTestNetworkResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('makeTestNetworkResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -1687,7 +1862,6 @@ class updateNetwork {
   }
 
   public function __construct($network = NULL) {
-    if(get_parent_class('updateNetwork')) parent::__construct();
     $this->network = $network;
   }
 }}
@@ -1722,7 +1896,6 @@ class updateNetworkResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('updateNetworkResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -1757,7 +1930,7 @@ class ApiException extends ApplicationException {
   }
 
   public function __construct($errors = NULL, $message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApiException')) parent::__construct();
+    parent::__construct();
     $this->errors = $errors;
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
@@ -1790,6 +1963,7 @@ class NetworkService extends DfpSoapClient {
     "ClientLogin" => "ClientLogin",
     "CommonError" => "CommonError",
     "InternalApiError" => "InternalApiError",
+    "InvalidEmailError" => "InvalidEmailError",
     "Network" => "Network",
     "NotNullError" => "NotNullError",
     "ParseError" => "ParseError",
@@ -1798,15 +1972,18 @@ class NetworkService extends DfpSoapClient {
     "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
     "QuotaError" => "QuotaError",
     "RequiredError" => "RequiredError",
+    "RequiredNumberError" => "RequiredNumberError",
     "ServerError" => "ServerError",
     "SoapRequestHeader" => "SoapRequestHeader",
     "SoapResponseHeader" => "SoapResponseHeader",
     "StatementError" => "StatementError",
+    "StringLengthError" => "StringLengthError",
     "TypeError" => "TypeError",
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
     "AuthenticationError.Reason" => "AuthenticationErrorReason",
     "CommonError.Reason" => "CommonErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
+    "InvalidEmailError.Reason" => "InvalidEmailErrorReason",
     "NotNullError.Reason" => "NotNullErrorReason",
     "ParseError.Reason" => "ParseErrorReason",
     "PermissionError.Reason" => "PermissionErrorReason",
@@ -1814,8 +1991,10 @@ class NetworkService extends DfpSoapClient {
     "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
     "QuotaError.Reason" => "QuotaErrorReason",
     "RequiredError.Reason" => "RequiredErrorReason",
+    "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
     "ServerError.Reason" => "ServerErrorReason",
     "StatementError.Reason" => "StatementErrorReason",
+    "StringLengthError.Reason" => "StringLengthErrorReason",
     "getAllNetworks" => "getAllNetworks",
     "getAllNetworksResponse" => "getAllNetworksResponse",
     "getCurrentNetwork" => "getCurrentNetwork",
@@ -1916,5 +2095,3 @@ class NetworkService extends DfpSoapClient {
 
 
 }}
-
-?>

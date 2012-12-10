@@ -1,6 +1,10 @@
 <?php
 /**
- * This example gets all cities available to target.
+ * This example gets all cities available to target. This example will take a
+ * while to run.
+ *
+ * NOTE: Since this example loads all cities into memory, your PHP memory_limit
+ *       may need to be raised for this example to work properly.
  *
  * A full list of available tables can be found at:
  * http://code.google.com/apis/dfp/docs/reference/v201208/PublisherQueryLanguageService.html
@@ -32,8 +36,8 @@
  * @author     Adam Rogal <api.arogal@gmail.com>
  * @author     Eric Koleda <api.ekoleda@gmail.com>
  * @author     Paul Rashidi <api.paulrashidi@gmail.com>
+ * @author     Vincent Tsao <api.vtsao@gmail.com>
  */
-
 error_reporting(E_STRICT | E_ALL);
 
 // You can set the include path to src directory or reference
@@ -55,33 +59,55 @@ try {
   // Get the PublisherQueryLanguageService.
   $pqlService = $user->GetService('PublisherQueryLanguageService', 'v201208');
 
-  // Create statement to select all targetable cities.
-  $selectStatement =
-      new Statement('SELECT * FROM City WHERE targetable = true LIMIT 500');
+  // Define the number of cities we want to get at a time.
+  $LIMIT = 500;
 
-  // Get all cities.
-  // A limit of 500 is set here. You may want to page through such a large
-  // result set.
+  // Create statement to select all targetable cities.
   // For criteria that do not have a 'targetable' property, that predicate
   // may be left off, i.e. just "SELECT * FROM Browser_Groups LIMIT 500".
-  $resultSet = $pqlService->select($selectStatement);
+  $selectStatement = 'SELECT * FROM City WHERE targetable = true LIMIT ' .
+      $LIMIT;
+  $offset = 0;
+  $resultSetSize = 0;
+  $allRows = array();
+  $i = 0;
 
-  // Display results.
-  if (isset($resultSet)) {
-    $columnLabels = array_map(
-        create_function('$columnType', 'return $columnType->labelName;'),
-        $resultSet->columnTypes);
-    printf("Columns are: %s\n", implode(', ', $columnLabels));
-    $i = 0;
-    foreach($resultSet->rows as $row) {
-      $values = array_map(create_function('$value', 'return $value->value;'),
-          $row->values);
-      printf("%d) %s\n", $i, implode(', ', $values));
-      $i++;
+  $mapColumnTypesToLabelsFn = create_function('$columnType',
+      'return $columnType->labelName;');
+  $mapRowValueToValueFn = create_function('$value', 'return $value->value;');
+
+  do {
+    $selectStatementOffset =
+        new Statement($selectStatement . ' OFFSET ' . $offset);
+
+    // Get all cities.
+    $resultSet = $pqlService->select($selectStatementOffset);
+
+    if (isset($resultSet->rows)) {
+      // Display results. 
+      $columnLabels = array_map($mapColumnTypesToLabelsFn,
+          $resultSet->columnTypes);
+      printf("Columns are: %s\n", implode(', ', $columnLabels));
+
+      foreach($resultSet->rows as $row) {
+        $values = array_map($mapRowValueToValueFn, $row->values);
+
+        // Collect all cities from each page.
+        $allRows[] = $values;
+
+        printf("%d) %s\n", $i, implode(', ', $values));
+        $i++;
+      }
+
+      $resultSetSize = count($resultSet->rows);
     }
-  } else {
-    print "No results returned.\n";
-  }
+
+    $offset += $LIMIT; 
+  } while ($resultSetSize == $LIMIT);
+
+  printf("Number of results found: %d\n", count($allRows));
+
 } catch (Exception $e) {
   print $e->getMessage() . "\n";
 }
+

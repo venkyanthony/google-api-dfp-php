@@ -24,7 +24,7 @@
  * @copyright  2012, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
+ * @author     Vincent Tsao <api.vtsao@gmail.com>
  */
 
 /** Required classes. **/
@@ -66,7 +66,6 @@ class AdUnitTargeting {
   }
 
   public function __construct($adUnitId = NULL, $includeDescendants = NULL) {
-    if(get_parent_class('AdUnitTargeting')) parent::__construct();
     $this->adUnitId = $adUnitId;
     $this->includeDescendants = $includeDescendants;
   }
@@ -156,7 +155,6 @@ class ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiError')) parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -243,7 +241,6 @@ class TechnologyTargeting {
   }
 
   public function __construct($bandwidthGroupTargeting = NULL, $browserTargeting = NULL, $browserLanguageTargeting = NULL, $deviceManufacturerTargeting = NULL, $mobileCarrierTargeting = NULL, $mobileDeviceTargeting = NULL, $mobileDeviceSubmodelTargeting = NULL, $operatingSystemTargeting = NULL, $operatingSystemVersionTargeting = NULL) {
-    if(get_parent_class('TechnologyTargeting')) parent::__construct();
     $this->bandwidthGroupTargeting = $bandwidthGroupTargeting;
     $this->browserTargeting = $browserTargeting;
     $this->browserLanguageTargeting = $browserLanguageTargeting;
@@ -286,7 +283,7 @@ class ApiVersionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiVersionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -363,7 +360,6 @@ class ApplicationException {
   }
 
   public function __construct($message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApplicationException')) parent::__construct();
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
   }
@@ -407,9 +403,47 @@ class AppliedLabel {
   }
 
   public function __construct($labelId = NULL, $isNegated = NULL) {
-    if(get_parent_class('AppliedLabel')) parent::__construct();
     $this->labelId = $labelId;
     $this->isNegated = $isNegated;
+  }
+}}
+
+if (!class_exists("AudienceExtensionError", FALSE)) {
+/**
+ * Errors associated with audience extension enabled line items
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class AudienceExtensionError extends ApiError {
+  /**
+   * @access public
+   * @var tnsAudienceExtensionErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AudienceExtensionError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -475,7 +509,6 @@ class Authentication {
   }
 
   public function __construct($AuthenticationType = NULL) {
-    if(get_parent_class('Authentication')) parent::__construct();
     $this->AuthenticationType = $AuthenticationType;
   }
 }}
@@ -510,7 +543,7 @@ class AuthenticationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AuthenticationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -556,7 +589,6 @@ class BandwidthGroupTargeting {
   }
 
   public function __construct($isTargeted = NULL, $bandwidthGroups = NULL) {
-    if(get_parent_class('BandwidthGroupTargeting')) parent::__construct();
     $this->isTargeted = $isTargeted;
     $this->bandwidthGroups = $bandwidthGroups;
   }
@@ -599,7 +631,6 @@ class BrowserLanguageTargeting {
   }
 
   public function __construct($isTargeted = NULL, $browserLanguages = NULL) {
-    if(get_parent_class('BrowserLanguageTargeting')) parent::__construct();
     $this->isTargeted = $isTargeted;
     $this->browserLanguages = $browserLanguages;
   }
@@ -642,9 +673,48 @@ class BrowserTargeting {
   }
 
   public function __construct($isTargeted = NULL, $browsers = NULL) {
-    if(get_parent_class('BrowserTargeting')) parent::__construct();
     $this->isTargeted = $isTargeted;
     $this->browsers = $browsers;
+  }
+}}
+
+if (!class_exists("ClickTrackingLineItemError", FALSE)) {
+/**
+ * Click tracking is a special line item type with a number of unique errors as
+ * described below.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class ClickTrackingLineItemError extends ApiError {
+  /**
+   * @access public
+   * @var tnsClickTrackingLineItemErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "ClickTrackingLineItemError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -680,7 +750,7 @@ class ClientLogin extends Authentication {
   }
 
   public function __construct($token = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('ClientLogin')) parent::__construct();
+    parent::__construct();
     $this->token = $token;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -716,7 +786,46 @@ class CommonError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CommonError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("CompanyCreditStatusError", FALSE)) {
+/**
+ * Lists all errors due to {@link Company#creditStatus}.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CompanyCreditStatusError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCompanyCreditStatusErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CompanyCreditStatusError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -767,7 +876,6 @@ class ContentTargeting {
   }
 
   public function __construct($targetedContentIds = NULL, $targetedVideoCategoryIds = NULL, $excludedVideoCategoryIds = NULL) {
-    if(get_parent_class('ContentTargeting')) parent::__construct();
     $this->targetedContentIds = $targetedContentIds;
     $this->targetedVideoCategoryIds = $targetedVideoCategoryIds;
     $this->excludedVideoCategoryIds = $excludedVideoCategoryIds;
@@ -845,7 +953,6 @@ class CreativePlaceholder {
   }
 
   public function __construct($size = NULL, $companions = NULL, $appliedLabels = NULL, $effectiveAppliedLabels = NULL, $id = NULL, $expectedCreativeCount = NULL, $creativeSizeType = NULL) {
-    if(get_parent_class('CreativePlaceholder')) parent::__construct();
     $this->size = $size;
     $this->companions = $companions;
     $this->appliedLabels = $appliedLabels;
@@ -853,6 +960,45 @@ class CreativePlaceholder {
     $this->id = $id;
     $this->expectedCreativeCount = $expectedCreativeCount;
     $this->creativeSizeType = $creativeSizeType;
+  }
+}}
+
+if (!class_exists("CustomFieldValueError", FALSE)) {
+/**
+ * Errors specific to editing custom field values
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CustomFieldValueError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCustomFieldValueErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomFieldValueError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -887,7 +1033,7 @@ class CustomTargetingError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CustomTargetingError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -961,7 +1107,6 @@ class CustomCriteriaNode {
   }
 
   public function __construct($CustomCriteriaNodeType = NULL) {
-    if(get_parent_class('CustomCriteriaNode')) parent::__construct();
     $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
   }
 }}
@@ -1008,7 +1153,6 @@ class Date {
   }
 
   public function __construct($year = NULL, $month = NULL, $day = NULL) {
-    if(get_parent_class('Date')) parent::__construct();
     $this->year = $year;
     $this->month = $month;
     $this->day = $day;
@@ -1069,12 +1213,51 @@ class DfpDateTime {
   }
 
   public function __construct($date = NULL, $hour = NULL, $minute = NULL, $second = NULL, $timeZoneID = NULL) {
-    if(get_parent_class('DfpDateTime')) parent::__construct();
     $this->date = $date;
     $this->hour = $hour;
     $this->minute = $minute;
     $this->second = $second;
     $this->timeZoneID = $timeZoneID;
+  }
+}}
+
+if (!class_exists("DateTimeRangeTargetingError", FALSE)) {
+/**
+ * Lists all date time range errors caused by associating a line item with a targeting
+ * expression.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class DateTimeRangeTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsDateTimeRangeTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "DateTimeRangeTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1121,7 +1304,6 @@ class DayPart {
   }
 
   public function __construct($dayOfWeek = NULL, $startTime = NULL, $endTime = NULL) {
-    if(get_parent_class('DayPart')) parent::__construct();
     $this->dayOfWeek = $dayOfWeek;
     $this->startTime = $startTime;
     $this->endTime = $endTime;
@@ -1165,9 +1347,47 @@ class DayPartTargeting {
   }
 
   public function __construct($dayParts = NULL, $timeZone = NULL) {
-    if(get_parent_class('DayPartTargeting')) parent::__construct();
     $this->dayParts = $dayParts;
     $this->timeZone = $timeZone;
+  }
+}}
+
+if (!class_exists("DayPartTargetingError", FALSE)) {
+/**
+ * Lists all errors associated with day-part targeting for a line item.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class DayPartTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsDayPartTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "DayPartTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1203,7 +1423,6 @@ class DeliveryData {
   }
 
   public function __construct($units = NULL) {
-    if(get_parent_class('DeliveryData')) parent::__construct();
     $this->units = $units;
   }
 }}
@@ -1244,7 +1463,6 @@ class DeliveryIndicator {
   }
 
   public function __construct($expectedDeliveryPercentage = NULL, $actualDeliveryPercentage = NULL) {
-    if(get_parent_class('DeliveryIndicator')) parent::__construct();
     $this->expectedDeliveryPercentage = $expectedDeliveryPercentage;
     $this->actualDeliveryPercentage = $actualDeliveryPercentage;
   }
@@ -1287,9 +1505,41 @@ class DeviceManufacturerTargeting {
   }
 
   public function __construct($isTargeted = NULL, $deviceManufacturers = NULL) {
-    if(get_parent_class('DeviceManufacturerTargeting')) parent::__construct();
     $this->isTargeted = $isTargeted;
     $this->deviceManufacturers = $deviceManufacturers;
+  }
+}}
+
+if (!class_exists("EntityLimitReachedError", FALSE)) {
+/**
+ * An error that occurs when creating an entity if the limit on the number of allowed entities for
+ * a network has already been reached.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class EntityLimitReachedError extends ApiError {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "EntityLimitReachedError";
+  }
+
+  public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1386,7 +1636,6 @@ class Forecast {
   }
 
   public function __construct($id = NULL, $orderId = NULL, $unitType = NULL, $availableUnits = NULL, $deliveredUnits = NULL, $matchedUnits = NULL, $possibleUnits = NULL, $reservedUnits = NULL) {
-    if(get_parent_class('Forecast')) parent::__construct();
     $this->id = $id;
     $this->orderId = $orderId;
     $this->unitType = $unitType;
@@ -1428,7 +1677,7 @@ class ForecastError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ForecastError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1480,10 +1729,87 @@ class FrequencyCap {
   }
 
   public function __construct($maxImpressions = NULL, $numTimeUnits = NULL, $timeUnit = NULL) {
-    if(get_parent_class('FrequencyCap')) parent::__construct();
     $this->maxImpressions = $maxImpressions;
     $this->numTimeUnits = $numTimeUnits;
     $this->timeUnit = $timeUnit;
+  }
+}}
+
+if (!class_exists("FrequencyCapError", FALSE)) {
+/**
+ * Lists all errors associated with frequency caps.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class FrequencyCapError extends ApiError {
+  /**
+   * @access public
+   * @var tnsFrequencyCapErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FrequencyCapError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("GenericTargetingError", FALSE)) {
+/**
+ * Targeting validation errors that can be used by different targeting types.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class GenericTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsGenericTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "GenericTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1537,9 +1863,48 @@ class GeoTargeting {
   }
 
   public function __construct($targetedLocations = NULL, $excludedLocations = NULL) {
-    if(get_parent_class('GeoTargeting')) parent::__construct();
     $this->targetedLocations = $targetedLocations;
     $this->excludedLocations = $excludedLocations;
+  }
+}}
+
+if (!class_exists("GeoTargetingError", FALSE)) {
+/**
+ * Lists all errors associated with geographical targeting for a
+ * {@link LineItem}.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class GeoTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsGeoTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "GeoTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1575,7 +1940,46 @@ class InternalApiError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InternalApiError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("InvalidUrlError", FALSE)) {
+/**
+ * Lists all errors associated with URLs.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class InvalidUrlError extends ApiError {
+  /**
+   * @access public
+   * @var tnsInvalidUrlErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InvalidUrlError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1626,7 +2030,6 @@ class InventoryTargeting {
   }
 
   public function __construct($targetedAdUnits = NULL, $excludedAdUnits = NULL, $targetedPlacementIds = NULL) {
-    if(get_parent_class('InventoryTargeting')) parent::__construct();
     $this->targetedAdUnits = $targetedAdUnits;
     $this->excludedAdUnits = $excludedAdUnits;
     $this->targetedPlacementIds = $targetedPlacementIds;
@@ -1664,7 +2067,7 @@ class InventoryTargetingError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InventoryTargetingError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1703,7 +2106,7 @@ class InventoryUnitError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InventoryUnitError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1757,10 +2160,126 @@ class AdUnitSize {
   }
 
   public function __construct($size = NULL, $environmentType = NULL, $companions = NULL) {
-    if(get_parent_class('AdUnitSize')) parent::__construct();
     $this->size = $size;
     $this->environmentType = $environmentType;
     $this->companions = $companions;
+  }
+}}
+
+if (!class_exists("LabelEntityAssociationError", FALSE)) {
+/**
+ * Errors specific to creating label entity associations.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class LabelEntityAssociationError extends ApiError {
+  /**
+   * @access public
+   * @var tnsLabelEntityAssociationErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LabelEntityAssociationError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("LineItemCreativeAssociationError", FALSE)) {
+/**
+ * Lists all errors associated with line item-to-creative association dates.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class LineItemCreativeAssociationError extends ApiError {
+  /**
+   * @access public
+   * @var tnsLineItemCreativeAssociationErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LineItemCreativeAssociationError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("LineItemError", FALSE)) {
+/**
+ * A catch-all error that lists all generic errors associated with LineItem.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class LineItemError extends ApiError {
+  /**
+   * @access public
+   * @var tnsLineItemErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LineItemError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1794,7 +2313,7 @@ class LineItemFlightDateError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('LineItemFlightDateError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1833,7 +2352,7 @@ class LineItemOperationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('LineItemOperationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2181,7 +2700,6 @@ class LineItemSummary {
   }
 
   public function __construct($orderId = NULL, $id = NULL, $name = NULL, $externalId = NULL, $orderName = NULL, $startDateTime = NULL, $startDateTimeType = NULL, $endDateTime = NULL, $autoExtensionDays = NULL, $unlimitedEndDateTime = NULL, $creativeRotationType = NULL, $deliveryRateType = NULL, $roadblockingType = NULL, $frequencyCaps = NULL, $lineItemType = NULL, $priority = NULL, $unitType = NULL, $duration = NULL, $unitsBought = NULL, $costPerUnit = NULL, $valueCostPerUnit = NULL, $costType = NULL, $discountType = NULL, $discount = NULL, $contractedUnitsBought = NULL, $creativePlaceholders = NULL, $targetPlatform = NULL, $environmentType = NULL, $companionDeliveryOption = NULL, $creativePersistenceType = NULL, $allowOverbook = NULL, $reserveAtCreation = NULL, $stats = NULL, $deliveryIndicator = NULL, $deliveryData = NULL, $budget = NULL, $status = NULL, $reservationStatus = NULL, $isArchived = NULL, $webPropertyCode = NULL, $appliedLabels = NULL, $effectiveAppliedLabels = NULL, $disableSameAdvertiserCompetitiveExclusion = NULL, $lastModifiedByApp = NULL, $notes = NULL, $lastModifiedDateTime = NULL, $LineItemSummaryType = NULL) {
-    if(get_parent_class('LineItemSummary')) parent::__construct();
     $this->orderId = $orderId;
     $this->id = $id;
     $this->name = $name;
@@ -2303,7 +2821,6 @@ class DfpLocation {
   }
 
   public function __construct($id = NULL, $LocationType = NULL) {
-    if(get_parent_class('DfpLocation')) parent::__construct();
     $this->id = $id;
     $this->LocationType = $LocationType;
   }
@@ -2351,7 +2868,7 @@ class MetroLocation extends DfpLocation {
   }
 
   public function __construct($metroCode = NULL, $countryCode = NULL, $id = NULL, $LocationType = NULL) {
-    if(get_parent_class('MetroLocation')) parent::__construct();
+    parent::__construct();
     $this->metroCode = $metroCode;
     $this->countryCode = $countryCode;
     $this->id = $id;
@@ -2395,7 +2912,6 @@ class MobileCarrierTargeting {
   }
 
   public function __construct($isTargeted = NULL, $mobileCarriers = NULL) {
-    if(get_parent_class('MobileCarrierTargeting')) parent::__construct();
     $this->isTargeted = $isTargeted;
     $this->mobileCarriers = $mobileCarriers;
   }
@@ -2437,7 +2953,6 @@ class MobileDeviceSubmodelTargeting {
   }
 
   public function __construct($targetedMobileDeviceSubmodels = NULL, $excludedMobileDeviceSubmodels = NULL) {
-    if(get_parent_class('MobileDeviceSubmodelTargeting')) parent::__construct();
     $this->targetedMobileDeviceSubmodels = $targetedMobileDeviceSubmodels;
     $this->excludedMobileDeviceSubmodels = $excludedMobileDeviceSubmodels;
   }
@@ -2479,7 +2994,6 @@ class MobileDeviceTargeting {
   }
 
   public function __construct($targetedMobileDevices = NULL, $excludedMobileDevices = NULL) {
-    if(get_parent_class('MobileDeviceTargeting')) parent::__construct();
     $this->targetedMobileDevices = $targetedMobileDevices;
     $this->excludedMobileDevices = $excludedMobileDevices;
   }
@@ -2521,7 +3035,6 @@ class Money {
   }
 
   public function __construct($currencyCode = NULL, $microAmount = NULL) {
-    if(get_parent_class('Money')) parent::__construct();
     $this->currencyCode = $currencyCode;
     $this->microAmount = $microAmount;
   }
@@ -2557,7 +3070,7 @@ class NotNullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NotNullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2568,7 +3081,7 @@ class NotNullError extends ApiError {
 
 if (!class_exists("NullError", FALSE)) {
 /**
- * Caused by supplying a non-null value for an attribute that should be null.
+ * Errors associated with violation of a NOT NULL check.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -2596,7 +3109,7 @@ class NullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2637,7 +3150,7 @@ class DfpOAuth extends Authentication {
   }
 
   public function __construct($parameters = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('DfpOAuth')) parent::__construct();
+    parent::__construct();
     $this->parameters = $parameters;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -2680,7 +3193,6 @@ class OperatingSystemTargeting {
   }
 
   public function __construct($isTargeted = NULL, $operatingSystems = NULL) {
-    if(get_parent_class('OperatingSystemTargeting')) parent::__construct();
     $this->isTargeted = $isTargeted;
     $this->operatingSystems = $operatingSystems;
   }
@@ -2722,7 +3234,6 @@ class OperatingSystemVersionTargeting {
   }
 
   public function __construct($targetedOperatingSystemVersions = NULL, $excludedOperatingSystemVersions = NULL) {
-    if(get_parent_class('OperatingSystemVersionTargeting')) parent::__construct();
     $this->targetedOperatingSystemVersions = $targetedOperatingSystemVersions;
     $this->excludedOperatingSystemVersions = $excludedOperatingSystemVersions;
   }
@@ -2758,7 +3269,7 @@ class OrderError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('OrderError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2797,7 +3308,7 @@ class ParseError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ParseError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2836,7 +3347,7 @@ class PermissionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PermissionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2883,7 +3394,7 @@ class PostalCodeLocation extends DfpLocation {
   }
 
   public function __construct($postalCode = NULL, $countryCode = NULL, $id = NULL, $LocationType = NULL) {
-    if(get_parent_class('PostalCodeLocation')) parent::__construct();
+    parent::__construct();
     $this->postalCode = $postalCode;
     $this->countryCode = $countryCode;
     $this->id = $id;
@@ -2922,7 +3433,7 @@ class PublisherQueryLanguageContextError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageContextError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2962,7 +3473,7 @@ class PublisherQueryLanguageSyntaxError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageSyntaxError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3002,7 +3513,7 @@ class QuotaError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('QuotaError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3041,7 +3552,7 @@ class RangeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RangeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3081,7 +3592,7 @@ class RegExError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RegExError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3126,7 +3637,7 @@ class RegionLocation extends DfpLocation {
   }
 
   public function __construct($regionCode = NULL, $id = NULL, $LocationType = NULL) {
-    if(get_parent_class('RegionLocation')) parent::__construct();
+    parent::__construct();
     $this->regionCode = $regionCode;
     $this->id = $id;
     $this->LocationType = $LocationType;
@@ -3163,7 +3674,7 @@ class RequiredCollectionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredCollectionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3202,7 +3713,7 @@ class RequiredError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3242,7 +3753,46 @@ class RequiredNumberError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredNumberError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("RequiredSizeError", FALSE)) {
+/**
+ * A list of all errors to be used for validating {@link Size}.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class RequiredSizeError extends ApiError {
+  /**
+   * @access public
+   * @var tnsRequiredSizeErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredSizeError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3281,7 +3831,7 @@ class ReservationDetailsError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ReservationDetailsError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3320,7 +3870,7 @@ class ServerError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ServerError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3331,9 +3881,9 @@ class ServerError extends ApiError {
 
 if (!class_exists("Size", FALSE)) {
 /**
- * Represents the dimensions of AdUnits, LineItems and Creatives.
+ * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
  * <p>
- * For interstitial size (out-of-page), Size must be 1x1.
+ * For interstitial size (out-of-page), {@code Size} must be 1x1.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -3373,7 +3923,6 @@ class Size {
   }
 
   public function __construct($width = NULL, $height = NULL, $isAspectRatio = NULL) {
-    if(get_parent_class('Size')) parent::__construct();
     $this->width = $width;
     $this->height = $height;
     $this->isAspectRatio = $isAspectRatio;
@@ -3422,7 +3971,6 @@ class SoapRequestHeader {
   }
 
   public function __construct($networkCode = NULL, $applicationName = NULL, $authentication = NULL) {
-    if(get_parent_class('SoapRequestHeader')) parent::__construct();
     $this->networkCode = $networkCode;
     $this->applicationName = $applicationName;
     $this->authentication = $authentication;
@@ -3465,7 +4013,6 @@ class SoapResponseHeader {
   }
 
   public function __construct($requestId = NULL, $responseTime = NULL) {
-    if(get_parent_class('SoapResponseHeader')) parent::__construct();
     $this->requestId = $requestId;
     $this->responseTime = $responseTime;
   }
@@ -3501,7 +4048,7 @@ class StatementError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('StatementError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3547,9 +4094,47 @@ class Stats {
   }
 
   public function __construct($impressionsDelivered = NULL, $clicksDelivered = NULL) {
-    if(get_parent_class('Stats')) parent::__construct();
     $this->impressionsDelivered = $impressionsDelivered;
     $this->clicksDelivered = $clicksDelivered;
+  }
+}}
+
+if (!class_exists("StringLengthError", FALSE)) {
+/**
+ * Errors for Strings which do not meet given length constraints.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class StringLengthError extends ApiError {
+  /**
+   * @access public
+   * @var tnsStringLengthErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "StringLengthError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -3626,7 +4211,6 @@ class Targeting {
   }
 
   public function __construct($geoTargeting = NULL, $inventoryTargeting = NULL, $dayPartTargeting = NULL, $technologyTargeting = NULL, $customTargeting = NULL, $userDomainTargeting = NULL, $contentTargeting = NULL, $videoPositionTargeting = NULL) {
-    if(get_parent_class('Targeting')) parent::__construct();
     $this->geoTargeting = $geoTargeting;
     $this->inventoryTargeting = $inventoryTargeting;
     $this->dayPartTargeting = $dayPartTargeting;
@@ -3635,6 +4219,45 @@ class Targeting {
     $this->userDomainTargeting = $userDomainTargeting;
     $this->contentTargeting = $contentTargeting;
     $this->videoPositionTargeting = $videoPositionTargeting;
+  }
+}}
+
+if (!class_exists("TeamError", FALSE)) {
+/**
+ * Errors related to a Team.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class TeamError extends ApiError {
+  /**
+   * @access public
+   * @var tnsTeamErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "TeamError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -3712,10 +4335,48 @@ class Technology {
   }
 
   public function __construct($id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('Technology')) parent::__construct();
     $this->id = $id;
     $this->name = $name;
     $this->TechnologyType = $TechnologyType;
+  }
+}}
+
+if (!class_exists("TechnologyTargetingError", FALSE)) {
+/**
+ * Technology targeting validation errors.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class TechnologyTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsTechnologyTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "TechnologyTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -3755,7 +4416,6 @@ class TimeOfDay {
   }
 
   public function __construct($hour = NULL, $minute = NULL) {
-    if(get_parent_class('TimeOfDay')) parent::__construct();
     $this->hour = $hour;
     $this->minute = $minute;
   }
@@ -3785,7 +4445,7 @@ class TypeError extends ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('TypeError')) parent::__construct();
+    parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -3817,7 +4477,7 @@ class UniqueError extends ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('UniqueError')) parent::__construct();
+    parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -3862,9 +4522,47 @@ class UserDomainTargeting {
   }
 
   public function __construct($domains = NULL, $targeted = NULL) {
-    if(get_parent_class('UserDomainTargeting')) parent::__construct();
     $this->domains = $domains;
     $this->targeted = $targeted;
+  }
+}}
+
+if (!class_exists("UserDomainTargetingError", FALSE)) {
+/**
+ * Lists all errors related to user domain targeting for a line item.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class UserDomainTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsUserDomainTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "UserDomainTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -3902,7 +4600,6 @@ class VideoPositionTargeting {
   }
 
   public function __construct($targetedVideoPositions = NULL) {
-    if(get_parent_class('VideoPositionTargeting')) parent::__construct();
     $this->targetedVideoPositions = $targetedVideoPositions;
   }
 }}
@@ -3931,7 +4628,6 @@ class AdUnitAfcSizeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AdUnitAfcSizeErrorReason')) parent::__construct();
   }
 }}
 
@@ -3962,7 +4658,6 @@ class AdUnitCodeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AdUnitCodeErrorReason')) parent::__construct();
   }
 }}
 
@@ -3991,7 +4686,33 @@ class ApiVersionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ApiVersionErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("AudienceExtensionErrorReason", FALSE)) {
+/**
+ * Specific audience extension error reasons.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class AudienceExtensionErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AudienceExtensionError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4022,7 +4743,33 @@ class AuthenticationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AuthenticationErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("ClickTrackingLineItemErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class ClickTrackingLineItemErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "ClickTrackingLineItemError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4050,7 +4797,6 @@ class CommonErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CommonErrorReason')) parent::__construct();
   }
 }}
 
@@ -4079,7 +4825,33 @@ class CompanionDeliveryOption {
   }
 
   public function __construct() {
-    if(get_parent_class('CompanionDeliveryOption')) parent::__construct();
+  }
+}}
+
+if (!class_exists("CompanyCreditStatusErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CompanyCreditStatusErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CompanyCreditStatusError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4108,7 +4880,6 @@ class ComputedStatus {
   }
 
   public function __construct() {
-    if(get_parent_class('ComputedStatus')) parent::__construct();
   }
 }}
 
@@ -4136,7 +4907,6 @@ class CostType {
   }
 
   public function __construct() {
-    if(get_parent_class('CostType')) parent::__construct();
   }
 }}
 
@@ -4165,14 +4935,13 @@ class CreativeRotationType {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativeRotationType')) parent::__construct();
   }
 }}
 
 if (!class_exists("CreativeSizeType", FALSE)) {
 /**
  * Descriptions of the types of sizes a creative can be.  Not all creatives can
- * be described by a height-width pair, this provided additional context.
+ * be described by a height-width pair, this provides additional context.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -4194,7 +4963,6 @@ class CreativeSizeType {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativeSizeType')) parent::__construct();
   }
 }}
 
@@ -4222,7 +4990,6 @@ class CustomCriteriaComparisonOperator {
   }
 
   public function __construct() {
-    if(get_parent_class('CustomCriteriaComparisonOperator')) parent::__construct();
   }
 }}
 
@@ -4250,7 +5017,33 @@ class CustomCriteriaSetLogicalOperator {
   }
 
   public function __construct() {
-    if(get_parent_class('CustomCriteriaSetLogicalOperator')) parent::__construct();
+  }
+}}
+
+if (!class_exists("CustomFieldValueErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CustomFieldValueErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomFieldValueError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4278,7 +5071,6 @@ class CustomTargetingErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CustomTargetingErrorReason')) parent::__construct();
   }
 }}
 
@@ -4306,7 +5098,33 @@ class AudienceSegmentCriteriaComparisonOperator {
   }
 
   public function __construct() {
-    if(get_parent_class('AudienceSegmentCriteriaComparisonOperator')) parent::__construct();
+  }
+}}
+
+if (!class_exists("DateTimeRangeTargetingErrorReason", FALSE)) {
+/**
+ * {@link ApiErrorReason} enum for date time range targeting error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class DateTimeRangeTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "DateTimeRangeTargetingError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4334,7 +5152,33 @@ class DayOfWeek {
   }
 
   public function __construct() {
-    if(get_parent_class('DayOfWeek')) parent::__construct();
+  }
+}}
+
+if (!class_exists("DayPartTargetingErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class DayPartTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "DayPartTargetingError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4362,7 +5206,6 @@ class DeliveryTimeZone {
   }
 
   public function __construct() {
-    if(get_parent_class('DeliveryTimeZone')) parent::__construct();
   }
 }}
 
@@ -4391,7 +5234,6 @@ class DeliveryRateType {
   }
 
   public function __construct() {
-    if(get_parent_class('DeliveryRateType')) parent::__construct();
   }
 }}
 
@@ -4419,7 +5261,6 @@ class EnvironmentType {
   }
 
   public function __construct() {
-    if(get_parent_class('EnvironmentType')) parent::__construct();
   }
 }}
 
@@ -4447,7 +5288,87 @@ class ForecastErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ForecastErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("FrequencyCapErrorReason", FALSE)) {
+/**
+ * The value returned if the actual value is not exposed by the requested API version.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class FrequencyCapErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FrequencyCapError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("GenericTargetingErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class GenericTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "GenericTargetingError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("GeoTargetingErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class GeoTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "GeoTargetingError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4475,7 +5396,33 @@ class InternalApiErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InternalApiErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("InvalidUrlErrorReason", FALSE)) {
+/**
+ * The URL contains invalid characters.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class InvalidUrlErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InvalidUrlError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4503,7 +5450,6 @@ class InventoryTargetingErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InventoryTargetingErrorReason')) parent::__construct();
   }
 }}
 
@@ -4531,7 +5477,60 @@ class InventoryUnitErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InventoryUnitErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("LabelEntityAssociationErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class LabelEntityAssociationErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LabelEntityAssociationError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("LineItemCreativeAssociationErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class LineItemCreativeAssociationErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LineItemCreativeAssociationError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4560,7 +5559,33 @@ class LineItemDiscountType {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemDiscountType')) parent::__construct();
+  }
+}}
+
+if (!class_exists("LineItemErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class LineItemErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LineItemError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -4588,7 +5613,6 @@ class LineItemFlightDateErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemFlightDateErrorReason')) parent::__construct();
   }
 }}
 
@@ -4616,7 +5640,6 @@ class LineItemOperationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemOperationErrorReason')) parent::__construct();
   }
 }}
 
@@ -4646,7 +5669,6 @@ class LineItemSummaryDuration {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemSummaryDuration')) parent::__construct();
   }
 }}
 
@@ -4674,7 +5696,6 @@ class LineItemSummaryReservationStatus {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemSummaryReservationStatus')) parent::__construct();
   }
 }}
 
@@ -4703,7 +5724,6 @@ class LineItemType {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemType')) parent::__construct();
   }
 }}
 
@@ -4732,7 +5752,6 @@ class MinuteOfHour {
   }
 
   public function __construct() {
-    if(get_parent_class('MinuteOfHour')) parent::__construct();
   }
 }}
 
@@ -4760,13 +5779,12 @@ class NotNullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NotNullErrorReason')) parent::__construct();
   }
 }}
 
 if (!class_exists("NullErrorReason", FALSE)) {
 /**
- * The reasons for the target error.
+ * The reasons for the validation error.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -4788,7 +5806,6 @@ class NullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NullErrorReason')) parent::__construct();
   }
 }}
 
@@ -4816,7 +5833,6 @@ class OrderErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('OrderErrorReason')) parent::__construct();
   }
 }}
 
@@ -4844,7 +5860,6 @@ class ParseErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ParseErrorReason')) parent::__construct();
   }
 }}
 
@@ -4872,7 +5887,6 @@ class PermissionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PermissionErrorReason')) parent::__construct();
   }
 }}
 
@@ -4910,7 +5924,6 @@ class CreativePersistenceType {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativePersistenceType')) parent::__construct();
   }
 }}
 
@@ -4938,7 +5951,6 @@ class PublisherQueryLanguageContextErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageContextErrorReason')) parent::__construct();
   }
 }}
 
@@ -4966,7 +5978,6 @@ class PublisherQueryLanguageSyntaxErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageSyntaxErrorReason')) parent::__construct();
   }
 }}
 
@@ -4996,13 +6007,12 @@ class QuotaErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('QuotaErrorReason')) parent::__construct();
   }
 }}
 
 if (!class_exists("RangeErrorReason", FALSE)) {
 /**
- * 
+ * The value returned if the actual value is not exposed by the requested API version.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -5024,7 +6034,6 @@ class RangeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RangeErrorReason')) parent::__construct();
   }
 }}
 
@@ -5052,7 +6061,6 @@ class RegExErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RegExErrorReason')) parent::__construct();
   }
 }}
 
@@ -5080,7 +6088,6 @@ class RequiredCollectionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredCollectionErrorReason')) parent::__construct();
   }
 }}
 
@@ -5108,7 +6115,6 @@ class RequiredErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredErrorReason')) parent::__construct();
   }
 }}
 
@@ -5136,7 +6142,34 @@ class RequiredNumberErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredNumberErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("RequiredSizeErrorReason", FALSE)) {
+/**
+ * {@link Creative#size} or {@link LineItemSummary#creativeSizes} is
+ * missing.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class RequiredSizeErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredSizeError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -5164,7 +6197,6 @@ class ReservationDetailsErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ReservationDetailsErrorReason')) parent::__construct();
   }
 }}
 
@@ -5192,7 +6224,6 @@ class RoadblockingType {
   }
 
   public function __construct() {
-    if(get_parent_class('RoadblockingType')) parent::__construct();
   }
 }}
 
@@ -5220,7 +6251,6 @@ class ServerErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ServerErrorReason')) parent::__construct();
   }
 }}
 
@@ -5249,7 +6279,6 @@ class StartDateTimeType {
   }
 
   public function __construct() {
-    if(get_parent_class('StartDateTimeType')) parent::__construct();
   }
 }}
 
@@ -5277,7 +6306,33 @@ class StatementErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('StatementErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("StringLengthErrorReason", FALSE)) {
+/**
+ * The value returned if the actual value is not exposed by the requested API version.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class StringLengthErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "StringLengthError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -5305,7 +6360,60 @@ class TargetPlatform {
   }
 
   public function __construct() {
-    if(get_parent_class('TargetPlatform')) parent::__construct();
+  }
+}}
+
+if (!class_exists("TeamErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class TeamErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "TeamError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("TechnologyTargetingErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class TechnologyTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "TechnologyTargetingError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -5333,7 +6441,6 @@ class TimeUnit {
   }
 
   public function __construct() {
-    if(get_parent_class('TimeUnit')) parent::__construct();
   }
 }}
 
@@ -5365,7 +6472,33 @@ class UnitType {
   }
 
   public function __construct() {
-    if(get_parent_class('UnitType')) parent::__construct();
+  }
+}}
+
+if (!class_exists("UserDomainTargetingErrorReason", FALSE)) {
+/**
+ * {@link ApiErrorReason} enum for user domain targeting error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class UserDomainTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "UserDomainTargetingError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -5393,7 +6526,6 @@ class VideoPositionTargetingType {
   }
 
   public function __construct() {
-    if(get_parent_class('VideoPositionTargetingType')) parent::__construct();
   }
 }}
 
@@ -5436,7 +6568,6 @@ class getForecast {
   }
 
   public function __construct($lineItem = NULL) {
-    if(get_parent_class('getForecast')) parent::__construct();
     $this->lineItem = $lineItem;
   }
 }}
@@ -5471,7 +6602,6 @@ class getForecastResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getForecastResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -5512,7 +6642,6 @@ class getForecastById {
   }
 
   public function __construct($lineItemId = NULL) {
-    if(get_parent_class('getForecastById')) parent::__construct();
     $this->lineItemId = $lineItemId;
   }
 }}
@@ -5547,7 +6676,6 @@ class getForecastByIdResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getForecastByIdResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -5582,7 +6710,7 @@ class AdUnitAfcSizeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AdUnitAfcSizeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -5621,7 +6749,7 @@ class AdUnitCodeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AdUnitCodeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -5660,7 +6788,7 @@ class ApiException extends ApplicationException {
   }
 
   public function __construct($errors = NULL, $message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApiException')) parent::__construct();
+    parent::__construct();
     $this->errors = $errors;
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
@@ -5692,7 +6820,7 @@ class BandwidthGroup extends Technology {
   }
 
   public function __construct($id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('BandwidthGroup')) parent::__construct();
+    parent::__construct();
     $this->id = $id;
     $this->name = $name;
     $this->TechnologyType = $TechnologyType;
@@ -5735,7 +6863,7 @@ class Browser extends Technology {
   }
 
   public function __construct($majorVersion = NULL, $minorVersion = NULL, $id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('Browser')) parent::__construct();
+    parent::__construct();
     $this->majorVersion = $majorVersion;
     $this->minorVersion = $minorVersion;
     $this->id = $id;
@@ -5768,7 +6896,7 @@ class BrowserLanguage extends Technology {
   }
 
   public function __construct($id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('BrowserLanguage')) parent::__construct();
+    parent::__construct();
     $this->id = $id;
     $this->name = $name;
     $this->TechnologyType = $TechnologyType;
@@ -5822,7 +6950,7 @@ class CityLocation extends DfpLocation {
   }
 
   public function __construct($cityName = NULL, $regionCode = NULL, $countryCode = NULL, $id = NULL, $LocationType = NULL) {
-    if(get_parent_class('CityLocation')) parent::__construct();
+    parent::__construct();
     $this->cityName = $cityName;
     $this->regionCode = $regionCode;
     $this->countryCode = $countryCode;
@@ -5866,7 +6994,7 @@ class CountryLocation extends DfpLocation {
   }
 
   public function __construct($countryCode = NULL, $id = NULL, $LocationType = NULL) {
-    if(get_parent_class('CountryLocation')) parent::__construct();
+    parent::__construct();
     $this->countryCode = $countryCode;
     $this->id = $id;
     $this->LocationType = $LocationType;
@@ -5913,7 +7041,7 @@ class CustomCriteriaSet extends CustomCriteriaNode {
   }
 
   public function __construct($logicalOperator = NULL, $children = NULL, $CustomCriteriaNodeType = NULL) {
-    if(get_parent_class('CustomCriteriaSet')) parent::__construct();
+    parent::__construct();
     $this->logicalOperator = $logicalOperator;
     $this->children = $children;
     $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
@@ -5945,7 +7073,7 @@ class CustomCriteriaLeaf extends CustomCriteriaNode {
   }
 
   public function __construct($CustomCriteriaNodeType = NULL) {
-    if(get_parent_class('CustomCriteriaLeaf')) parent::__construct();
+    parent::__construct();
     $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
   }
 }}
@@ -5986,7 +7114,7 @@ class AudienceSegmentCriteria extends CustomCriteriaLeaf {
   }
 
   public function __construct($operator = NULL, $audienceSegmentIds = NULL, $CustomCriteriaNodeType = NULL) {
-    if(get_parent_class('AudienceSegmentCriteria')) parent::__construct();
+    parent::__construct();
     $this->operator = $operator;
     $this->audienceSegmentIds = $audienceSegmentIds;
     $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
@@ -6017,7 +7145,7 @@ class DeviceManufacturer extends Technology {
   }
 
   public function __construct($id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('DeviceManufacturer')) parent::__construct();
+    parent::__construct();
     $this->id = $id;
     $this->name = $name;
     $this->TechnologyType = $TechnologyType;
@@ -6055,7 +7183,7 @@ class LineItem extends LineItemSummary {
   }
 
   public function __construct($targeting = NULL, $orderId = NULL, $id = NULL, $name = NULL, $externalId = NULL, $orderName = NULL, $startDateTime = NULL, $startDateTimeType = NULL, $endDateTime = NULL, $autoExtensionDays = NULL, $unlimitedEndDateTime = NULL, $creativeRotationType = NULL, $deliveryRateType = NULL, $roadblockingType = NULL, $frequencyCaps = NULL, $lineItemType = NULL, $priority = NULL, $unitType = NULL, $duration = NULL, $unitsBought = NULL, $costPerUnit = NULL, $valueCostPerUnit = NULL, $costType = NULL, $discountType = NULL, $discount = NULL, $contractedUnitsBought = NULL, $creativePlaceholders = NULL, $targetPlatform = NULL, $environmentType = NULL, $companionDeliveryOption = NULL, $creativePersistenceType = NULL, $allowOverbook = NULL, $reserveAtCreation = NULL, $stats = NULL, $deliveryIndicator = NULL, $deliveryData = NULL, $budget = NULL, $status = NULL, $reservationStatus = NULL, $isArchived = NULL, $webPropertyCode = NULL, $appliedLabels = NULL, $effectiveAppliedLabels = NULL, $disableSameAdvertiserCompetitiveExclusion = NULL, $lastModifiedByApp = NULL, $notes = NULL, $lastModifiedDateTime = NULL, $LineItemSummaryType = NULL) {
-    if(get_parent_class('LineItem')) parent::__construct();
+    parent::__construct();
     $this->targeting = $targeting;
     $this->orderId = $orderId;
     $this->id = $id;
@@ -6132,7 +7260,7 @@ class MobileCarrier extends Technology {
   }
 
   public function __construct($id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('MobileCarrier')) parent::__construct();
+    parent::__construct();
     $this->id = $id;
     $this->name = $name;
     $this->TechnologyType = $TechnologyType;
@@ -6169,7 +7297,7 @@ class MobileDevice extends Technology {
   }
 
   public function __construct($manufacturerCriterionId = NULL, $id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('MobileDevice')) parent::__construct();
+    parent::__construct();
     $this->manufacturerCriterionId = $manufacturerCriterionId;
     $this->id = $id;
     $this->name = $name;
@@ -6213,7 +7341,7 @@ class MobileDeviceSubmodel extends Technology {
   }
 
   public function __construct($mobileDeviceCriterionId = NULL, $deviceManufacturerCriterionId = NULL, $id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('MobileDeviceSubmodel')) parent::__construct();
+    parent::__construct();
     $this->mobileDeviceCriterionId = $mobileDeviceCriterionId;
     $this->deviceManufacturerCriterionId = $deviceManufacturerCriterionId;
     $this->id = $id;
@@ -6246,7 +7374,7 @@ class OperatingSystem extends Technology {
   }
 
   public function __construct($id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('OperatingSystem')) parent::__construct();
+    parent::__construct();
     $this->id = $id;
     $this->name = $name;
     $this->TechnologyType = $TechnologyType;
@@ -6295,7 +7423,7 @@ class OperatingSystemVersion extends Technology {
   }
 
   public function __construct($majorVersion = NULL, $minorVersion = NULL, $microVersion = NULL, $id = NULL, $name = NULL, $TechnologyType = NULL) {
-    if(get_parent_class('OperatingSystemVersion')) parent::__construct();
+    parent::__construct();
     $this->majorVersion = $majorVersion;
     $this->minorVersion = $minorVersion;
     $this->microVersion = $microVersion;
@@ -6349,7 +7477,7 @@ class CustomCriteria extends CustomCriteriaLeaf {
   }
 
   public function __construct($keyId = NULL, $valueIds = NULL, $operator = NULL, $CustomCriteriaNodeType = NULL) {
-    if(get_parent_class('CustomCriteria')) parent::__construct();
+    parent::__construct();
     $this->keyId = $keyId;
     $this->valueIds = $valueIds;
     $this->operator = $operator;
@@ -6383,6 +7511,7 @@ class ForecastService extends DfpSoapClient {
     "TechnologyTargeting" => "TechnologyTargeting",
     "ApiVersionError" => "ApiVersionError",
     "AppliedLabel" => "AppliedLabel",
+    "AudienceExtensionError" => "AudienceExtensionError",
     "Authentication" => "Authentication",
     "AuthenticationError" => "AuthenticationError",
     "BandwidthGroup" => "BandwidthGroup",
@@ -6393,8 +7522,10 @@ class ForecastService extends DfpSoapClient {
     "BrowserLanguageTargeting" => "BrowserLanguageTargeting",
     "BrowserTargeting" => "BrowserTargeting",
     "CityLocation" => "CityLocation",
+    "ClickTrackingLineItemError" => "ClickTrackingLineItemError",
     "ClientLogin" => "ClientLogin",
     "CommonError" => "CommonError",
+    "CompanyCreditStatusError" => "CompanyCreditStatusError",
     "ContentTargeting" => "ContentTargeting",
     "CountryLocation" => "CountryLocation",
     "CreativePlaceholder" => "CreativePlaceholder",
@@ -6402,26 +7533,37 @@ class ForecastService extends DfpSoapClient {
     "CustomCriteriaLeaf" => "CustomCriteriaLeaf",
     "CustomCriteriaSet" => "CustomCriteriaSet",
     "CustomCriteriaNode" => "CustomCriteriaNode",
+    "CustomFieldValueError" => "CustomFieldValueError",
     "CustomTargetingError" => "CustomTargetingError",
     "AudienceSegmentCriteria" => "AudienceSegmentCriteria",
     "Date" => "Date",
+    "DateTimeRangeTargetingError" => "DateTimeRangeTargetingError",
     "DayPart" => "DayPart",
     "DayPartTargeting" => "DayPartTargeting",
+    "DayPartTargetingError" => "DayPartTargetingError",
     "DeliveryData" => "DeliveryData",
     "DeliveryIndicator" => "DeliveryIndicator",
     "DeviceManufacturer" => "DeviceManufacturer",
     "DeviceManufacturerTargeting" => "DeviceManufacturerTargeting",
+    "EntityLimitReachedError" => "EntityLimitReachedError",
     "Forecast" => "Forecast",
     "ForecastError" => "ForecastError",
     "FrequencyCap" => "FrequencyCap",
+    "FrequencyCapError" => "FrequencyCapError",
+    "GenericTargetingError" => "GenericTargetingError",
     "GeoTargeting" => "GeoTargeting",
+    "GeoTargetingError" => "GeoTargetingError",
     "InternalApiError" => "InternalApiError",
+    "InvalidUrlError" => "InvalidUrlError",
     "InventoryTargeting" => "InventoryTargeting",
     "InventoryTargetingError" => "InventoryTargetingError",
     "InventoryUnitError" => "InventoryUnitError",
     "AdUnitSize" => "AdUnitSize",
+    "LabelEntityAssociationError" => "LabelEntityAssociationError",
+    "LineItemCreativeAssociationError" => "LineItemCreativeAssociationError",
     "LineItem" => "LineItem",
     "LineItemSummary" => "LineItemSummary",
+    "LineItemError" => "LineItemError",
     "LineItemFlightDateError" => "LineItemFlightDateError",
     "LineItemOperationError" => "LineItemOperationError",
     "MetroLocation" => "MetroLocation",
@@ -6451,6 +7593,7 @@ class ForecastService extends DfpSoapClient {
     "RequiredCollectionError" => "RequiredCollectionError",
     "RequiredError" => "RequiredError",
     "RequiredNumberError" => "RequiredNumberError",
+    "RequiredSizeError" => "RequiredSizeError",
     "ReservationDetailsError" => "ReservationDetailsError",
     "ServerError" => "ServerError",
     "Size" => "Size",
@@ -6458,35 +7601,52 @@ class ForecastService extends DfpSoapClient {
     "SoapResponseHeader" => "SoapResponseHeader",
     "StatementError" => "StatementError",
     "Stats" => "Stats",
+    "StringLengthError" => "StringLengthError",
     "Targeting" => "Targeting",
+    "TeamError" => "TeamError",
+    "TechnologyTargetingError" => "TechnologyTargetingError",
     "TimeOfDay" => "TimeOfDay",
     "TypeError" => "TypeError",
     "UniqueError" => "UniqueError",
     "UserDomainTargeting" => "UserDomainTargeting",
+    "UserDomainTargetingError" => "UserDomainTargetingError",
     "VideoPositionTargeting" => "VideoPositionTargeting",
     "AdUnitAfcSizeError.Reason" => "AdUnitAfcSizeErrorReason",
     "AdUnitCodeError.Reason" => "AdUnitCodeErrorReason",
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
+    "AudienceExtensionError.Reason" => "AudienceExtensionErrorReason",
     "AuthenticationError.Reason" => "AuthenticationErrorReason",
+    "ClickTrackingLineItemError.Reason" => "ClickTrackingLineItemErrorReason",
     "CommonError.Reason" => "CommonErrorReason",
     "CompanionDeliveryOption" => "CompanionDeliveryOption",
+    "CompanyCreditStatusError.Reason" => "CompanyCreditStatusErrorReason",
     "ComputedStatus" => "ComputedStatus",
     "CostType" => "CostType",
     "CreativeRotationType" => "CreativeRotationType",
     "CreativeSizeType" => "CreativeSizeType",
     "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
     "CustomCriteriaSet.LogicalOperator" => "CustomCriteriaSetLogicalOperator",
+    "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
     "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
     "AudienceSegmentCriteria.ComparisonOperator" => "AudienceSegmentCriteriaComparisonOperator",
+    "DateTimeRangeTargetingError.Reason" => "DateTimeRangeTargetingErrorReason",
     "DayOfWeek" => "DayOfWeek",
+    "DayPartTargetingError.Reason" => "DayPartTargetingErrorReason",
     "DeliveryTimeZone" => "DeliveryTimeZone",
     "DeliveryRateType" => "DeliveryRateType",
     "EnvironmentType" => "EnvironmentType",
     "ForecastError.Reason" => "ForecastErrorReason",
+    "FrequencyCapError.Reason" => "FrequencyCapErrorReason",
+    "GenericTargetingError.Reason" => "GenericTargetingErrorReason",
+    "GeoTargetingError.Reason" => "GeoTargetingErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
+    "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
     "InventoryTargetingError.Reason" => "InventoryTargetingErrorReason",
     "InventoryUnitError.Reason" => "InventoryUnitErrorReason",
+    "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
+    "LineItemCreativeAssociationError.Reason" => "LineItemCreativeAssociationErrorReason",
     "LineItemDiscountType" => "LineItemDiscountType",
+    "LineItemError.Reason" => "LineItemErrorReason",
     "LineItemFlightDateError.Reason" => "LineItemFlightDateErrorReason",
     "LineItemOperationError.Reason" => "LineItemOperationErrorReason",
     "LineItemSummary.Duration" => "LineItemSummaryDuration",
@@ -6507,14 +7667,19 @@ class ForecastService extends DfpSoapClient {
     "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
     "RequiredError.Reason" => "RequiredErrorReason",
     "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
+    "RequiredSizeError.Reason" => "RequiredSizeErrorReason",
     "ReservationDetailsError.Reason" => "ReservationDetailsErrorReason",
     "RoadblockingType" => "RoadblockingType",
     "ServerError.Reason" => "ServerErrorReason",
     "StartDateTimeType" => "StartDateTimeType",
     "StatementError.Reason" => "StatementErrorReason",
+    "StringLengthError.Reason" => "StringLengthErrorReason",
     "TargetPlatform" => "TargetPlatform",
+    "TeamError.Reason" => "TeamErrorReason",
+    "TechnologyTargetingError.Reason" => "TechnologyTargetingErrorReason",
     "TimeUnit" => "TimeUnit",
     "UnitType" => "UnitType",
+    "UserDomainTargetingError.Reason" => "UserDomainTargetingErrorReason",
     "VideoPositionTargetingType" => "VideoPositionTargetingType",
     "getForecast" => "getForecast",
     "getForecastResponse" => "getForecastResponse",
@@ -6574,5 +7739,3 @@ class ForecastService extends DfpSoapClient {
 
 
 }}
-
-?>

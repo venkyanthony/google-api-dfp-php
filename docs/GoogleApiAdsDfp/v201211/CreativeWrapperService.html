@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class CreativeWrapperService</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class CreativeWrapperService</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">CreativeWrapperService</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> WSDLInterpreter</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Ads---Dfp---v201211---CreativeWrapperService.php.html">/Ads/Dfp/v201211/CreativeWrapperService.php</a> (line <span class="field">3022</span>)
+		</p>
+		
+				
+		<pre>SoapClient
+   |
+   --<a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html">AdsSoapClient</a>
+      |
+      --<a href="../../GoogleApiAdsDfp/Lib/DfpSoapClient.html">DfpSoapClient</a>
+         |
+         --CreativeWrapperService</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+												<div class="var-title">
+					static <span class="var-type">array</span>
+					<a href="#$classmap" title="details" class="var-name">$classmap</a>
+				</div>
+																<div class="var-title">
+					static <span class="var-type">string</span>
+					<a href="#$endpoint" title="details" class="var-name">$endpoint</a>
+				</div>
+																															</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																				
+												<div class="method-definition">
+											<span class="method-result">CreativeWrapperService</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$wsdl</span> = <span class="var-default">null</span>], <span class="var-type">array</span>&nbsp;<span class="var-name">$options</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$user</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">the</span>
+										<a href="#createCreativeWrapper" title="details" class="method-name">createCreativeWrapper</a>
+											(<span class="var-type">creativeWrapper</span>&nbsp;<span class="var-name">$creativeWrapper</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">the</span>
+										<a href="#createCreativeWrappers" title="details" class="method-name">createCreativeWrappers</a>
+											(<span class="var-type">creativeWrappers</span>&nbsp;<span class="var-name">$creativeWrappers</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">the</span>
+										<a href="#getCreativeWrapper" title="details" class="method-name">getCreativeWrapper</a>
+											(<span class="var-type">creativeWrapperId</span>&nbsp;<span class="var-name">$creativeWrapperId</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">the</span>
+										<a href="#getCreativeWrappersByStatement" title="details" class="method-name">getCreativeWrappersByStatement</a>
+											(<span class="var-type">filterStatement</span>&nbsp;<span class="var-name">$filterStatement</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">the</span>
+										<a href="#performCreativeWrapperAction" title="details" class="method-name">performCreativeWrapperAction</a>
+											(<span class="var-type">creativeWrapperAction</span>&nbsp;<span class="var-name">$creativeWrapperAction</span>, <span class="var-type">filterStatement</span>&nbsp;<span class="var-name">$filterStatement</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">the</span>
+										<a href="#updateCreativeWrapper" title="details" class="method-name">updateCreativeWrapper</a>
+											(<span class="var-type">creativeWrapper</span>&nbsp;<span class="var-name">$creativeWrapper</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">the</span>
+										<a href="#updateCreativeWrappers" title="details" class="method-name">updateCreativeWrappers</a>
+											(<span class="var-type">creativeWrappers</span>&nbsp;<span class="var-name">$creativeWrappers</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$classmap" id="$classmap"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			static <span class="var-type">array</span>
+			<span class="var-name">$classmap</span>
+			 = <span class="var-default">array(<br />    &quot;DateTime&quot; =&gt; &quot;DfpDateTime&quot;,<br />    &quot;Location&quot; =&gt; &quot;DfpLocation&quot;,<br />    &quot;OAuth&quot; =&gt; &quot;DfpOAuth&quot;,<br />    &quot;ActivateCreativeWrappers&quot; =&gt; &quot;ActivateCreativeWrappers&quot;,<br />    &quot;CreativeWrapperAction&quot; =&gt; &quot;CreativeWrapperAction&quot;,<br />    &quot;ApiError&quot; =&gt; &quot;ApiError&quot;,<br />    &quot;ApiException&quot; =&gt; &quot;ApiException&quot;,<br />    &quot;ApplicationException&quot; =&gt; &quot;ApplicationException&quot;,<br />    &quot;ApiVersionError&quot; =&gt; &quot;ApiVersionError&quot;,<br />    &quot;Authentication&quot; =&gt; &quot;Authentication&quot;,<br />    &quot;AuthenticationError&quot; =&gt; &quot;AuthenticationError&quot;,<br />    &quot;BooleanValue&quot; =&gt; &quot;BooleanValue&quot;,<br />    &quot;Value&quot; =&gt; &quot;Value&quot;,<br />    &quot;ClientLogin&quot; =&gt; &quot;ClientLogin&quot;,<br />    &quot;CommonError&quot; =&gt; &quot;CommonError&quot;,<br />    &quot;CreativeWrapper&quot; =&gt; &quot;CreativeWrapper&quot;,<br />    &quot;CreativeWrapperError&quot; =&gt; &quot;CreativeWrapperError&quot;,<br />    &quot;CreativeWrapperPage&quot; =&gt; &quot;CreativeWrapperPage&quot;,<br />    &quot;Date&quot; =&gt; &quot;Date&quot;,<br />    &quot;DateTimeValue&quot; =&gt; &quot;DateTimeValue&quot;,<br />    &quot;DeactivateCreativeWrappers&quot; =&gt; &quot;DeactivateCreativeWrappers&quot;,<br />    &quot;CreativeWrapperHtmlSnippet&quot; =&gt; &quot;CreativeWrapperHtmlSnippet&quot;,<br />    &quot;InternalApiError&quot; =&gt; &quot;InternalApiError&quot;,<br />    &quot;LabelError&quot; =&gt; &quot;LabelError&quot;,<br />    &quot;NotNullError&quot; =&gt; &quot;NotNullError&quot;,<br />    &quot;NullError&quot; =&gt; &quot;NullError&quot;,<br />    &quot;NumberValue&quot; =&gt; &quot;NumberValue&quot;,<br />    &quot;ParseError&quot; =&gt; &quot;ParseError&quot;,<br />    &quot;PermissionError&quot; =&gt; &quot;PermissionError&quot;,<br />    &quot;PublisherQueryLanguageContextError&quot; =&gt; &quot;PublisherQueryLanguageContextError&quot;,<br />    &quot;PublisherQueryLanguageSyntaxError&quot; =&gt; &quot;PublisherQueryLanguageSyntaxError&quot;,<br />    &quot;QuotaError&quot; =&gt; &quot;QuotaError&quot;,<br />    &quot;RequiredError&quot; =&gt; &quot;RequiredError&quot;,<br />    &quot;ServerError&quot; =&gt; &quot;ServerError&quot;,<br />    &quot;SoapRequestHeader&quot; =&gt; &quot;SoapRequestHeader&quot;,<br />    &quot;SoapResponseHeader&quot; =&gt; &quot;SoapResponseHeader&quot;,<br />    &quot;Statement&quot; =&gt; &quot;Statement&quot;,<br />    &quot;StatementError&quot; =&gt; &quot;StatementError&quot;,<br />    &quot;StringLengthError&quot; =&gt; &quot;StringLengthError&quot;,<br />    &quot;String_ValueMapEntry&quot; =&gt; &quot;String_ValueMapEntry&quot;,<br />    &quot;TextValue&quot; =&gt; &quot;TextValue&quot;,<br />    &quot;TypeError&quot; =&gt; &quot;TypeError&quot;,<br />    &quot;UniqueError&quot; =&gt; &quot;UniqueError&quot;,<br />    &quot;UpdateResult&quot; =&gt; &quot;UpdateResult&quot;,<br />    &quot;ApiVersionError.Reason&quot; =&gt; &quot;ApiVersionErrorReason&quot;,<br />    &quot;AuthenticationError.Reason&quot; =&gt; &quot;AuthenticationErrorReason&quot;,<br />    &quot;CommonError.Reason&quot; =&gt; &quot;CommonErrorReason&quot;,<br />    &quot;CreativeWrapperError.Reason&quot; =&gt; &quot;CreativeWrapperErrorReason&quot;,<br />    &quot;InternalApiError.Reason&quot; =&gt; &quot;InternalApiErrorReason&quot;,<br />    &quot;CreativeWrapperOrdering&quot; =&gt; &quot;CreativeWrapperOrdering&quot;,<br />    &quot;CreativeWrapperStatus&quot; =&gt; &quot;CreativeWrapperStatus&quot;,<br />    &quot;LabelError.Reason&quot; =&gt; &quot;LabelErrorReason&quot;,<br />    &quot;NotNullError.Reason&quot; =&gt; &quot;NotNullErrorReason&quot;,<br />    &quot;NullError.Reason&quot; =&gt; &quot;NullErrorReason&quot;,<br />    &quot;ParseError.Reason&quot; =&gt; &quot;ParseErrorReason&quot;,<br />    &quot;PermissionError.Reason&quot; =&gt; &quot;PermissionErrorReason&quot;,<br />    &quot;PublisherQueryLanguageContextError.Reason&quot; =&gt; &quot;PublisherQueryLanguageContextErrorReason&quot;,<br />    &quot;PublisherQueryLanguageSyntaxError.Reason&quot; =&gt; &quot;PublisherQueryLanguageSyntaxErrorReason&quot;,<br />    &quot;QuotaError.Reason&quot; =&gt; &quot;QuotaErrorReason&quot;,<br />    &quot;RequiredError.Reason&quot; =&gt; &quot;RequiredErrorReason&quot;,<br />    &quot;ServerError.Reason&quot; =&gt; &quot;ServerErrorReason&quot;,<br />    &quot;StatementError.Reason&quot; =&gt; &quot;StatementErrorReason&quot;,<br />    &quot;StringLengthError.Reason&quot; =&gt; &quot;StringLengthErrorReason&quot;,<br />    &quot;createCreativeWrapper&quot; =&gt; &quot;createCreativeWrapper&quot;,<br />    &quot;createCreativeWrapperResponse&quot; =&gt; &quot;createCreativeWrapperResponse&quot;,<br />    &quot;createCreativeWrappers&quot; =&gt; &quot;createCreativeWrappers&quot;,<br />    &quot;createCreativeWrappersResponse&quot; =&gt; &quot;createCreativeWrappersResponse&quot;,<br />    &quot;getCreativeWrapper&quot; =&gt; &quot;getCreativeWrapper&quot;,<br />    &quot;getCreativeWrapperResponse&quot; =&gt; &quot;getCreativeWrapperResponse&quot;,<br />    &quot;getCreativeWrappersByStatement&quot; =&gt; &quot;getCreativeWrappersByStatement&quot;,<br />    &quot;getCreativeWrappersByStatementResponse&quot; =&gt; &quot;getCreativeWrappersByStatementResponse&quot;,<br />    &quot;performCreativeWrapperAction&quot; =&gt; &quot;performCreativeWrapperAction&quot;,<br />    &quot;performCreativeWrapperActionResponse&quot; =&gt; &quot;performCreativeWrapperActionResponse&quot;,<br />    &quot;updateCreativeWrapper&quot; =&gt; &quot;updateCreativeWrapper&quot;,<br />    &quot;updateCreativeWrapperResponse&quot; =&gt; &quot;updateCreativeWrapperResponse&quot;,<br />    &quot;updateCreativeWrappers&quot; =&gt; &quot;updateCreativeWrappers&quot;,<br />    &quot;updateCreativeWrappersResponse&quot; =&gt; &quot;updateCreativeWrappersResponse&quot;,<br />  )</span>			(line <span class="line-number">3028</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Default class map for wsdl=&gt;php</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$endpoint" id="$endpoint"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			static <span class="var-type">string</span>
+			<span class="var-name">$endpoint</span>
+			 = <span class="var-default"> &quot;https://www.google.com/apis/ads/publisher/v201211/CreativeWrapperService&quot;</span>			(line <span class="line-number">3112</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The endpoint of the service</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html">AdsSoapClient</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$headers">AdsSoapClient::$headers</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$lastArguments">AdsSoapClient::$lastArguments</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$lastHeaders">AdsSoapClient::$lastHeaders</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$lastMethodName">AdsSoapClient::$lastMethodName</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$lastRequest">AdsSoapClient::$lastRequest</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$lastResponse">AdsSoapClient::$lastResponse</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$lastSoapFault">AdsSoapClient::$lastSoapFault</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$options">AdsSoapClient::$options</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$serviceName">AdsSoapClient::$serviceName</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$serviceNamespace">AdsSoapClient::$serviceNamespace</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#var$user">AdsSoapClient::$user</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">3119</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor using wsdl location and options array</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">CreativeWrapperService</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$wsdl</span> = <span class="var-default">null</span>], <span class="var-type">array</span>&nbsp;<span class="var-name">$options</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$user</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$wsdl</span><span class="var-description">: WSDL location for this service</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: Options for the SoapClient</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$user</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../GoogleApiAdsDfp/Lib/DfpSoapClient.html#method__construct">DfpSoapClient::__construct()</a></dt>
+						<dd>Constructor for Google's DoubleClick for Publishers API SOAP client.</dd>
+					</dl>
+			
+	</div>
+<a name="methodcreateCreativeWrapper" id="createCreativeWrapper"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createCreativeWrapper</span> (line <span class="line-number">3138</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates a new {@code CreativeWrapper}.</p>
+<p class="description"><p>The following fields are required:  <ul><li>labelId</li><li>ordering</li><li>header or footer</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> creative wrapper with its ID filled in</li>
+				<li><span class="field">throws:</span> ApiException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">the</span>
+		<span class="method-name">
+			createCreativeWrapper
+		</span>
+					(<span class="var-type">creativeWrapper</span>&nbsp;<span class="var-name">$creativeWrapper</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">creativeWrapper</span>
+				<span class="var-name">$creativeWrapper</span><span class="var-description">: the creative wrapper to create</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcreateCreativeWrappers" id="createCreativeWrappers"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createCreativeWrappers</span> (line <span class="line-number">3159</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates a new {@code CreativeWrapper} objects.</p>
+<p class="description"><p>The following fields are required:  <ul><li>labelId</li><li>ordering</li><li>header or footer</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> creative wrappers with their IDs filled in</li>
+				<li><span class="field">throws:</span> ApiException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">the</span>
+		<span class="method-name">
+			createCreativeWrappers
+		</span>
+					(<span class="var-type">creativeWrappers</span>&nbsp;<span class="var-name">$creativeWrappers</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">creativeWrappers</span>
+				<span class="var-name">$creativeWrappers</span><span class="var-description">: the creative wrappers to create</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetCreativeWrapper" id="getCreativeWrapper"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCreativeWrapper</span> (line <span class="line-number">3176</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the <a href="../../GoogleApiAdsDfp/v201211/CreativeWrapper.html">CreativeWrapper</a> uniquely identified by the given  ID.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> {@code CreativeWrapper} uniquely identified by the given  ID</li>
+				<li><span class="field">throws:</span> ApiException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">the</span>
+		<span class="method-name">
+			getCreativeWrapper
+		</span>
+					(<span class="var-type">creativeWrapperId</span>&nbsp;<span class="var-name">$creativeWrapperId</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">creativeWrapperId</span>
+				<span class="var-name">$creativeWrapperId</span><span class="var-description">: the ID of the creative wrapper, which  must already exist</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetCreativeWrappersByStatement" id="getCreativeWrappersByStatement"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCreativeWrappersByStatement</span> (line <span class="line-number">3214</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets a <a href="../../GoogleApiAdsDfp/v201211/CreativeWrapperPage.html">CreativeWrapperPage</a> of <a href="../../GoogleApiAdsDfp/v201211/CreativeWrapper.html">CreativeWrapper</a>  objects that satisfy the given query. The following  fields are supported for filtering:</p>
+<p class="description"><p>&lt;table&gt;  &lt;tr&gt;  &lt;th scope=&quot;col&quot;&gt;PQL Property&lt;/th&gt; &lt;th scope=&quot;col&quot;&gt;Object Property&lt;/th&gt;  &lt;/tr&gt;  &lt;tr&gt;  &lt;td&gt;{@code id}&lt;/td&gt;  &lt;td&gt;id&lt;/td&gt;  &lt;/tr&gt;  &lt;tr&gt;  &lt;td&gt;{@code labelId}&lt;/td&gt;  &lt;td&gt;labelId&lt;/td&gt;  &lt;/tr&gt;  &lt;tr&gt;  &lt;td&gt;{@code status}&lt;/td&gt;  &lt;td&gt;status&lt;/td&gt;  &lt;/tr&gt;  &lt;tr&gt;  &lt;td&gt;{@code ordering}&lt;/td&gt;  &lt;td&gt;ordering&lt;/td&gt;  &lt;/tr&gt;  &lt;/table&gt;</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> creative wrappers that match the given filter</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">the</span>
+		<span class="method-name">
+			getCreativeWrappersByStatement
+		</span>
+					(<span class="var-type">filterStatement</span>&nbsp;<span class="var-name">$filterStatement</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">filterStatement</span>
+				<span class="var-name">$filterStatement</span><span class="var-description">: a Publisher Query Language statement used to filter  a set of creative wrappers.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodperformCreativeWrapperAction" id="performCreativeWrapperAction"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">performCreativeWrapperAction</span> (line <span class="line-number">3230</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Performs actions on <a href="../../GoogleApiAdsDfp/v201211/CreativeWrapper.html">CreativeWrapper</a> objects that match the  given query.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> result of the action performed</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">the</span>
+		<span class="method-name">
+			performCreativeWrapperAction
+		</span>
+					(<span class="var-type">creativeWrapperAction</span>&nbsp;<span class="var-name">$creativeWrapperAction</span>, <span class="var-type">filterStatement</span>&nbsp;<span class="var-name">$filterStatement</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">creativeWrapperAction</span>
+				<span class="var-name">$creativeWrapperAction</span><span class="var-description">: the action to perform</span>			</li>
+					<li>
+				<span class="var-type">filterStatement</span>
+				<span class="var-name">$filterStatement</span><span class="var-description">: a Publisher Query Language statement used to filter  a set of labels</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodupdateCreativeWrapper" id="updateCreativeWrapper"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">updateCreativeWrapper</span> (line <span class="line-number">3244</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Updates the specified {@code CreativeWrapper}.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> updated creative wrapper</li>
+				<li><span class="field">throws:</span> ApiException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">the</span>
+		<span class="method-name">
+			updateCreativeWrapper
+		</span>
+					(<span class="var-type">creativeWrapper</span>&nbsp;<span class="var-name">$creativeWrapper</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">creativeWrapper</span>
+				<span class="var-name">$creativeWrapper</span><span class="var-description">: the creative wrapper to update</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodupdateCreativeWrappers" id="updateCreativeWrappers"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">updateCreativeWrappers</span> (line <span class="line-number">3258</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Updates the specified {@code CreativeWrapper} objects.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> updated creative wrapper objects</li>
+				<li><span class="field">throws:</span> ApiException</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">the</span>
+		<span class="method-name">
+			updateCreativeWrappers
+		</span>
+					(<span class="var-type">creativeWrappers</span>&nbsp;<span class="var-name">$creativeWrappers</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">creativeWrappers</span>
+				<span class="var-name">$creativeWrappers</span><span class="var-description">: the creative wrappers to update</span>			</li>
+				</ul>
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../GoogleApiAdsDfp/Lib/DfpSoapClient.html">DfpSoapClient</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../GoogleApiAdsDfp/Lib/DfpSoapClient.html#method__construct">DfpSoapClient::__construct()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsDfp/Lib/DfpSoapClient.html#methodGenerateRequestInfoMessage">DfpSoapClient::GenerateRequestInfoMessage()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsDfp/Lib/DfpSoapClient.html#methodGenerateSoapHeader">DfpSoapClient::GenerateSoapHeader()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsDfp/Lib/DfpSoapClient.html#methodRemoveSensitiveInfo">DfpSoapClient::RemoveSensitiveInfo()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html">AdsSoapClient</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#method__construct">AdsSoapClient::__construct()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodCreate">AdsSoapClient::Create()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGenerateRequestInfoMessage">AdsSoapClient::GenerateRequestInfoMessage()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGenerateSoapHeader">AdsSoapClient::GenerateSoapHeader()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetAdsUser">AdsSoapClient::GetAdsUser()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetEmail">AdsSoapClient::GetEmail()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetHeaderNames">AdsSoapClient::GetHeaderNames()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetHeaderValue">AdsSoapClient::GetHeaderValue()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetLastFaultMessage">AdsSoapClient::GetLastFaultMessage()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetLastMethodName">AdsSoapClient::GetLastMethodName()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetLastRequestDom">AdsSoapClient::GetLastRequestDom()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetLastRequestId">AdsSoapClient::GetLastRequestId()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetLastResponseDom">AdsSoapClient::GetLastResponseDom()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetLastResponseTime">AdsSoapClient::GetLastResponseTime()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetServer">AdsSoapClient::GetServer()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetServiceName">AdsSoapClient::GetServiceName()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodGetTypemaps">AdsSoapClient::GetTypemaps()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodIsFault">AdsSoapClient::IsFault()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodPrepareRequest">AdsSoapClient::PrepareRequest()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodRemoveSensitiveInfo">AdsSoapClient::RemoveSensitiveInfo()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodSetHeaderValue">AdsSoapClient::SetHeaderValue()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodTypemapLongFromXml">AdsSoapClient::TypemapLongFromXml()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#methodTypemapLongToXml">AdsSoapClient::TypemapLongToXml()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#method__doRequest">AdsSoapClient::__doRequest()</a></span><br>
+													<span class="method-name"><a href="../../GoogleApiAdsCommon/Lib/AdsSoapClient.html#method__soapCall">AdsSoapClient::__soapCall()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname">SoapClient (Internal Class)</span></p>
+					<blockquote>
+													<span class="method-name">constructor SoapClient ( $wsdl, [$options = ] )</span><br>
+													<span class="method-name">__call ( $function_name, $arguments )</span><br>
+													<span class="method-name">__doRequest ( $request, $location, $action, $version, [$one_way = ] )</span><br>
+													<span class="method-name">__getFunctions (  )</span><br>
+													<span class="method-name">__getLastRequest (  )</span><br>
+													<span class="method-name">__getLastRequestHeaders (  )</span><br>
+													<span class="method-name">__getLastResponse (  )</span><br>
+													<span class="method-name">__getLastResponseHeaders (  )</span><br>
+													<span class="method-name">__getTypes (  )</span><br>
+													<span class="method-name">__setCookie ( $name, [$value = ] )</span><br>
+													<span class="method-name">__setLocation ( [$new_location = ] )</span><br>
+													<span class="method-name">__setSoapHeaders ( $soapheaders )</span><br>
+													<span class="method-name">__soapCall ( $function_name, $arguments, [$options = ], [$input_headers = ], [&$output_headers = ] )</span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.4</a>
+	</p>
+	</div></body>
+</html>

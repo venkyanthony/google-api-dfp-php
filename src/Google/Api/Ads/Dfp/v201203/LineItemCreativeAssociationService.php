@@ -24,7 +24,7 @@
  * @copyright  2012, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
+ * @author     Vincent Tsao <api.vtsao@gmail.com>
  */
 
 /** Required classes. **/
@@ -114,7 +114,6 @@ class ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiError')) parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -152,7 +151,7 @@ class ApiVersionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiVersionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -229,7 +228,6 @@ class ApplicationException {
   }
 
   public function __construct($message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApplicationException')) parent::__construct();
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
   }
@@ -273,7 +271,6 @@ class AppliedLabel {
   }
 
   public function __construct($labelId = NULL, $isNegated = NULL) {
-    if(get_parent_class('AppliedLabel')) parent::__construct();
     $this->labelId = $labelId;
     $this->isNegated = $isNegated;
   }
@@ -309,7 +306,7 @@ class AssetError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AssetError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -380,7 +377,6 @@ class Authentication {
   }
 
   public function __construct($AuthenticationType = NULL) {
-    if(get_parent_class('Authentication')) parent::__construct();
     $this->AuthenticationType = $AuthenticationType;
   }
 }}
@@ -415,7 +411,7 @@ class AuthenticationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AuthenticationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -456,7 +452,7 @@ class ClientLogin extends Authentication {
   }
 
   public function __construct($token = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('ClientLogin')) parent::__construct();
+    parent::__construct();
     $this->token = $token;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -492,7 +488,46 @@ class CommonError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CommonError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("CreativeAssetMacroError", FALSE)) {
+/**
+ * Lists all errors associated with creative asset macros.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CreativeAssetMacroError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCreativeAssetMacroErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CreativeAssetMacroError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -531,7 +566,7 @@ class CreativeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CreativeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -611,7 +646,6 @@ class CreativePlaceholder {
   }
 
   public function __construct($size = NULL, $companions = NULL, $appliedLabels = NULL, $effectiveAppliedLabels = NULL, $id = NULL, $expectedCreativeCount = NULL, $creativeSizeType = NULL) {
-    if(get_parent_class('CreativePlaceholder')) parent::__construct();
     $this->size = $size;
     $this->companions = $companions;
     $this->appliedLabels = $appliedLabels;
@@ -619,6 +653,84 @@ class CreativePlaceholder {
     $this->id = $id;
     $this->expectedCreativeCount = $expectedCreativeCount;
     $this->creativeSizeType = $creativeSizeType;
+  }
+}}
+
+if (!class_exists("CreativeSetError", FALSE)) {
+/**
+ * Errors relating to creative sets & subclasses.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CreativeSetError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCreativeSetErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CreativeSetError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("CustomCreativeError", FALSE)) {
+/**
+ * Lists all errors associated with custom creatives.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CustomCreativeError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCustomCreativeErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomCreativeError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -664,7 +776,6 @@ class Date {
   }
 
   public function __construct($year = NULL, $month = NULL, $day = NULL) {
-    if(get_parent_class('Date')) parent::__construct();
     $this->year = $year;
     $this->month = $month;
     $this->day = $day;
@@ -725,12 +836,44 @@ class DfpDateTime {
   }
 
   public function __construct($date = NULL, $hour = NULL, $minute = NULL, $second = NULL, $timeZoneID = NULL) {
-    if(get_parent_class('DfpDateTime')) parent::__construct();
     $this->date = $date;
     $this->hour = $hour;
     $this->minute = $minute;
     $this->second = $second;
     $this->timeZoneID = $timeZoneID;
+  }
+}}
+
+if (!class_exists("EntityLimitReachedError", FALSE)) {
+/**
+ * An error that occurs when creating an entity if the limit on the number of allowed entities for
+ * a network has already been reached.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class EntityLimitReachedError extends ApiError {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "EntityLimitReachedError";
+  }
+
+  public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -764,7 +907,7 @@ class FileError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('FileError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -803,7 +946,7 @@ class ImageError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ImageError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -844,7 +987,7 @@ class InternalApiError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InternalApiError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -883,7 +1026,46 @@ class InvalidUrlError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InvalidUrlError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("LabelEntityAssociationError", FALSE)) {
+/**
+ * Errors specific to creating label entity associations.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class LabelEntityAssociationError extends ApiError {
+  /**
+   * @access public
+   * @var tnsLabelEntityAssociationErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LabelEntityAssociationError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -955,16 +1137,14 @@ class LineItemCreativeAssociationAction {
   }
 
   public function __construct($LineItemCreativeAssociationActionType = NULL) {
-    if(get_parent_class('LineItemCreativeAssociationAction')) parent::__construct();
     $this->LineItemCreativeAssociationActionType = $LineItemCreativeAssociationActionType;
   }
 }}
 
 if (!class_exists("LineItemCreativeAssociation", FALSE)) {
 /**
- * A {@code LineItemCreativeAssociation} associates a {@link Creative} with a
- * {@link LineItem} so that the creative can be served in ad units targeted by
- * the line item.
+ * A {@code LineItemCreativeAssociation} associates a {@link Creative} or {@link CreativeSet} with a
+ * {@link LineItem} so that the creative can be served in ad units targeted by the line item.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -1052,7 +1232,6 @@ class LineItemCreativeAssociation {
   }
 
   public function __construct($lineItemId = NULL, $creativeId = NULL, $manualCreativeRotationWeight = NULL, $startDateTime = NULL, $startDateTimeType = NULL, $endDateTime = NULL, $destinationUrl = NULL, $sizes = NULL, $status = NULL, $stats = NULL, $lastModifiedDateTime = NULL) {
-    if(get_parent_class('LineItemCreativeAssociation')) parent::__construct();
     $this->lineItemId = $lineItemId;
     $this->creativeId = $creativeId;
     $this->manualCreativeRotationWeight = $manualCreativeRotationWeight;
@@ -1097,7 +1276,7 @@ class LineItemCreativeAssociationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('LineItemCreativeAssociationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1137,7 +1316,7 @@ class LineItemCreativeAssociationOperationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('LineItemCreativeAssociationOperationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1188,7 +1367,6 @@ class LineItemCreativeAssociationPage {
   }
 
   public function __construct($totalResultSetSize = NULL, $startIndex = NULL, $results = NULL) {
-    if(get_parent_class('LineItemCreativeAssociationPage')) parent::__construct();
     $this->totalResultSetSize = $totalResultSetSize;
     $this->startIndex = $startIndex;
     $this->results = $results;
@@ -1232,7 +1410,6 @@ class LineItemCreativeAssociationStats {
   }
 
   public function __construct($stats = NULL, $costInOrderCurrency = NULL) {
-    if(get_parent_class('LineItemCreativeAssociationStats')) parent::__construct();
     $this->stats = $stats;
     $this->costInOrderCurrency = $costInOrderCurrency;
   }
@@ -1274,7 +1451,6 @@ class Money {
   }
 
   public function __construct($currencyCode = NULL, $microAmount = NULL) {
-    if(get_parent_class('Money')) parent::__construct();
     $this->currencyCode = $currencyCode;
     $this->microAmount = $microAmount;
   }
@@ -1310,7 +1486,7 @@ class NotNullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NotNullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1349,7 +1525,7 @@ class NullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1390,7 +1566,7 @@ class DfpOAuth extends Authentication {
   }
 
   public function __construct($parameters = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('DfpOAuth')) parent::__construct();
+    parent::__construct();
     $this->parameters = $parameters;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -1426,7 +1602,7 @@ class ParseError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ParseError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1465,7 +1641,7 @@ class PermissionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PermissionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1505,7 +1681,7 @@ class PublisherQueryLanguageContextError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageContextError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1545,7 +1721,7 @@ class PublisherQueryLanguageSyntaxError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageSyntaxError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1585,7 +1761,46 @@ class QuotaError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('QuotaError')) parent::__construct();
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("RangeError", FALSE)) {
+/**
+ * A list of all errors associated with the Range constraint.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class RangeError extends ApiError {
+  /**
+   * @access public
+   * @var tnsRangeErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RangeError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1624,7 +1839,7 @@ class RequiredError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1664,7 +1879,7 @@ class RequiredNumberError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredNumberError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1703,7 +1918,7 @@ class RequiredSizeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredSizeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1742,7 +1957,7 @@ class ServerError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ServerError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1753,9 +1968,9 @@ class ServerError extends ApiError {
 
 if (!class_exists("Size", FALSE)) {
 /**
- * Represents the dimensions of AdUnits, LineItems and Creatives.
+ * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
  * <p>
- * For interstitial size (out-of-page), Size must be 1x1.
+ * For interstitial size (out-of-page), {@code Size} must be 1x1.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -1795,7 +2010,6 @@ class Size {
   }
 
   public function __construct($width = NULL, $height = NULL, $isAspectRatio = NULL) {
-    if(get_parent_class('Size')) parent::__construct();
     $this->width = $width;
     $this->height = $height;
     $this->isAspectRatio = $isAspectRatio;
@@ -1844,7 +2058,6 @@ class SoapRequestHeader {
   }
 
   public function __construct($networkCode = NULL, $applicationName = NULL, $authentication = NULL) {
-    if(get_parent_class('SoapRequestHeader')) parent::__construct();
     $this->networkCode = $networkCode;
     $this->applicationName = $applicationName;
     $this->authentication = $authentication;
@@ -1887,7 +2100,6 @@ class SoapResponseHeader {
   }
 
   public function __construct($requestId = NULL, $responseTime = NULL) {
-    if(get_parent_class('SoapResponseHeader')) parent::__construct();
     $this->requestId = $requestId;
     $this->responseTime = $responseTime;
   }
@@ -1950,7 +2162,6 @@ class Statement {
   }
 
   public function __construct($query = NULL, $values = NULL) {
-    if(get_parent_class('Statement')) parent::__construct();
     $this->query = $query;
     $this->values = $values;
   }
@@ -1986,7 +2197,7 @@ class StatementError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('StatementError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2032,9 +2243,47 @@ class Stats {
   }
 
   public function __construct($impressionsDelivered = NULL, $clicksDelivered = NULL) {
-    if(get_parent_class('Stats')) parent::__construct();
     $this->impressionsDelivered = $impressionsDelivered;
     $this->clicksDelivered = $clicksDelivered;
+  }
+}}
+
+if (!class_exists("StringLengthError", FALSE)) {
+/**
+ * Errors for Strings which do not meet given length constraints.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class StringLengthError extends ApiError {
+  /**
+   * @access public
+   * @var tnsStringLengthErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "StringLengthError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -2075,7 +2324,6 @@ class String_ValueMapEntry {
   }
 
   public function __construct($key = NULL, $value = NULL) {
-    if(get_parent_class('String_ValueMapEntry')) parent::__construct();
     $this->key = $key;
     $this->value = $value;
   }
@@ -2111,7 +2359,7 @@ class TemplateInstantiatedCreativeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('TemplateInstantiatedCreativeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2144,7 +2392,39 @@ class TypeError extends ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('TypeError')) parent::__construct();
+    parent::__construct();
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("UniqueError", FALSE)) {
+/**
+ * An error for a field which must satisfy a uniqueness constraint
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class UniqueError extends ApiError {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "UniqueError";
+  }
+
+  public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -2182,7 +2462,6 @@ class UpdateResult {
   }
 
   public function __construct($numChanges = NULL) {
-    if(get_parent_class('UpdateResult')) parent::__construct();
     $this->numChanges = $numChanges;
   }
 }}
@@ -2249,7 +2528,6 @@ class Value {
   }
 
   public function __construct($ValueType = NULL) {
-    if(get_parent_class('Value')) parent::__construct();
     $this->ValueType = $ValueType;
   }
 }}
@@ -2279,7 +2557,6 @@ class ApiVersionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ApiVersionErrorReason')) parent::__construct();
   }
 }}
 
@@ -2307,7 +2584,6 @@ class AssetErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AssetErrorReason')) parent::__construct();
   }
 }}
 
@@ -2338,7 +2614,6 @@ class AuthenticationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AuthenticationErrorReason')) parent::__construct();
   }
 }}
 
@@ -2366,7 +2641,33 @@ class CommonErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CommonErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("CreativeAssetMacroErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CreativeAssetMacroErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CreativeAssetMacroError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -2394,14 +2695,40 @@ class CreativeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativeErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("CreativeSetErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CreativeSetErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CreativeSetError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
 if (!class_exists("CreativeSizeType", FALSE)) {
 /**
  * Descriptions of the types of sizes a creative can be.  Not all creatives can
- * be described by a height-width pair, this provided additional context.
+ * be described by a height-width pair, this provides additional context.
  * @package GoogleApiAdsDfp
  * @subpackage v201203
  */
@@ -2423,7 +2750,33 @@ class CreativeSizeType {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativeSizeType')) parent::__construct();
+  }
+}}
+
+if (!class_exists("CustomCreativeErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class CustomCreativeErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomCreativeError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -2451,7 +2804,6 @@ class FileErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('FileErrorReason')) parent::__construct();
   }
 }}
 
@@ -2479,7 +2831,6 @@ class ImageErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ImageErrorReason')) parent::__construct();
   }
 }}
 
@@ -2507,7 +2858,6 @@ class InternalApiErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InternalApiErrorReason')) parent::__construct();
   }
 }}
 
@@ -2535,7 +2885,33 @@ class InvalidUrlErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InvalidUrlErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("LabelEntityAssociationErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class LabelEntityAssociationErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LabelEntityAssociationError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -2563,7 +2939,6 @@ class LineItemCreativeAssociationStatus {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemCreativeAssociationStatus')) parent::__construct();
   }
 }}
 
@@ -2591,7 +2966,6 @@ class LineItemCreativeAssociationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemCreativeAssociationErrorReason')) parent::__construct();
   }
 }}
 
@@ -2619,7 +2993,6 @@ class LineItemCreativeAssociationOperationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('LineItemCreativeAssociationOperationErrorReason')) parent::__construct();
   }
 }}
 
@@ -2647,7 +3020,6 @@ class NotNullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NotNullErrorReason')) parent::__construct();
   }
 }}
 
@@ -2675,7 +3047,6 @@ class NullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NullErrorReason')) parent::__construct();
   }
 }}
 
@@ -2703,7 +3074,6 @@ class ParseErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ParseErrorReason')) parent::__construct();
   }
 }}
 
@@ -2731,7 +3101,6 @@ class PermissionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PermissionErrorReason')) parent::__construct();
   }
 }}
 
@@ -2759,7 +3128,6 @@ class PublisherQueryLanguageContextErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageContextErrorReason')) parent::__construct();
   }
 }}
 
@@ -2787,7 +3155,6 @@ class PublisherQueryLanguageSyntaxErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageSyntaxErrorReason')) parent::__construct();
   }
 }}
 
@@ -2817,7 +3184,33 @@ class QuotaErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('QuotaErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("RangeErrorReason", FALSE)) {
+/**
+ * The value returned if the actual value is not exposed by the requested API version.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class RangeErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RangeError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -2845,7 +3238,6 @@ class RequiredErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredErrorReason')) parent::__construct();
   }
 }}
 
@@ -2873,7 +3265,6 @@ class RequiredNumberErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredNumberErrorReason')) parent::__construct();
   }
 }}
 
@@ -2902,7 +3293,6 @@ class RequiredSizeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredSizeErrorReason')) parent::__construct();
   }
 }}
 
@@ -2930,7 +3320,6 @@ class ServerErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ServerErrorReason')) parent::__construct();
   }
 }}
 
@@ -2959,7 +3348,6 @@ class StartDateTimeType {
   }
 
   public function __construct() {
-    if(get_parent_class('StartDateTimeType')) parent::__construct();
   }
 }}
 
@@ -2987,7 +3375,33 @@ class StatementErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('StatementErrorReason')) parent::__construct();
+  }
+}}
+
+if (!class_exists("StringLengthErrorReason", FALSE)) {
+/**
+ * The value returned if the actual value is not exposed by the requested API version.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class StringLengthErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "StringLengthError.Reason";
+  }
+
+  public function __construct() {
   }
 }}
 
@@ -3015,7 +3429,6 @@ class TemplateInstantiatedCreativeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('TemplateInstantiatedCreativeErrorReason')) parent::__construct();
   }
 }}
 
@@ -3059,7 +3472,6 @@ class createLineItemCreativeAssociation {
   }
 
   public function __construct($lineItemCreativeAssociation = NULL) {
-    if(get_parent_class('createLineItemCreativeAssociation')) parent::__construct();
     $this->lineItemCreativeAssociation = $lineItemCreativeAssociation;
   }
 }}
@@ -3094,7 +3506,6 @@ class createLineItemCreativeAssociationResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('createLineItemCreativeAssociationResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -3134,7 +3545,6 @@ class createLineItemCreativeAssociations {
   }
 
   public function __construct($lineItemCreativeAssociations = NULL) {
-    if(get_parent_class('createLineItemCreativeAssociations')) parent::__construct();
     $this->lineItemCreativeAssociations = $lineItemCreativeAssociations;
   }
 }}
@@ -3169,7 +3579,6 @@ class createLineItemCreativeAssociationsResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('createLineItemCreativeAssociationsResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -3216,7 +3625,6 @@ class getLineItemCreativeAssociation {
   }
 
   public function __construct($lineItemId = NULL, $creativeId = NULL) {
-    if(get_parent_class('getLineItemCreativeAssociation')) parent::__construct();
     $this->lineItemId = $lineItemId;
     $this->creativeId = $creativeId;
   }
@@ -3252,7 +3660,6 @@ class getLineItemCreativeAssociationResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getLineItemCreativeAssociationResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -3323,7 +3730,6 @@ class getLineItemCreativeAssociationsByStatement {
   }
 
   public function __construct($filterStatement = NULL) {
-    if(get_parent_class('getLineItemCreativeAssociationsByStatement')) parent::__construct();
     $this->filterStatement = $filterStatement;
   }
 }}
@@ -3358,7 +3764,6 @@ class getLineItemCreativeAssociationsByStatementResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getLineItemCreativeAssociationsByStatementResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -3366,7 +3771,8 @@ class getLineItemCreativeAssociationsByStatementResponse {
 if (!class_exists("getPreviewUrl", FALSE)) {
 /**
  * Returns an insite preview URL that references the specified site URL with
- * the specified creative from the association served to it.
+ * the specified creative from the association served to it. For Creative Set
+ * previewing you may specify the master creative Id.
  * 
  * @param lineItemId the ID of the line item, which must already exist
  * @param creativeId the ID of the creative, which must already exist
@@ -3412,7 +3818,6 @@ class getPreviewUrl {
   }
 
   public function __construct($lineItemId = NULL, $creativeId = NULL, $siteUrl = NULL) {
-    if(get_parent_class('getPreviewUrl')) parent::__construct();
     $this->lineItemId = $lineItemId;
     $this->creativeId = $creativeId;
     $this->siteUrl = $siteUrl;
@@ -3449,7 +3854,6 @@ class getPreviewUrlResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getPreviewUrlResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -3496,7 +3900,6 @@ class performLineItemCreativeAssociationAction {
   }
 
   public function __construct($lineItemCreativeAssociationAction = NULL, $filterStatement = NULL) {
-    if(get_parent_class('performLineItemCreativeAssociationAction')) parent::__construct();
     $this->lineItemCreativeAssociationAction = $lineItemCreativeAssociationAction;
     $this->filterStatement = $filterStatement;
   }
@@ -3532,7 +3935,6 @@ class performLineItemCreativeAssociationActionResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('performLineItemCreativeAssociationActionResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -3571,7 +3973,6 @@ class updateLineItemCreativeAssociation {
   }
 
   public function __construct($lineItemCreativeAssociation = NULL) {
-    if(get_parent_class('updateLineItemCreativeAssociation')) parent::__construct();
     $this->lineItemCreativeAssociation = $lineItemCreativeAssociation;
   }
 }}
@@ -3606,7 +4007,6 @@ class updateLineItemCreativeAssociationResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('updateLineItemCreativeAssociationResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -3645,7 +4045,6 @@ class updateLineItemCreativeAssociations {
   }
 
   public function __construct($lineItemCreativeAssociations = NULL) {
-    if(get_parent_class('updateLineItemCreativeAssociations')) parent::__construct();
     $this->lineItemCreativeAssociations = $lineItemCreativeAssociations;
   }
 }}
@@ -3680,7 +4079,6 @@ class updateLineItemCreativeAssociationsResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('updateLineItemCreativeAssociationsResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -3709,7 +4107,7 @@ class ActivateLineItemCreativeAssociations extends LineItemCreativeAssociationAc
   }
 
   public function __construct($LineItemCreativeAssociationActionType = NULL) {
-    if(get_parent_class('ActivateLineItemCreativeAssociations')) parent::__construct();
+    parent::__construct();
     $this->LineItemCreativeAssociationActionType = $LineItemCreativeAssociationActionType;
   }
 }}
@@ -3744,7 +4142,7 @@ class ApiException extends ApplicationException {
   }
 
   public function __construct($errors = NULL, $message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApiException')) parent::__construct();
+    parent::__construct();
     $this->errors = $errors;
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
@@ -3781,7 +4179,7 @@ class BooleanValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('BooleanValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -3817,7 +4215,7 @@ class DateTimeValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('DateTimeValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -3847,7 +4245,7 @@ class DeactivateLineItemCreativeAssociations extends LineItemCreativeAssociation
   }
 
   public function __construct($LineItemCreativeAssociationActionType = NULL) {
-    if(get_parent_class('DeactivateLineItemCreativeAssociations')) parent::__construct();
+    parent::__construct();
     $this->LineItemCreativeAssociationActionType = $LineItemCreativeAssociationActionType;
   }
 }}
@@ -3882,7 +4280,7 @@ class NumberValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('NumberValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -3918,7 +4316,7 @@ class TextValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('TextValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -3955,15 +4353,20 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
     "Value" => "Value",
     "ClientLogin" => "ClientLogin",
     "CommonError" => "CommonError",
+    "CreativeAssetMacroError" => "CreativeAssetMacroError",
     "CreativeError" => "CreativeError",
     "CreativePlaceholder" => "CreativePlaceholder",
+    "CreativeSetError" => "CreativeSetError",
+    "CustomCreativeError" => "CustomCreativeError",
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
     "DeactivateLineItemCreativeAssociations" => "DeactivateLineItemCreativeAssociations",
+    "EntityLimitReachedError" => "EntityLimitReachedError",
     "FileError" => "FileError",
     "ImageError" => "ImageError",
     "InternalApiError" => "InternalApiError",
     "InvalidUrlError" => "InvalidUrlError",
+    "LabelEntityAssociationError" => "LabelEntityAssociationError",
     "LineItemCreativeAssociation" => "LineItemCreativeAssociation",
     "LineItemCreativeAssociationError" => "LineItemCreativeAssociationError",
     "LineItemCreativeAssociationOperationError" => "LineItemCreativeAssociationOperationError",
@@ -3978,6 +4381,7 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
     "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
     "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
     "QuotaError" => "QuotaError",
+    "RangeError" => "RangeError",
     "RequiredError" => "RequiredError",
     "RequiredNumberError" => "RequiredNumberError",
     "RequiredSizeError" => "RequiredSizeError",
@@ -3988,21 +4392,27 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
     "Statement" => "Statement",
     "StatementError" => "StatementError",
     "Stats" => "Stats",
+    "StringLengthError" => "StringLengthError",
     "String_ValueMapEntry" => "String_ValueMapEntry",
     "TemplateInstantiatedCreativeError" => "TemplateInstantiatedCreativeError",
     "TextValue" => "TextValue",
     "TypeError" => "TypeError",
+    "UniqueError" => "UniqueError",
     "UpdateResult" => "UpdateResult",
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
     "AssetError.Reason" => "AssetErrorReason",
     "AuthenticationError.Reason" => "AuthenticationErrorReason",
     "CommonError.Reason" => "CommonErrorReason",
+    "CreativeAssetMacroError.Reason" => "CreativeAssetMacroErrorReason",
     "CreativeError.Reason" => "CreativeErrorReason",
+    "CreativeSetError.Reason" => "CreativeSetErrorReason",
     "CreativeSizeType" => "CreativeSizeType",
+    "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
     "FileError.Reason" => "FileErrorReason",
     "ImageError.Reason" => "ImageErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
+    "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
     "LineItemCreativeAssociation.Status" => "LineItemCreativeAssociationStatus",
     "LineItemCreativeAssociationError.Reason" => "LineItemCreativeAssociationErrorReason",
     "LineItemCreativeAssociationOperationError.Reason" => "LineItemCreativeAssociationOperationErrorReason",
@@ -4013,12 +4423,14 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
     "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
     "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
     "QuotaError.Reason" => "QuotaErrorReason",
+    "RangeError.Reason" => "RangeErrorReason",
     "RequiredError.Reason" => "RequiredErrorReason",
     "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
     "RequiredSizeError.Reason" => "RequiredSizeErrorReason",
     "ServerError.Reason" => "ServerErrorReason",
     "StartDateTimeType" => "StartDateTimeType",
     "StatementError.Reason" => "StatementErrorReason",
+    "StringLengthError.Reason" => "StringLengthErrorReason",
     "TemplateInstantiatedCreativeError.Reason" => "TemplateInstantiatedCreativeErrorReason",
     "createLineItemCreativeAssociation" => "createLineItemCreativeAssociation",
     "createLineItemCreativeAssociationResponse" => "createLineItemCreativeAssociationResponse",
@@ -4153,7 +4565,8 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
 
   /**
    * Returns an insite preview URL that references the specified site URL with
-   * the specified creative from the association served to it.
+   * the specified creative from the association served to it. For Creative Set
+   * previewing you may specify the master creative Id.
    * 
    * @param lineItemId the ID of the line item, which must already exist
    * @param creativeId the ID of the creative, which must already exist
@@ -4213,5 +4626,3 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
 
 
 }}
-
-?>

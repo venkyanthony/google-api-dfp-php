@@ -98,7 +98,6 @@ class BaseCreativeTemplateVariableValue {
   }
 
   public function __construct($uniqueName = NULL, $BaseCreativeTemplateVariableValueType = NULL) {
-    if(get_parent_class('BaseCreativeTemplateVariableValue')) parent::__construct();
     $this->uniqueName = $uniqueName;
     $this->BaseCreativeTemplateVariableValueType = $BaseCreativeTemplateVariableValueType;
   }
@@ -188,7 +187,6 @@ class ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiError')) parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -226,7 +224,7 @@ class ApiVersionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ApiVersionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -303,7 +301,6 @@ class ApplicationException {
   }
 
   public function __construct($message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApplicationException')) parent::__construct();
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
   }
@@ -347,7 +344,6 @@ class AppliedLabel {
   }
 
   public function __construct($labelId = NULL, $isNegated = NULL) {
-    if(get_parent_class('AppliedLabel')) parent::__construct();
     $this->labelId = $labelId;
     $this->isNegated = $isNegated;
   }
@@ -395,7 +391,7 @@ class AssetCreativeTemplateVariableValue extends BaseCreativeTemplateVariableVal
   }
 
   public function __construct($assetId = NULL, $assetByteArray = NULL, $fileName = NULL, $uniqueName = NULL, $BaseCreativeTemplateVariableValueType = NULL) {
-    if(get_parent_class('AssetCreativeTemplateVariableValue')) parent::__construct();
+    parent::__construct();
     $this->assetId = $assetId;
     $this->assetByteArray = $assetByteArray;
     $this->fileName = $fileName;
@@ -466,7 +462,6 @@ class Asset {
   }
 
   public function __construct($AssetType = NULL) {
-    if(get_parent_class('Asset')) parent::__construct();
     $this->AssetType = $AssetType;
   }
 }}
@@ -501,7 +496,7 @@ class AssetError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AssetError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -572,7 +567,6 @@ class Authentication {
   }
 
   public function __construct($AuthenticationType = NULL) {
-    if(get_parent_class('Authentication')) parent::__construct();
     $this->AuthenticationType = $AuthenticationType;
   }
 }}
@@ -607,7 +601,7 @@ class AuthenticationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('AuthenticationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -684,7 +678,6 @@ class BaseCustomFieldValue {
   }
 
   public function __construct($customFieldId = NULL, $BaseCustomFieldValueType = NULL) {
-    if(get_parent_class('BaseCustomFieldValue')) parent::__construct();
     $this->customFieldId = $customFieldId;
     $this->BaseCustomFieldValueType = $BaseCustomFieldValueType;
   }
@@ -722,7 +715,7 @@ class ClientLogin extends Authentication {
   }
 
   public function __construct($token = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('ClientLogin')) parent::__construct();
+    parent::__construct();
     $this->token = $token;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -758,7 +751,7 @@ class CommonError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CommonError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -804,7 +797,6 @@ class ConversionEvent_TrackingUrlsMapEntry {
   }
 
   public function __construct($key = NULL, $value = NULL) {
-    if(get_parent_class('ConversionEvent_TrackingUrlsMapEntry')) parent::__construct();
     $this->key = $key;
     $this->value = $value;
   }
@@ -858,7 +850,6 @@ class CreativeAsset {
   }
 
   public function __construct($assetId = NULL, $assetByteArray = NULL, $fileName = NULL, $fileSize = NULL) {
-    if(get_parent_class('CreativeAsset')) parent::__construct();
     $this->assetId = $assetId;
     $this->assetByteArray = $assetByteArray;
     $this->fileName = $fileName;
@@ -922,7 +913,6 @@ class CustomCreativeAsset {
   }
 
   public function __construct($macroName = NULL, $assetId = NULL, $assetByteArray = NULL, $fileName = NULL, $fileSize = NULL) {
-    if(get_parent_class('CustomCreativeAsset')) parent::__construct();
     $this->macroName = $macroName;
     $this->assetId = $assetId;
     $this->assetByteArray = $assetByteArray;
@@ -961,7 +951,7 @@ class CreativeAssetMacroError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CreativeAssetMacroError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1080,7 +1070,6 @@ class Creative {
   }
 
   public function __construct($advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('Creative')) parent::__construct();
     $this->advertiserId = $advertiserId;
     $this->id = $id;
     $this->name = $name;
@@ -1123,7 +1112,7 @@ class CreativeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CreativeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1174,7 +1163,6 @@ class CreativePage {
   }
 
   public function __construct($totalResultSetSize = NULL, $startIndex = NULL, $results = NULL) {
-    if(get_parent_class('CreativePage')) parent::__construct();
     $this->totalResultSetSize = $totalResultSetSize;
     $this->startIndex = $startIndex;
     $this->results = $results;
@@ -1252,7 +1240,6 @@ class CreativePlaceholder {
   }
 
   public function __construct($size = NULL, $companions = NULL, $appliedLabels = NULL, $effectiveAppliedLabels = NULL, $id = NULL, $expectedCreativeCount = NULL, $creativeSizeType = NULL) {
-    if(get_parent_class('CreativePlaceholder')) parent::__construct();
     $this->size = $size;
     $this->companions = $companions;
     $this->appliedLabels = $appliedLabels;
@@ -1293,7 +1280,7 @@ class CreativeSetError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CreativeSetError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1332,7 +1319,7 @@ class CustomCreativeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('CustomCreativeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1372,7 +1359,7 @@ class CustomFieldValue extends BaseCustomFieldValue {
   }
 
   public function __construct($value = NULL, $customFieldId = NULL, $BaseCustomFieldValueType = NULL) {
-    if(get_parent_class('CustomFieldValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->customFieldId = $customFieldId;
     $this->BaseCustomFieldValueType = $BaseCustomFieldValueType;
@@ -1421,7 +1408,6 @@ class Date {
   }
 
   public function __construct($year = NULL, $month = NULL, $day = NULL) {
-    if(get_parent_class('Date')) parent::__construct();
     $this->year = $year;
     $this->month = $month;
     $this->day = $day;
@@ -1482,7 +1468,6 @@ class DfpDateTime {
   }
 
   public function __construct($date = NULL, $hour = NULL, $minute = NULL, $second = NULL, $timeZoneID = NULL) {
-    if(get_parent_class('DfpDateTime')) parent::__construct();
     $this->date = $date;
     $this->hour = $hour;
     $this->minute = $minute;
@@ -1522,10 +1507,43 @@ class DropDownCustomFieldValue extends BaseCustomFieldValue {
   }
 
   public function __construct($customFieldOptionId = NULL, $customFieldId = NULL, $BaseCustomFieldValueType = NULL) {
-    if(get_parent_class('DropDownCustomFieldValue')) parent::__construct();
+    parent::__construct();
     $this->customFieldOptionId = $customFieldOptionId;
     $this->customFieldId = $customFieldId;
     $this->BaseCustomFieldValueType = $BaseCustomFieldValueType;
+  }
+}}
+
+if (!class_exists("EntityLimitReachedError", FALSE)) {
+/**
+ * An error that occurs when creating an entity if the limit on the number of allowed entities for
+ * a network has already been reached.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201208
+ */
+class EntityLimitReachedError extends ApiError {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201208";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "EntityLimitReachedError";
+  }
+
+  public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1559,7 +1577,7 @@ class FileError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('FileError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1598,7 +1616,7 @@ class HasDestinationUrlCreative extends Creative {
   }
 
   public function __construct($destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('HasDestinationUrlCreative')) parent::__construct();
+    parent::__construct();
     $this->destinationUrl = $destinationUrl;
     $this->advertiserId = $advertiserId;
     $this->id = $id;
@@ -1642,7 +1660,7 @@ class ImageError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ImageError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1683,7 +1701,7 @@ class InternalApiError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InternalApiError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1739,7 +1757,7 @@ class InternalRedirectCreative extends Creative {
   }
 
   public function __construct($internalRedirectUrl = NULL, $overrideSize = NULL, $isInterstitial = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('InternalRedirectCreative')) parent::__construct();
+    parent::__construct();
     $this->internalRedirectUrl = $internalRedirectUrl;
     $this->overrideSize = $overrideSize;
     $this->isInterstitial = $isInterstitial;
@@ -1785,7 +1803,7 @@ class InvalidUrlError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('InvalidUrlError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1824,7 +1842,7 @@ class LabelEntityAssociationError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('LabelEntityAssociationError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1858,7 +1876,7 @@ class LegacyDfpCreative extends Creative {
   }
 
   public function __construct($advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('LegacyDfpCreative')) parent::__construct();
+    parent::__construct();
     $this->advertiserId = $advertiserId;
     $this->id = $id;
     $this->name = $name;
@@ -1901,7 +1919,7 @@ class LongCreativeTemplateVariableValue extends BaseCreativeTemplateVariableValu
   }
 
   public function __construct($value = NULL, $uniqueName = NULL, $BaseCreativeTemplateVariableValueType = NULL) {
-    if(get_parent_class('LongCreativeTemplateVariableValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->uniqueName = $uniqueName;
     $this->BaseCreativeTemplateVariableValueType = $BaseCreativeTemplateVariableValueType;
@@ -1938,7 +1956,7 @@ class NotNullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NotNullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -1977,7 +1995,7 @@ class NullError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('NullError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2018,7 +2036,7 @@ class DfpOAuth extends Authentication {
   }
 
   public function __construct($parameters = NULL, $AuthenticationType = NULL) {
-    if(get_parent_class('DfpOAuth')) parent::__construct();
+    parent::__construct();
     $this->parameters = $parameters;
     $this->AuthenticationType = $AuthenticationType;
   }
@@ -2054,7 +2072,7 @@ class ParseError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ParseError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2093,7 +2111,7 @@ class PermissionError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PermissionError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2133,7 +2151,7 @@ class PublisherQueryLanguageContextError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageContextError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2173,7 +2191,7 @@ class PublisherQueryLanguageSyntaxError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('PublisherQueryLanguageSyntaxError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2213,7 +2231,7 @@ class QuotaError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('QuotaError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2252,7 +2270,7 @@ class RangeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RangeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2291,7 +2309,7 @@ class RedirectAsset extends Asset {
   }
 
   public function __construct($redirectUrl = NULL, $AssetType = NULL) {
-    if(get_parent_class('RedirectAsset')) parent::__construct();
+    parent::__construct();
     $this->redirectUrl = $redirectUrl;
     $this->AssetType = $AssetType;
   }
@@ -2327,7 +2345,7 @@ class RequiredError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2367,7 +2385,7 @@ class RequiredNumberError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredNumberError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2406,7 +2424,7 @@ class RequiredSizeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RequiredSizeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2475,7 +2493,6 @@ class RichMediaStudioChildAssetProperty {
   }
 
   public function __construct($name = NULL, $type = NULL, $totalFileSize = NULL, $width = NULL, $height = NULL, $url = NULL) {
-    if(get_parent_class('RichMediaStudioChildAssetProperty')) parent::__construct();
     $this->name = $name;
     $this->type = $type;
     $this->totalFileSize = $totalFileSize;
@@ -2515,7 +2532,7 @@ class RichMediaStudioCreativeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('RichMediaStudioCreativeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2554,7 +2571,7 @@ class ServerError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('ServerError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2565,9 +2582,9 @@ class ServerError extends ApiError {
 
 if (!class_exists("Size", FALSE)) {
 /**
- * Represents the dimensions of AdUnits, LineItems and Creatives.
+ * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
  * <p>
- * For interstitial size (out-of-page), Size must be 1x1.
+ * For interstitial size (out-of-page), {@code Size} must be 1x1.
  * @package GoogleApiAdsDfp
  * @subpackage v201208
  */
@@ -2607,7 +2624,6 @@ class Size {
   }
 
   public function __construct($width = NULL, $height = NULL, $isAspectRatio = NULL) {
-    if(get_parent_class('Size')) parent::__construct();
     $this->width = $width;
     $this->height = $height;
     $this->isAspectRatio = $isAspectRatio;
@@ -2656,7 +2672,6 @@ class SoapRequestHeader {
   }
 
   public function __construct($networkCode = NULL, $applicationName = NULL, $authentication = NULL) {
-    if(get_parent_class('SoapRequestHeader')) parent::__construct();
     $this->networkCode = $networkCode;
     $this->applicationName = $applicationName;
     $this->authentication = $authentication;
@@ -2699,7 +2714,6 @@ class SoapResponseHeader {
   }
 
   public function __construct($requestId = NULL, $responseTime = NULL) {
-    if(get_parent_class('SoapResponseHeader')) parent::__construct();
     $this->requestId = $requestId;
     $this->responseTime = $responseTime;
   }
@@ -2762,7 +2776,6 @@ class Statement {
   }
 
   public function __construct($query = NULL, $values = NULL) {
-    if(get_parent_class('Statement')) parent::__construct();
     $this->query = $query;
     $this->values = $values;
   }
@@ -2798,7 +2811,7 @@ class StatementError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('StatementError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2838,7 +2851,7 @@ class StringCreativeTemplateVariableValue extends BaseCreativeTemplateVariableVa
   }
 
   public function __construct($value = NULL, $uniqueName = NULL, $BaseCreativeTemplateVariableValueType = NULL) {
-    if(get_parent_class('StringCreativeTemplateVariableValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->uniqueName = $uniqueName;
     $this->BaseCreativeTemplateVariableValueType = $BaseCreativeTemplateVariableValueType;
@@ -2875,7 +2888,7 @@ class StringLengthError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('StringLengthError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -2921,7 +2934,6 @@ class String_ValueMapEntry {
   }
 
   public function __construct($key = NULL, $value = NULL) {
-    if(get_parent_class('String_ValueMapEntry')) parent::__construct();
     $this->key = $key;
     $this->value = $value;
   }
@@ -2969,7 +2981,7 @@ class TemplateCreative extends Creative {
   }
 
   public function __construct($creativeTemplateId = NULL, $isInterstitial = NULL, $creativeTemplateVariableValues = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('TemplateCreative')) parent::__construct();
+    parent::__construct();
     $this->creativeTemplateId = $creativeTemplateId;
     $this->isInterstitial = $isInterstitial;
     $this->creativeTemplateVariableValues = $creativeTemplateVariableValues;
@@ -3015,7 +3027,7 @@ class TemplateInstantiatedCreativeError extends ApiError {
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('TemplateInstantiatedCreativeError')) parent::__construct();
+    parent::__construct();
     $this->reason = $reason;
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
@@ -3085,7 +3097,7 @@ class TextAdCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($hoverText = NULL, $targetWindow = NULL, $linkColor = NULL, $linkTitle = NULL, $text = NULL, $textColor = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('TextAdCreative')) parent::__construct();
+    parent::__construct();
     $this->hoverText = $hoverText;
     $this->targetWindow = $targetWindow;
     $this->linkColor = $linkColor;
@@ -3141,7 +3153,7 @@ class ThirdPartyCreative extends Creative {
   }
 
   public function __construct($snippet = NULL, $expandedSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('ThirdPartyCreative')) parent::__construct();
+    parent::__construct();
     $this->snippet = $snippet;
     $this->expandedSnippet = $expandedSnippet;
     $this->advertiserId = $advertiserId;
@@ -3186,7 +3198,6 @@ class TrackingUrls {
   }
 
   public function __construct($urls = NULL) {
-    if(get_parent_class('TrackingUrls')) parent::__construct();
     $this->urls = $urls;
   }
 }}
@@ -3215,7 +3226,7 @@ class TypeError extends ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('TypeError')) parent::__construct();
+    parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
@@ -3247,11 +3258,57 @@ class UniqueError extends ApiError {
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
-    if(get_parent_class('UniqueError')) parent::__construct();
+    parent::__construct();
     $this->fieldPath = $fieldPath;
     $this->trigger = $trigger;
     $this->errorString = $errorString;
     $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("UnsupportedCreative", FALSE)) {
+/**
+ * A {@code Creative} that isn't supported by this version of the API.
+ * This object is readonly and when encountered should be reported
+ * on the DFP API forum.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201208
+ */
+class UnsupportedCreative extends Creative {
+  /**
+   * @access public
+   * @var string
+   */
+  public $unsupportedCreativeType;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201208";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "UnsupportedCreative";
+  }
+
+  public function __construct($unsupportedCreativeType = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
+    parent::__construct();
+    $this->unsupportedCreativeType = $unsupportedCreativeType;
+    $this->advertiserId = $advertiserId;
+    $this->id = $id;
+    $this->name = $name;
+    $this->size = $size;
+    $this->previewUrl = $previewUrl;
+    $this->appliedLabels = $appliedLabels;
+    $this->lastModifiedDateTime = $lastModifiedDateTime;
+    $this->customFieldValues = $customFieldValues;
+    $this->CreativeType = $CreativeType;
   }
 }}
 
@@ -3285,7 +3342,7 @@ class UrlCreativeTemplateVariableValue extends BaseCreativeTemplateVariableValue
   }
 
   public function __construct($value = NULL, $uniqueName = NULL, $BaseCreativeTemplateVariableValueType = NULL) {
-    if(get_parent_class('UrlCreativeTemplateVariableValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->uniqueName = $uniqueName;
     $this->BaseCreativeTemplateVariableValueType = $BaseCreativeTemplateVariableValueType;
@@ -3354,7 +3411,6 @@ class Value {
   }
 
   public function __construct($ValueType = NULL) {
-    if(get_parent_class('Value')) parent::__construct();
     $this->ValueType = $ValueType;
   }
 }}
@@ -3408,7 +3464,7 @@ class VastRedirectCreative extends Creative {
   }
 
   public function __construct($vastXmlUrl = NULL, $vastRedirectType = NULL, $companionCreativeIds = NULL, $trackingUrls = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('VastRedirectCreative')) parent::__construct();
+    parent::__construct();
     $this->vastXmlUrl = $vastXmlUrl;
     $this->vastRedirectType = $vastRedirectType;
     $this->companionCreativeIds = $companionCreativeIds;
@@ -3449,7 +3505,7 @@ class VideoRedirectAsset extends RedirectAsset {
   }
 
   public function __construct($redirectUrl = NULL, $AssetType = NULL) {
-    if(get_parent_class('VideoRedirectAsset')) parent::__construct();
+    parent::__construct();
     $this->redirectUrl = $redirectUrl;
     $this->AssetType = $AssetType;
   }
@@ -3529,7 +3585,7 @@ class VpaidLinearCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($flashName = NULL, $flashByteArray = NULL, $overrideSize = NULL, $flashAssetSize = NULL, $companionCreativeIds = NULL, $trackingUrls = NULL, $customParameters = NULL, $duration = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('VpaidLinearCreative')) parent::__construct();
+    parent::__construct();
     $this->flashName = $flashName;
     $this->flashByteArray = $flashByteArray;
     $this->overrideSize = $overrideSize;
@@ -3613,7 +3669,7 @@ class VpaidLinearRedirectCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($companionCreativeIds = NULL, $trackingUrls = NULL, $customParameters = NULL, $duration = NULL, $flashUrl = NULL, $flashAssetSize = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('VpaidLinearRedirectCreative')) parent::__construct();
+    parent::__construct();
     $this->companionCreativeIds = $companionCreativeIds;
     $this->trackingUrls = $trackingUrls;
     $this->customParameters = $customParameters;
@@ -3657,7 +3713,6 @@ class ApiFramework {
   }
 
   public function __construct() {
-    if(get_parent_class('ApiFramework')) parent::__construct();
   }
 }}
 
@@ -3686,7 +3741,6 @@ class ApiVersionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ApiVersionErrorReason')) parent::__construct();
   }
 }}
 
@@ -3714,7 +3768,6 @@ class AssetErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AssetErrorReason')) parent::__construct();
   }
 }}
 
@@ -3745,7 +3798,6 @@ class AuthenticationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('AuthenticationErrorReason')) parent::__construct();
   }
 }}
 
@@ -3773,7 +3825,6 @@ class CommonErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CommonErrorReason')) parent::__construct();
   }
 }}
 
@@ -3802,7 +3853,6 @@ class ConversionEvent {
   }
 
   public function __construct() {
-    if(get_parent_class('ConversionEvent')) parent::__construct();
   }
 }}
 
@@ -3830,7 +3880,6 @@ class CreativeAssetMacroErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativeAssetMacroErrorReason')) parent::__construct();
   }
 }}
 
@@ -3858,7 +3907,6 @@ class CreativeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativeErrorReason')) parent::__construct();
   }
 }}
 
@@ -3886,14 +3934,13 @@ class CreativeSetErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativeSetErrorReason')) parent::__construct();
   }
 }}
 
 if (!class_exists("CreativeSizeType", FALSE)) {
 /**
  * Descriptions of the types of sizes a creative can be.  Not all creatives can
- * be described by a height-width pair, this provided additional context.
+ * be described by a height-width pair, this provides additional context.
  * @package GoogleApiAdsDfp
  * @subpackage v201208
  */
@@ -3915,7 +3962,6 @@ class CreativeSizeType {
   }
 
   public function __construct() {
-    if(get_parent_class('CreativeSizeType')) parent::__construct();
   }
 }}
 
@@ -3943,7 +3989,6 @@ class CustomCreativeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('CustomCreativeErrorReason')) parent::__construct();
   }
 }}
 
@@ -3971,7 +4016,6 @@ class FileErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('FileErrorReason')) parent::__construct();
   }
 }}
 
@@ -3999,7 +4043,6 @@ class FlashExpandableCreativeExpandDirection {
   }
 
   public function __construct() {
-    if(get_parent_class('FlashExpandableCreativeExpandDirection')) parent::__construct();
   }
 }}
 
@@ -4027,7 +4070,6 @@ class ImageErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ImageErrorReason')) parent::__construct();
   }
 }}
 
@@ -4055,7 +4097,6 @@ class InternalApiErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InternalApiErrorReason')) parent::__construct();
   }
 }}
 
@@ -4083,7 +4124,6 @@ class InvalidUrlErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('InvalidUrlErrorReason')) parent::__construct();
   }
 }}
 
@@ -4111,7 +4151,6 @@ class LabelEntityAssociationErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('LabelEntityAssociationErrorReason')) parent::__construct();
   }
 }}
 
@@ -4139,7 +4178,6 @@ class NotNullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NotNullErrorReason')) parent::__construct();
   }
 }}
 
@@ -4167,7 +4205,6 @@ class NullErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('NullErrorReason')) parent::__construct();
   }
 }}
 
@@ -4195,7 +4232,6 @@ class ParseErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ParseErrorReason')) parent::__construct();
   }
 }}
 
@@ -4223,7 +4259,6 @@ class PermissionErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PermissionErrorReason')) parent::__construct();
   }
 }}
 
@@ -4251,7 +4286,6 @@ class PublisherQueryLanguageContextErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageContextErrorReason')) parent::__construct();
   }
 }}
 
@@ -4279,7 +4313,6 @@ class PublisherQueryLanguageSyntaxErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('PublisherQueryLanguageSyntaxErrorReason')) parent::__construct();
   }
 }}
 
@@ -4309,13 +4342,12 @@ class QuotaErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('QuotaErrorReason')) parent::__construct();
   }
 }}
 
 if (!class_exists("RangeErrorReason", FALSE)) {
 /**
- * 
+ * The value returned if the actual value is not exposed by the requested API version.
  * @package GoogleApiAdsDfp
  * @subpackage v201208
  */
@@ -4337,7 +4369,6 @@ class RangeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RangeErrorReason')) parent::__construct();
   }
 }}
 
@@ -4365,7 +4396,6 @@ class RequiredErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredErrorReason')) parent::__construct();
   }
 }}
 
@@ -4393,7 +4423,6 @@ class RequiredNumberErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredNumberErrorReason')) parent::__construct();
   }
 }}
 
@@ -4422,7 +4451,6 @@ class RequiredSizeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RequiredSizeErrorReason')) parent::__construct();
   }
 }}
 
@@ -4450,7 +4478,6 @@ class RichMediaStudioChildAssetPropertyType {
   }
 
   public function __construct() {
-    if(get_parent_class('RichMediaStudioChildAssetPropertyType')) parent::__construct();
   }
 }}
 
@@ -4478,7 +4505,6 @@ class RichMediaStudioCreativeArtworkType {
   }
 
   public function __construct() {
-    if(get_parent_class('RichMediaStudioCreativeArtworkType')) parent::__construct();
   }
 }}
 
@@ -4509,7 +4535,6 @@ class RichMediaStudioCreativeBillingAttribute {
   }
 
   public function __construct() {
-    if(get_parent_class('RichMediaStudioCreativeBillingAttribute')) parent::__construct();
   }
 }}
 
@@ -4537,7 +4562,6 @@ class RichMediaStudioCreativeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('RichMediaStudioCreativeErrorReason')) parent::__construct();
   }
 }}
 
@@ -4565,7 +4589,6 @@ class RichMediaStudioCreativeFormat {
   }
 
   public function __construct() {
-    if(get_parent_class('RichMediaStudioCreativeFormat')) parent::__construct();
   }
 }}
 
@@ -4593,7 +4616,6 @@ class ServerErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('ServerErrorReason')) parent::__construct();
   }
 }}
 
@@ -4621,13 +4643,12 @@ class StatementErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('StatementErrorReason')) parent::__construct();
   }
 }}
 
 if (!class_exists("StringLengthErrorReason", FALSE)) {
 /**
- * 
+ * The value returned if the actual value is not exposed by the requested API version.
  * @package GoogleApiAdsDfp
  * @subpackage v201208
  */
@@ -4649,7 +4670,6 @@ class StringLengthErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('StringLengthErrorReason')) parent::__construct();
   }
 }}
 
@@ -4678,7 +4698,6 @@ class TargetWindow {
   }
 
   public function __construct() {
-    if(get_parent_class('TargetWindow')) parent::__construct();
   }
 }}
 
@@ -4706,7 +4725,6 @@ class TemplateInstantiatedCreativeErrorReason {
   }
 
   public function __construct() {
-    if(get_parent_class('TemplateInstantiatedCreativeErrorReason')) parent::__construct();
   }
 }}
 
@@ -4734,7 +4752,6 @@ class VastRedirectType {
   }
 
   public function __construct() {
-    if(get_parent_class('VastRedirectType')) parent::__construct();
   }
 }}
 
@@ -4779,7 +4796,6 @@ class createCreative {
   }
 
   public function __construct($creative = NULL) {
-    if(get_parent_class('createCreative')) parent::__construct();
     $this->creative = $creative;
   }
 }}
@@ -4814,7 +4830,6 @@ class createCreativeResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('createCreativeResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -4852,7 +4867,6 @@ class createCreatives {
   }
 
   public function __construct($creatives = NULL) {
-    if(get_parent_class('createCreatives')) parent::__construct();
     $this->creatives = $creatives;
   }
 }}
@@ -4887,7 +4901,6 @@ class createCreativesResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('createCreativesResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -4925,7 +4938,6 @@ class getCreative {
   }
 
   public function __construct($creativeId = NULL) {
-    if(get_parent_class('getCreative')) parent::__construct();
     $this->creativeId = $creativeId;
   }
 }}
@@ -4960,7 +4972,6 @@ class getCreativeResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getCreativeResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -5031,7 +5042,6 @@ class getCreativesByStatement {
   }
 
   public function __construct($filterStatement = NULL) {
-    if(get_parent_class('getCreativesByStatement')) parent::__construct();
     $this->filterStatement = $filterStatement;
   }
 }}
@@ -5066,7 +5076,6 @@ class getCreativesByStatementResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('getCreativesByStatementResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -5104,7 +5113,6 @@ class updateCreative {
   }
 
   public function __construct($creative = NULL) {
-    if(get_parent_class('updateCreative')) parent::__construct();
     $this->creative = $creative;
   }
 }}
@@ -5139,7 +5147,6 @@ class updateCreativeResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('updateCreativeResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -5177,7 +5184,6 @@ class updateCreatives {
   }
 
   public function __construct($creatives = NULL) {
-    if(get_parent_class('updateCreatives')) parent::__construct();
     $this->creatives = $creatives;
   }
 }}
@@ -5212,7 +5218,6 @@ class updateCreativesResponse {
   }
 
   public function __construct($rval = NULL) {
-    if(get_parent_class('updateCreativesResponse')) parent::__construct();
     $this->rval = $rval;
   }
 }}
@@ -5247,7 +5252,7 @@ class BaseDynamicAllocationCreative extends Creative {
   }
 
   public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('BaseDynamicAllocationCreative')) parent::__construct();
+    parent::__construct();
     $this->codeSnippet = $codeSnippet;
     $this->advertiserId = $advertiserId;
     $this->id = $id;
@@ -5285,7 +5290,7 @@ class AdExchangeCreative extends BaseDynamicAllocationCreative {
   }
 
   public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('AdExchangeCreative')) parent::__construct();
+    parent::__construct();
     $this->codeSnippet = $codeSnippet;
     $this->advertiserId = $advertiserId;
     $this->id = $id;
@@ -5323,7 +5328,7 @@ class AdSenseCreative extends BaseDynamicAllocationCreative {
   }
 
   public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('AdSenseCreative')) parent::__construct();
+    parent::__construct();
     $this->codeSnippet = $codeSnippet;
     $this->advertiserId = $advertiserId;
     $this->id = $id;
@@ -5367,7 +5372,7 @@ class ApiException extends ApplicationException {
   }
 
   public function __construct($errors = NULL, $message = NULL, $ApplicationExceptionType = NULL) {
-    if(get_parent_class('ApiException')) parent::__construct();
+    parent::__construct();
     $this->errors = $errors;
     $this->message = $message;
     $this->ApplicationExceptionType = $ApplicationExceptionType;
@@ -5414,7 +5419,7 @@ class AspectRatioImageCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($imageAssets = NULL, $fallbackText = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('AspectRatioImageCreative')) parent::__construct();
+    parent::__construct();
     $this->imageAssets = $imageAssets;
     $this->fallbackText = $fallbackText;
     $this->destinationUrl = $destinationUrl;
@@ -5509,7 +5514,7 @@ class BaseFlashCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($flashName = NULL, $flashByteArray = NULL, $fallbackImageName = NULL, $fallbackImageByteArray = NULL, $overrideSize = NULL, $clickTagRequired = NULL, $fallbackPreviewUrl = NULL, $flashAssetSize = NULL, $fallbackAssetSize = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('BaseFlashCreative')) parent::__construct();
+    parent::__construct();
     $this->flashName = $flashName;
     $this->flashByteArray = $flashByteArray;
     $this->fallbackImageName = $fallbackImageName;
@@ -5576,7 +5581,7 @@ class BaseFlashRedirectCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($flashUrl = NULL, $fallbackUrl = NULL, $fallbackPreviewUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('BaseFlashRedirectCreative')) parent::__construct();
+    parent::__construct();
     $this->flashUrl = $flashUrl;
     $this->fallbackUrl = $fallbackUrl;
     $this->fallbackPreviewUrl = $fallbackPreviewUrl;
@@ -5647,7 +5652,7 @@ class BaseImageCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($imageName = NULL, $imageByteArray = NULL, $overrideSize = NULL, $assetSize = NULL, $imageUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('BaseImageCreative')) parent::__construct();
+    parent::__construct();
     $this->imageName = $imageName;
     $this->imageByteArray = $imageByteArray;
     $this->overrideSize = $overrideSize;
@@ -5696,7 +5701,7 @@ class BaseImageRedirectCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($imageUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('BaseImageRedirectCreative')) parent::__construct();
+    parent::__construct();
     $this->imageUrl = $imageUrl;
     $this->destinationUrl = $destinationUrl;
     $this->advertiserId = $advertiserId;
@@ -5825,7 +5830,7 @@ class BaseRichMediaStudioCreative extends Creative {
   }
 
   public function __construct($studioCreativeId = NULL, $creativeFormat = NULL, $artworkType = NULL, $totalFileSize = NULL, $adTagKeys = NULL, $customKeyValues = NULL, $surveyUrl = NULL, $allImpressionsUrl = NULL, $richMediaImpressionsUrl = NULL, $backupImageImpressionsUrl = NULL, $overrideCss = NULL, $requiredFlashPluginVersion = NULL, $duration = NULL, $billingAttribute = NULL, $richMediaStudioChildAssetProperties = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('BaseRichMediaStudioCreative')) parent::__construct();
+    parent::__construct();
     $this->studioCreativeId = $studioCreativeId;
     $this->creativeFormat = $creativeFormat;
     $this->artworkType = $artworkType;
@@ -5907,7 +5912,7 @@ class BaseVideoCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($duration = NULL, $allowDurationOverride = NULL, $trackingUrls = NULL, $companionCreativeIds = NULL, $customParameters = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('BaseVideoCreative')) parent::__construct();
+    parent::__construct();
     $this->duration = $duration;
     $this->allowDurationOverride = $allowDurationOverride;
     $this->trackingUrls = $trackingUrls;
@@ -5956,7 +5961,7 @@ class BooleanValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('BooleanValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -5995,7 +6000,7 @@ class ClickTrackingCreative extends Creative {
   }
 
   public function __construct($clickTrackingUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('ClickTrackingCreative')) parent::__construct();
+    parent::__construct();
     $this->clickTrackingUrl = $clickTrackingUrl;
     $this->advertiserId = $advertiserId;
     $this->id = $id;
@@ -6051,7 +6056,7 @@ class CustomCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($htmlSnippet = NULL, $customCreativeAssets = NULL, $isInterstitial = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('CustomCreative')) parent::__construct();
+    parent::__construct();
     $this->htmlSnippet = $htmlSnippet;
     $this->customCreativeAssets = $customCreativeAssets;
     $this->isInterstitial = $isInterstitial;
@@ -6098,7 +6103,7 @@ class DateTimeValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('DateTimeValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -6129,7 +6134,7 @@ class LegacyDfpMobileCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('LegacyDfpMobileCreative')) parent::__construct();
+    parent::__construct();
     $this->destinationUrl = $destinationUrl;
     $this->advertiserId = $advertiserId;
     $this->id = $id;
@@ -6168,7 +6173,7 @@ class FlashCreative extends BaseFlashCreative {
   }
 
   public function __construct($flashName = NULL, $flashByteArray = NULL, $fallbackImageName = NULL, $fallbackImageByteArray = NULL, $overrideSize = NULL, $clickTagRequired = NULL, $fallbackPreviewUrl = NULL, $flashAssetSize = NULL, $fallbackAssetSize = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('FlashCreative')) parent::__construct();
+    parent::__construct();
     $this->flashName = $flashName;
     $this->flashByteArray = $flashByteArray;
     $this->fallbackImageName = $fallbackImageName;
@@ -6335,7 +6340,7 @@ class FlashExpandableCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($collapsedFlashAssetId = NULL, $collapsedFlashAssetByteArray = NULL, $collapsedFlashFileName = NULL, $collapsedFallbackImageAssetId = NULL, $collapsedFallbackImageAssetByteArray = NULL, $collapsedFallbackImageFileName = NULL, $expandedFlashAssetId = NULL, $expandedFlashAssetByteArray = NULL, $expandedFlashFileName = NULL, $requiredFlashVersion = NULL, $collapsedWidth = NULL, $collapsedHeight = NULL, $expandedWidth = NULL, $expandedHeight = NULL, $expandDirection = NULL, $expandOnMouseOver = NULL, $javascriptFunctionForExpand = NULL, $collapseOnMouseOut = NULL, $javascriptFunctionForCollapse = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('FlashExpandableCreative')) parent::__construct();
+    parent::__construct();
     $this->collapsedFlashAssetId = $collapsedFlashAssetId;
     $this->collapsedFlashAssetByteArray = $collapsedFlashAssetByteArray;
     $this->collapsedFlashFileName = $collapsedFlashFileName;
@@ -6424,7 +6429,7 @@ class FlashOverlayCreative extends BaseFlashCreative {
   }
 
   public function __construct($companionCreativeIds = NULL, $trackingUrls = NULL, $customParameters = NULL, $apiFramework = NULL, $duration = NULL, $flashName = NULL, $flashByteArray = NULL, $fallbackImageName = NULL, $fallbackImageByteArray = NULL, $overrideSize = NULL, $clickTagRequired = NULL, $fallbackPreviewUrl = NULL, $flashAssetSize = NULL, $fallbackAssetSize = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('FlashOverlayCreative')) parent::__construct();
+    parent::__construct();
     $this->companionCreativeIds = $companionCreativeIds;
     $this->trackingUrls = $trackingUrls;
     $this->customParameters = $customParameters;
@@ -6583,7 +6588,7 @@ class FlashPushdownCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($collapsedFlashAssetId = NULL, $collapsedFlashAssetByteArray = NULL, $collapsedFlashFileName = NULL, $collapsedFallbackImageAssetId = NULL, $collapsedFallbackImageAssetByteArray = NULL, $collapsedFallbackImageFileName = NULL, $expandedFlashAssetId = NULL, $expandedFlashAssetByteArray = NULL, $expandedFlashFileName = NULL, $requiredFlashVersion = NULL, $width = NULL, $collapsedHeight = NULL, $expandedHeight = NULL, $pushdownOnMouseOver = NULL, $javascriptFunctionForPushdown = NULL, $collapseOnMouseOut = NULL, $javascriptFunctionForCollapse = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('FlashPushdownCreative')) parent::__construct();
+    parent::__construct();
     $this->collapsedFlashAssetId = $collapsedFlashAssetId;
     $this->collapsedFlashAssetByteArray = $collapsedFlashAssetByteArray;
     $this->collapsedFlashFileName = $collapsedFlashFileName;
@@ -6640,7 +6645,7 @@ class FlashRedirectCreative extends BaseFlashRedirectCreative {
   }
 
   public function __construct($flashUrl = NULL, $fallbackUrl = NULL, $fallbackPreviewUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('FlashRedirectCreative')) parent::__construct();
+    parent::__construct();
     $this->flashUrl = $flashUrl;
     $this->fallbackUrl = $fallbackUrl;
     $this->fallbackPreviewUrl = $fallbackPreviewUrl;
@@ -6719,7 +6724,7 @@ class FlashRedirectOverlayCreative extends BaseFlashRedirectCreative {
   }
 
   public function __construct($companionCreativeIds = NULL, $trackingUrls = NULL, $customParameters = NULL, $apiFramework = NULL, $duration = NULL, $flashAssetSize = NULL, $flashUrl = NULL, $fallbackUrl = NULL, $fallbackPreviewUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('FlashRedirectOverlayCreative')) parent::__construct();
+    parent::__construct();
     $this->companionCreativeIds = $companionCreativeIds;
     $this->trackingUrls = $trackingUrls;
     $this->customParameters = $customParameters;
@@ -6849,7 +6854,7 @@ class FloatingFlashCreative extends HasDestinationUrlCreative {
   }
 
   public function __construct($flashName = NULL, $flashByteArray = NULL, $flashAssetId = NULL, $fallbackImageName = NULL, $fallbackImageByteArray = NULL, $fallbackImageAssetId = NULL, $requiredFlashVersion = NULL, $width = NULL, $height = NULL, $topPosition = NULL, $leftPosition = NULL, $displayTimeInSecond = NULL, $thirdPartyImpressionTracker = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('FloatingFlashCreative')) parent::__construct();
+    parent::__construct();
     $this->flashName = $flashName;
     $this->flashByteArray = $flashByteArray;
     $this->flashAssetId = $flashAssetId;
@@ -6900,7 +6905,7 @@ class ImageCreative extends BaseImageCreative {
   }
 
   public function __construct($imageName = NULL, $imageByteArray = NULL, $overrideSize = NULL, $assetSize = NULL, $imageUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('ImageCreative')) parent::__construct();
+    parent::__construct();
     $this->imageName = $imageName;
     $this->imageByteArray = $imageByteArray;
     $this->overrideSize = $overrideSize;
@@ -6969,7 +6974,7 @@ class ImageOverlayCreative extends BaseImageCreative {
   }
 
   public function __construct($companionCreativeIds = NULL, $trackingUrls = NULL, $customParameters = NULL, $duration = NULL, $imageName = NULL, $imageByteArray = NULL, $overrideSize = NULL, $assetSize = NULL, $imageUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('ImageOverlayCreative')) parent::__construct();
+    parent::__construct();
     $this->companionCreativeIds = $companionCreativeIds;
     $this->trackingUrls = $trackingUrls;
     $this->customParameters = $customParameters;
@@ -7016,7 +7021,7 @@ class ImageRedirectCreative extends BaseImageRedirectCreative {
   }
 
   public function __construct($imageUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('ImageRedirectCreative')) parent::__construct();
+    parent::__construct();
     $this->imageUrl = $imageUrl;
     $this->destinationUrl = $destinationUrl;
     $this->advertiserId = $advertiserId;
@@ -7087,7 +7092,7 @@ class ImageRedirectOverlayCreative extends BaseImageRedirectCreative {
   }
 
   public function __construct($assetSize = NULL, $duration = NULL, $companionCreativeIds = NULL, $trackingUrls = NULL, $customParameters = NULL, $imageUrl = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('ImageRedirectOverlayCreative')) parent::__construct();
+    parent::__construct();
     $this->assetSize = $assetSize;
     $this->duration = $duration;
     $this->companionCreativeIds = $companionCreativeIds;
@@ -7137,7 +7142,7 @@ class NumberValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('NumberValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -7174,7 +7179,7 @@ class RichMediaStudioCreative extends BaseRichMediaStudioCreative {
   }
 
   public function __construct($isInterstitial = NULL, $studioCreativeId = NULL, $creativeFormat = NULL, $artworkType = NULL, $totalFileSize = NULL, $adTagKeys = NULL, $customKeyValues = NULL, $surveyUrl = NULL, $allImpressionsUrl = NULL, $richMediaImpressionsUrl = NULL, $backupImageImpressionsUrl = NULL, $overrideCss = NULL, $requiredFlashPluginVersion = NULL, $duration = NULL, $billingAttribute = NULL, $richMediaStudioChildAssetProperties = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('RichMediaStudioCreative')) parent::__construct();
+    parent::__construct();
     $this->isInterstitial = $isInterstitial;
     $this->studioCreativeId = $studioCreativeId;
     $this->creativeFormat = $creativeFormat;
@@ -7233,7 +7238,7 @@ class TextValue extends Value {
   }
 
   public function __construct($value = NULL, $ValueType = NULL) {
-    if(get_parent_class('TextValue')) parent::__construct();
+    parent::__construct();
     $this->value = $value;
     $this->ValueType = $ValueType;
   }
@@ -7264,7 +7269,7 @@ class VideoCreative extends BaseVideoCreative {
   }
 
   public function __construct($duration = NULL, $allowDurationOverride = NULL, $trackingUrls = NULL, $companionCreativeIds = NULL, $customParameters = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('VideoCreative')) parent::__construct();
+    parent::__construct();
     $this->duration = $duration;
     $this->allowDurationOverride = $allowDurationOverride;
     $this->trackingUrls = $trackingUrls;
@@ -7314,7 +7319,7 @@ class VideoRedirectCreative extends BaseVideoCreative {
   }
 
   public function __construct($videoAssets = NULL, $duration = NULL, $allowDurationOverride = NULL, $trackingUrls = NULL, $companionCreativeIds = NULL, $customParameters = NULL, $destinationUrl = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    if(get_parent_class('VideoRedirectCreative')) parent::__construct();
+    parent::__construct();
     $this->videoAssets = $videoAssets;
     $this->duration = $duration;
     $this->allowDurationOverride = $allowDurationOverride;
@@ -7395,6 +7400,7 @@ class CreativeService extends DfpSoapClient {
     "DateTimeValue" => "DateTimeValue",
     "LegacyDfpMobileCreative" => "LegacyDfpMobileCreative",
     "DropDownCustomFieldValue" => "DropDownCustomFieldValue",
+    "EntityLimitReachedError" => "EntityLimitReachedError",
     "FileError" => "FileError",
     "FlashCreative" => "FlashCreative",
     "FlashExpandableCreative" => "FlashExpandableCreative",
@@ -7447,6 +7453,7 @@ class CreativeService extends DfpSoapClient {
     "TrackingUrls" => "TrackingUrls",
     "TypeError" => "TypeError",
     "UniqueError" => "UniqueError",
+    "UnsupportedCreative" => "UnsupportedCreative",
     "UrlCreativeTemplateVariableValue" => "UrlCreativeTemplateVariableValue",
     "VastRedirectCreative" => "VastRedirectCreative",
     "VideoCreative" => "VideoCreative",
@@ -7643,5 +7650,3 @@ class CreativeService extends DfpSoapClient {
 
 
 }}
-
-?>

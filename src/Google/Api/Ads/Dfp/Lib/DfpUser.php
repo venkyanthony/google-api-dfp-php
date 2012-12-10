@@ -46,7 +46,7 @@ class DfpUser extends AdsUser {
    * The version of this client library.
    * @var string
    */
-  const LIB_VERSION = '2.14.1';
+  const LIB_VERSION = '2.15.0';
 
   /**
    * The name of this client library.
@@ -58,7 +58,7 @@ class DfpUser extends AdsUser {
    * The default version that is loaded if the settings INI cannot be loaded.
    * @var string
    */
-  const DEFAULT_VERSION = 'v201208';
+  const DEFAULT_VERSION = 'v201211';
 
   /**
    * The default server that is loaded if the settings INI cannot be loaded.

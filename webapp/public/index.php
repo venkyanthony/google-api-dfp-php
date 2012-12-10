@@ -27,11 +27,11 @@
  * @author     Adam Rogal <api.arogal@gmail.com>
  * @author     David Kay <api.dyk@gmail.com>
  * @author     Jeff Sham <api.shamjeff@gmail.com>
+ * @author     Vincent Tsao <vtsao@google.com>
  *
  * TODO(api.arogal): Reload button in details dialog box.
  * TODO(api.ekoleda): Fix close link.
  */
-
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
@@ -47,8 +47,7 @@ try {
 }
 if (isset($user)) {
   // Load networks.
-  $user->SetNetworkCode(NULL);
-  $networkService = $user->GetNetworkService();
+  $networkService = $user->GetService('NetworkService');
   $networks = $networkService->getAllNetworks();
 
   // Change network.
