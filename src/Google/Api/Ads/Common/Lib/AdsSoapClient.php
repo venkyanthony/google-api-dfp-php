@@ -26,16 +26,15 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal <api.arogal@gmail.com>
- * @author     Eric Koleda <eric.koleda@google.com>
+ * @author     Adam Rogal
+ * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
-
-/** Required classes. **/
-require_once 'AdsUser.php';
-require_once dirname(__FILE__) . '/../Util/Logger.php';
-require_once dirname(__FILE__) . '/../Util/MapUtils.php';
-require_once dirname(__FILE__) . '/../Util/SoapRequestXmlFixer.php';
-require_once dirname(__FILE__) . '/../Util/XmlUtils.php';
+require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
+require_once 'Google/Api/Ads/Common/Util/Logger.php';
+require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
+require_once 'Google/Api/Ads/Common/Util/SoapRequestXmlFixer.php';
+require_once 'Google/Api/Ads/Common/Util/XmlUtils.php';
 
 /**
  * An extension of the {@link SoapClient} class intended to prepare
@@ -575,3 +574,4 @@ abstract class AdsSoapClient extends SoapClient {
     }
   }
 }
+

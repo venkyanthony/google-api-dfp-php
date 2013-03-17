@@ -20,14 +20,15 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal <api.arogal@gmail.com>
- * @author     Eric Koleda <eric.koleda@google.com>
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Adam Rogal
+ * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
-require_once dirname(__FILE__) . '/../../Common/Util/Logger.php';
-require_once dirname(__FILE__) . '/../../Common/Util/AuthToken.php';
-require_once dirname(__FILE__) . '/../../Common/Lib/AdsUser.php';
-require_once 'DfpSoapClientFactory.php';
+require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
+require_once 'Google/Api/Ads/Common/Util/ApiPropertiesUtils.php';
+require_once 'Google/Api/Ads/Common/Util/AuthToken.php';
+require_once 'Google/Api/Ads/Common/Util/Logger.php';
+require_once 'Google/Api/Ads/Dfp/Lib/DfpSoapClientFactory.php';
 
 /**
  * User class for the DoubleClick for Publishers API to create SOAP clients to
@@ -35,36 +36,18 @@ require_once 'DfpSoapClientFactory.php';
  */
 class DfpUser extends AdsUser {
 
-  // TODO(api.vtsao): Eventually make all header names constants.
   /**
-   * The name of the header that represents the user agent making API calls.
+   * The name of the SOAP header that represents the user agent making API
+   * calls.
    * @var string
    */
   const USER_AGENT_HEADER_NAME = 'applicationName';
 
-  /**
-   * The version of this client library.
-   * @var string
-   */
-  const LIB_VERSION = '2.15.0';
+  private $libVersion;
+  private $libName;
 
-  /**
-   * The name of this client library.
-   * @var string
-   */
-  const LIB_NAME = "DfpApi-PHP";
-
-  /**
-   * The default version that is loaded if the settings INI cannot be loaded.
-   * @var string
-   */
-  const DEFAULT_VERSION = 'v201211';
-
-  /**
-   * The default server that is loaded if the settings INI cannot be loaded.
-   * @var string
-   */
-  const DEFAULT_SERVER = 'https://www.google.com';
+  private $defaultVersion;
+  private $defaultServer;
 
   private $email;
   private $password;
@@ -106,12 +89,27 @@ class DfpUser extends AdsUser {
    *     <var>NULL</var>, the default settings INI file will be loaded
    * @param string $authToken the authToken to use for requests
    * @param array $oauthInfo the OAuth information to use for requests
+   * @param array $oauth2Info the OAuth 2.0 information to use for requests
    */
   public function __construct($authenticationIniPath = NULL, $email = NULL,
       $password = NULL, $applicationName = NULL, $networkCode = NULL,
       $settingsIniPath = NULL, $authToken = NULL, $oauthInfo = NULL,
       $oauth2Info = NULL) {
     parent::__construct();
+
+    $buildIniCommon = parse_ini_file(dirname(__FILE__) .
+        '/../../Common/Lib/build.ini', FALSE);
+    $this->libVersion = $buildIniCommon['LIB_VERSION'];
+
+    $buildIniDfp = parse_ini_file(dirname(__FILE__) . '/../Lib/build.ini',
+        FALSE);
+    $this->libName = $buildIniDfp['LIB_NAME'];
+
+    $apiProps = ApiPropertiesUtils::ParseApiPropertiesFile(dirname(__FILE__) .
+        '/dfp-api.properties');
+    $versions = explode(',', $apiProps['api.versions']);
+    $this->defaultVersion = $versions[count($versions) - 1];
+    $this->defaultServer = $apiProps['api.server'];
 
     if (isset($authenticationIniPath)) {
       $authenticationIni =
@@ -149,9 +147,9 @@ class DfpUser extends AdsUser {
     }
 
     $this->loadSettings($settingsIniPath,
-        self::DEFAULT_VERSION,
-        self::DEFAULT_SERVER,
-        dirname(__FILE__), dirname(__FILE__));
+        $this->defaultVersion,
+        $this->defaultServer,
+        getcwd(), dirname(__FILE__));
   }
 
   /**
@@ -262,7 +260,7 @@ class DfpUser extends AdsUser {
    * @see AdsUser::GetClientLibraryNameAndVersion()
    */
   public function GetClientLibraryNameAndVersion() {
-    return array(self::LIB_NAME, self::LIB_VERSION);
+    return array($this->libName, $this->libVersion);
   }
 
   /**
@@ -361,3 +359,4 @@ class DfpUser extends AdsUser {
     }
   }
 }
+

@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * Copyright 2012, Google Inc. All Rights Reserved.
+ * Copyright 2013, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201203
  * @category   WebServices
- * @copyright  2012, Google Inc. All Rights Reserved.
+ * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Vincent Tsao
  */
 
 /** Required classes. **/
-require_once dirname(__FILE__) . "/../Lib/DfpSoapClient.php";
+require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("AdSenseSettings", FALSE)) {
 /**
@@ -1860,6 +1860,45 @@ class RegExError extends ApiError {
   }
 }}
 
+if (!class_exists("RequiredCollectionError", FALSE)) {
+/**
+ * A list of all errors to be used for validating sizes of collections.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class RequiredCollectionError extends ApiError {
+  /**
+   * @access public
+   * @var tnsRequiredCollectionErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredCollectionError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("RequiredError", FALSE)) {
 /**
  * Errors due to missing required field.
@@ -3301,6 +3340,33 @@ class RegExErrorReason {
   }
 }}
 
+if (!class_exists("RequiredCollectionErrorReason", FALSE)) {
+/**
+ * A required collection is missing.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class RequiredCollectionErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredCollectionError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("RequiredErrorReason", FALSE)) {
 /**
  * The reasons for the target error.
@@ -4577,6 +4643,7 @@ class InventoryService extends DfpSoapClient {
     "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
     "QuotaError" => "QuotaError",
     "RegExError" => "RegExError",
+    "RequiredCollectionError" => "RequiredCollectionError",
     "RequiredError" => "RequiredError",
     "ServerError" => "ServerError",
     "Size" => "Size",
@@ -4621,6 +4688,7 @@ class InventoryService extends DfpSoapClient {
     "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
     "QuotaError.Reason" => "QuotaErrorReason",
     "RegExError.Reason" => "RegExErrorReason",
+    "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
     "RequiredError.Reason" => "RequiredErrorReason",
     "ServerError.Reason" => "ServerErrorReason",
     "StatementError.Reason" => "StatementErrorReason",

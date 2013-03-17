@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * Copyright 2012, Google Inc. All Rights Reserved.
+ * Copyright 2013, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201204
  * @category   WebServices
- * @copyright  2012, Google Inc. All Rights Reserved.
+ * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Vincent Tsao
  */
 
 /** Required classes. **/
-require_once dirname(__FILE__) . "/../Lib/DfpSoapClient.php";
+require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", FALSE)) {
 /**
@@ -2856,7 +2856,7 @@ class RequiredNumberErrorReason {
 
 if (!class_exists("RequiredSizeErrorReason", FALSE)) {
 /**
- * {@link Creative#size} or {@link LineItemSummary#creativeSizes} is
+ * {@link Creative#size} or {@link LineItem#creativeSizes} is
  * missing.
  * @package GoogleApiAdsDfp
  * @subpackage v201204

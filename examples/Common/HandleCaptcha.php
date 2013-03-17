@@ -24,14 +24,13 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
+ * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
-
 error_reporting(E_STRICT | E_ALL);
 
-// You can set the include path to src directory or reference
-// AdWordsUser.php directly via require_once.
-// $path = '/path/to/aw_api_php_lib/src';
+// Add the library to the include path. This is not neccessary if you've already
+// done so in your php.ini file.
 $path = dirname(__FILE__) . '/../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
@@ -88,3 +87,4 @@ try {
 } catch (Exception $e) {
   print $e->getMessage();
 }
+

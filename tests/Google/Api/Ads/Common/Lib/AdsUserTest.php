@@ -20,18 +20,17 @@
  * @copyright  2012, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
-$path = dirname(__FILE__) . '/../../../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
-
 require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
+require_once 'Google/Api/Ads/Common/Util/OAuthHandler.php';
 
 /**
  * Unit tests for {@link AdsUser}.
+ * @group small
  */
 class AdsUserTest extends PHPUnit_Framework_TestCase {
 
@@ -42,7 +41,7 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
   private $logsRelativePathBase;
 
   protected function setUp() {
-    $this->logsRelativePathBase = dirname(__FILE__) . '/../../../../../..';
+    $this->logsRelativePathBase = dirname(__FILE__) . '/../';
   }
 
   /**
@@ -50,7 +49,7 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
    * @covers AdsUser::LoadSettings
    */
   public function testLoadSettings_Logging_Relative() {
-    $logDirPath = 'logs';
+    $logDirPath = 'Lib';
     $settings = array(
         'LOGGING' => array(
             'PATH_RELATIVE' => '1',
@@ -313,7 +312,7 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
    */
   public function testLoadSettings_Auth() {
     $server = 'http://localhost';
-    $oAuthHandlerClass = 'AndySmithOAuthHandler';
+    $oAuthHandlerClass = 'MockOAuthHandler';
     $oAuth2HandlerClass = 'SimpleOAuth2Handler';
     $settings = array(
         'AUTH' => array(
@@ -348,14 +347,8 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
         self::DEFAULT_SERVER, self::DEFAULT_LOGS_DIR,
         $this->logsRelativePathBase);
     $this->assertEquals('https://accounts.google.com', $user->GetAuthServer());
-    $extensions = get_loaded_extensions();
-    if (in_array('OAuth', $extensions)) {
-      $this->assertEquals('PeclOAuthHandler',
-          get_class($user->GetOAuthHandler()));
-    } else {
-      $this->assertEquals('AndySmithOAuthHandler',
-          get_class($user->GetOAuthHandler()));
-    }
+    $this->assertEquals('MockOAuthHandler',
+        get_class($user->GetOAuthHandler()));
     $this->assertEquals('SimpleOAuth2Handler',
         get_class($user->GetOAuth2Handler()));
   }
@@ -386,16 +379,6 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($verifyHost, SSL_VERIFY_HOST);
     $this->assertEquals($caPath, SSL_CA_PATH);
     $this->assertEquals($caFile, SSL_CA_FILE);
-  }
-
-  /**
-   * Tests that the user agent header is properly set for this client library.
-   * @covers AdsUser::GetClientLibraryUserAgent
-   */
-  public function testGetClientLibraryUserAgent() {
-    $user = new TestAdsUser();
-    $this->assertEquals('GoogleTestPhp (DfpApi-PHP/2.13.0, php/' . PHP_VERSION . ')',
-        $user->GetClientLibraryUserAgent());
   }
 
   /**
@@ -467,4 +450,40 @@ class TestAdsUser extends AdsUser {
   public function GetOAuth2Scope($server = NULL) {
     return '';
   }
+
+  /**
+   * @see AdsUser::GetDefaultOAuthHandlerClass()
+   */
+  protected function GetDefaultOAuthHandlerClass() {
+    $oauthHandler = 'MockOAuthHandler';
+    return new $oauthHandler();
+  }
 }
+
+/**
+ * A mock OAuth handler used for testing.
+ */
+class MockOAuthHandler extends OAuthHandler {
+
+  /**
+   * @see OAuthHandler::GetRequestToken()
+   */
+  public function GetRequestToken($credentials, $scope, $server = NULL,
+      $callbackUrl = NULL, $applicationName = NULL) {
+  }
+
+  /**
+   * @see OAuthHandler::GetAccessToken()
+   */
+  public function GetAccessToken($credentials, $verifier,
+      $server = NULL) {
+  }
+
+  /**
+   * @see OAuthHandler::GetSignedRequestParameters()
+   */
+  public function GetSignedRequestParameters($credentials, $url,
+      $method = NULL) {
+  }
+}
+

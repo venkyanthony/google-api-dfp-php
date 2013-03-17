@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * Copyright 2012, Google Inc. All Rights Reserved.
+ * Copyright 2013, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201211
  * @category   WebServices
- * @copyright  2012, Google Inc. All Rights Reserved.
+ * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Vincent Tsao
  */
 
 /** Required classes. **/
-require_once dirname(__FILE__) . "/../Lib/DfpSoapClient.php";
+require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", FALSE)) {
 /**
@@ -627,6 +627,45 @@ class Company {
     $this->appliedTeamIds = $appliedTeamIds;
     $this->thirdPartyCompanyId = $thirdPartyCompanyId;
     $this->lastModifiedDateTime = $lastModifiedDateTime;
+  }
+}}
+
+if (!class_exists("CompanyError", FALSE)) {
+/**
+ * A list of all errors associated with companies.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201211
+ */
+class CompanyError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCompanyErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201211";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CompanyError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -2096,6 +2135,33 @@ class CompanyType {
   }
 }}
 
+if (!class_exists("CompanyErrorReason", FALSE)) {
+/**
+ * Enumerates all possible company specific errors.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201211
+ */
+class CompanyErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201211";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CompanyError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("CreativeSizeType", FALSE)) {
 /**
  * Descriptions of the types of sizes a creative can be.  Not all creatives can
@@ -3425,6 +3491,7 @@ class CompanyService extends DfpSoapClient {
     "CommonError" => "CommonError",
     "CompanyCreditStatusError" => "CompanyCreditStatusError",
     "Company" => "Company",
+    "CompanyError" => "CompanyError",
     "CompanyPage" => "CompanyPage",
     "CreativePlaceholder" => "CreativePlaceholder",
     "CustomCriteria" => "CustomCriteria",
@@ -3463,6 +3530,7 @@ class CompanyService extends DfpSoapClient {
     "CompanyCreditStatusError.Reason" => "CompanyCreditStatusErrorReason",
     "Company.CreditStatus" => "CompanyCreditStatus",
     "Company.Type" => "CompanyType",
+    "CompanyError.Reason" => "CompanyErrorReason",
     "CreativeSizeType" => "CreativeSizeType",
     "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
     "CustomCriteriaSet.LogicalOperator" => "CustomCriteriaSetLogicalOperator",

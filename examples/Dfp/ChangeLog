@@ -1,0 +1,155 @@
+2.16.0:
+- Added support for v201302.
+- Removed AndySmithOAuthHandler. Use PECL OAuth extension instead for OAuth 1.
+- Removed standalone playground web app sample, please use the hosted version at
+  https://dfp-playground.appspot.com instead.
+
+2.15.0:
+- Added support for v201211.
+- Updated existing generated code for UnsupportedCreative and UNKNOWN enum
+  choices.
+- Removed support for v201108, v201111, and v201201.
+
+2.14.1:
+- Added link to the DFP developer site in auth.ini that explains property
+  values.
+- Updated comments for example for MakeTestNetworkExample.php.
+- Updated GetAdUnitSizesExample.php, CreateMobileAdUnitExample.php, and
+  GetAllLicasExample.php.
+- Added new examples AssociateCreativeSetToLineItemExample.php and
+  RunReportWithCustomFields.php.
+
+2.14.0:
+- Added support for v201208.
+
+2.13.1:
+- Changed formatting of client library user agent.
+- Fixed unit tests that were previously not working.
+- Refactored some unit tests to use mocks and not contact the actual DFP
+  service.
+- Refactored CurlUtils.php so that it can be tested.
+- Fixed Issue #44
+
+2.13.0:
+- Added support for v201206.
+- Added examples for CreativeSetService.
+- Added support and samples for OAuth2.0.
+
+2.12.1:
+- Bug fix for DfpUser abstract method not implemented exception (Issue #37).
+
+2.12.0:
+- Added support for v201204.
+- Added examples for TeamUserAssociationService.
+- Added examples for CustomFieldService.
+- Updated examples for TeamService and PlacementService.
+
+2.11.0:
+- Removed support for deprecated versions v201103, v201104, and v201107.
+- Added support for v201203.
+- Library will no longer default to the sandbox environment.
+
+2.10.0:
+- Added support for v201201.
+- Added examples for TeamService.
+- Adjusted some examples for new v201201 features.
+- Removed non-essential PQL examples.
+
+2.9.1:
+- Added examples for the ThirdPartySlotService.
+- Added support for CreativeTemplates in the sample web application.
+- Updated pseudo-namespace functionality to handle conflicts better.
+
+2.9.0:
+- Added support and examples for v201111.
+- Fixed issue with lingering "id" attribute after reference replacement.  Added
+  tests for SoapXmlFixer.
+- Fixed bug with wrong exception name (Issue #27).
+- Added support for general PQL Service in webapp.
+- Updated to using new DfpUser->GetService() method in webapp.
+- Added local storage to save filter text in webapp.
+- Bug fix for snippet not being escaped in webapp (Issue #25).
+- Bug fix for out of memory exception when there were too many results in webapp
+  (Issue #23).
+
+2.8.1:
+- Added and updated examples to support postal codes.
+- Added operation index parsing for OGNL expressions.
+- Added option for HTTP method to OAuth handlers.
+- Improved type handling during XML serialization and deserialization.
+- Added the ability to ignore duplicate class names when generating classes
+  from the WSDL.
+
+2.8.0:
+- Added support, tests, and examples for v201108.
+- Added support for Date conversions in DateTimeUtils.
+- Made DfpDateTime conversions timezone aware.
+- Fixed tests so that they work correctly against production.
+
+2.7.0:
+- Added support, tests, and examples for v201107.
+- Replaced Get*Servce() methods with a single GetService() method. Maintained
+  backwards compatibility using the magic method __call.
+- Updated the logging functionality to support filtering for levels. Changed the
+  default logging behavior to only log SOAP XML if an error occurred. Added new
+  methods to DfpUser for additional logging configuration.
+- Updated OAuth mechanism, allowing for different OAuth libraries to be used.
+- Updated OAuth implementation to version 1.0a.
+- Moved WSDL2PHP settings into build.properties.
+- Added pseudo-namespace support for generated classes.
+- Added better support for long value serialization and deserialization.
+- Added features and fixed bugs for the sample webapp. Fixes for issues #9, #10,
+  #11, and #13.
+
+2.6.0:
+- Added support, examples, and tests for v201104.
+- Updated build system and endpoint URL handling.
+
+2.5.1:
+- Fixed xsi:types in headers for some versions of PHP.  Issue #7.
+
+2.5.0:
+- Added support for v201103, including examples and tests.
+- Fixed bug in webapp that resulted in duplicate HTML ids.
+- Updated code generation script for better documentation.
+- Changed documentation format to use frames.
+
+2.4.0:
+- Added support for version v201101, including examples and tests.
+- Added support for SSL peer validation.
+- Updated auth token and report utilities to use common cURL utility.
+- Fixed problem of duplicate xsi:type attributes in some environments.
+
+2.3.0:
+- Added support for version v201010, including examples and tests.
+- Updated CreateLineItemsExample.php to include geographical targeting.
+- Removed v201004 dependency from DateTimeUtils.php.
+
+2.2.0:
+- Added support for the NetworkService, with examples.
+- Added tests for ForecastService, NetworkService, and ReportService.
+- Updated tests and examples for compatiblity with DFP Small Business.
+
+2.1.0:
+- Added support for ForecastService and ReportService, with examples.
+- Removed API dependency from ErrorUtils.
+- Added MapUtils for converting between maps and map entry arrays.
+- Added ReportUtils for downloading reports.
+- Improved error handling for AuthToken requests.
+- Added proxy support to wsdl2php library.
+
+2.0.0:
+- Add support for v201004
+  - Filter replaced by Statement
+- Removed support for v201002
+- Added utility classes for working with Errors and OGNL paths.
+
+1.1.0:
+- Addition to README, unicode characters and escaping.
+- Added PHP 5.3 support.
+- HTTP proxy and WSDL caching settings.
+- Bug fix for custom class loaders.
+- Casting ids to floats in examples.
+
+1.0.0:
+- Initial release of library.

@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * Copyright 2012, Google Inc. All Rights Reserved.
+ * Copyright 2013, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201211
  * @category   WebServices
- * @copyright  2012, Google Inc. All Rights Reserved.
+ * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Vincent Tsao
  */
 
 /** Required classes. **/
-require_once dirname(__FILE__) . "/../Lib/DfpSoapClient.php";
+require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", FALSE)) {
 /**
@@ -2009,6 +2009,8 @@ class StatementErrorReason {
 if (!class_exists("getReportDownloadURL", FALSE)) {
 /**
  * Returns the URL at which the report file can be downloaded.
+ * <p>
+ * The report will be generated as a gzip archive, containing the report file itself.
  * 
  * @param reportJobId the ID of the {@link ReportJob}
  * @param exportFormat the {@link ExportFormat} for the report file
@@ -2089,6 +2091,9 @@ if (!class_exists("getReportDownloadUrlWithOptions", FALSE)) {
 /**
  * Returns the URL at which the report file can be downloaded, and allows for customization
  * of the downloaded report.
+ * <p>
+ * By default, the report will be generated as a gzip archive, containing the report file itself.
+ * This can be changed by setting {@link ReportDownloadOptions#useGzipCompression} to false.
  * 
  * @param reportJobId the ID of the {@link ReportJob}
  * @param reportDownloadOptions the {@link ReportDownloadOptions} for the request
@@ -2590,6 +2595,8 @@ class ReportService extends DfpSoapClient {
 
   /**
    * Returns the URL at which the report file can be downloaded.
+   * <p>
+   * The report will be generated as a gzip archive, containing the report file itself.
    * 
    * @param reportJobId the ID of the {@link ReportJob}
    * @param exportFormat the {@link ExportFormat} for the report file
@@ -2605,6 +2612,9 @@ class ReportService extends DfpSoapClient {
   /**
    * Returns the URL at which the report file can be downloaded, and allows for customization
    * of the downloaded report.
+   * <p>
+   * By default, the report will be generated as a gzip archive, containing the report file itself.
+   * This can be changed by setting {@link ReportDownloadOptions#useGzipCompression} to false.
    * 
    * @param reportJobId the ID of the {@link ReportJob}
    * @param reportDownloadOptions the {@link ReportDownloadOptions} for the request

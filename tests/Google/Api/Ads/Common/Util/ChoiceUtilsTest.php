@@ -20,17 +20,16 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
+ * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
-
-$path = dirname(__FILE__) . '/../../../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Common/Util/ChoiceUtils.php';
 
 /**
  * Unit tests for {@link ChoiceUtils}.
+ * @group small
  */
 class ChoiceUtilsTest extends PHPUnit_Framework_TestCase {
 
@@ -64,3 +63,4 @@ class ChoiceUtilsTest extends PHPUnit_Framework_TestCase {
     return $data;
   }
 }
+

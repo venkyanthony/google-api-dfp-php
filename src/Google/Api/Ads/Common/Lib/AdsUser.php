@@ -20,21 +20,23 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal <api.arogal@gmail.com>
- * @author     Eric Koleda <eric.koleda@google.com>
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Adam Rogal
+ * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
-require_once dirname(__FILE__) . '/../Util/Logger.php';
-require_once dirname(__FILE__) . '/../Util/PeclOAuthHandler.php';
-require_once dirname(__FILE__) . '/../Util/AndySmithOAuthHandler.php';
-require_once dirname(__FILE__) . '/../Util/SimpleOAuth2Handler.php';
-require_once 'SoapClientFactory.php';
-require_once 'ValidationException.php';
+require_once 'Google/Api/Ads/Common/Util/Logger.php';
+require_once 'Google/Api/Ads/Common/Util/PeclOAuthHandler.php';
+require_once 'Google/Api/Ads/Common/Util/SimpleOAuth2Handler.php';
+require_once 'Google/Api/Ads/Common/Lib/SoapClientFactory.php';
+require_once 'Google/Api/Ads/Common/Lib/ValidationException.php';
 
 /**
  * User class for all API modules using the Ads API.
  */
 abstract class AdsUser {
+
+  private $libVersion;
+  private $libName;
 
   private $requestHeaderElements;
   private $defaultServer;
@@ -55,6 +57,11 @@ abstract class AdsUser {
    */
   protected function __construct() {
     $this->requestHeaderElements = array();
+
+    $buildIni = parse_ini_file(dirname(__FILE__) .
+        '/../Lib/build.ini', FALSE);
+    $this->libVersion = $buildIni['LIB_VERSION'];
+    $this->libName = $buildIni['LIB_NAME'];
   }
 
   /**
@@ -163,7 +170,6 @@ abstract class AdsUser {
     Logger::SetLogLevel(Logger::$REQUEST_INFO_LOG, Logger::$INFO);
   }
 
-
   /**
    * Loads the settings for this client library. If the settings INI file
    * located at <var>$settingsIniPath</var> cannot be loaded, then the
@@ -192,6 +198,7 @@ abstract class AdsUser {
     $libLogDirPath = $this->GetSetting($settingsIni, 'LOGGING',
         'LIB_LOG_DIR_PATH', $defaultLogsDir);
     $relativePath = realpath($logsRelativePathBase . '/' . $libLogDirPath);
+
     if ($pathRelative && $relativePath) {
       $this->logsDirectory = $relativePath;
     } elseif (!$pathRelative && $libLogDirPath) {
@@ -246,14 +253,10 @@ abstract class AdsUser {
     $oauthHandlerClass = $this->GetSetting($settingsIni, 'AUTH',
         'OAUTH_HANDLER_CLASS');
     if (!isset($oauthHandlerClass)) {
-      $extensions = get_loaded_extensions();
-      if (in_array('OAuth', $extensions)) {
-        $oauthHandlerClass = 'PeclOAuthHandler';
-      } else {
-        $oauthHandlerClass = 'AndySmithOAuthHandler';
-      }
+      $this->oauthHandler = $this->GetDefaultOAuthHandlerClass();
+    } else {
+      $this->oauthHandler = new $oauthHandlerClass();
     }
-    $this->oauthHandler = new $oauthHandlerClass();
     // OAuth2.
     $oauth2HandlerClass = $this->GetSetting($settingsIni, 'AUTH',
         'OAUTH2_HANDLER_CLASS');
@@ -278,6 +281,22 @@ abstract class AdsUser {
     $sslCaFile = $this->GetSetting($settingsIni, 'SSL', 'CA_FILE');
     if (isset($sslCaFile)) {
       $this->Define('SSL_CA_FILE', $sslCaFile);
+    }
+  }
+
+  /**
+   * Gets the default OAuth handler class, which requires PECL OAuth to be
+   * installed.
+   * @return PeclOAuthHandler an instance of the PECL OAuth handler or NULL if
+   *         it is not installed
+   */
+  protected function GetDefaultOAuthHandlerClass() {
+    $extensions = get_loaded_extensions();
+    if (in_array('OAuth', $extensions)) {
+      $oauthHandlerClass = 'PeclOAuthHandler';
+      return new $oauthHandlerClass();
+    } else {
+      return NULL;
     }
   }
 
@@ -406,6 +425,11 @@ abstract class AdsUser {
    * @return OAuthHandler the OAuth handler for this user
    */
   public function GetOAuthHandler() {
+    if (is_null($this->oauthHandler)) {
+      throw new ValidationException('oauthHandlerClass', NULL,
+          'Pecl OAuth extension is required to use OAuth 1. Or a custom OAuth '
+          . "handler can be specified in settings.ini.\n");
+    }
     return $this->oauthHandler;
   }
 
@@ -467,10 +491,11 @@ abstract class AdsUser {
    * Gets common PHP user agent parts for ads client libraries such as PHP
    * version, operating system, browser, or if compression is being used or not.
    * @return array An array of arrays with each inner array representing a user
-   *     agent parts, e.g.: ['php', '5.3.2'] or ['php', '5.4.0'].
+   *     agent parts, e.g.: ['PHP', '5.3.2'] or ['PHP', '5.4.0'].
    */
   private function GetCommonClientLibraryUserAgentParts() {
-    return array(array('php', PHP_VERSION));
+    return array(array($this->libName, $this->libVersion), array('PHP',
+        PHP_VERSION));
   }
 
   /**
@@ -661,3 +686,4 @@ abstract class AdsUser {
    */
   abstract protected function GetOAuth2Scope($server = NULL);
 }
+

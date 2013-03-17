@@ -20,15 +20,14 @@
  * @copyright  2012, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
-require_once 'OAuth2Handler.php';
-require_once 'CurlUtils.php';
+require_once 'Google/Api/Ads/Common/Util/OAuth2Handler.php';
+require_once 'Google/Api/Ads/Common/Util/CurlUtils.php';
 
 /**
  * A simple OAuth 2.0 handler.
- * @link http://oauth.googlecode.com/svn/code/php/OAuth.php
  */
 class SimpleOAuth2Handler extends OAuth2Handler {
 
@@ -118,3 +117,4 @@ class SimpleOAuth2Handler extends OAuth2Handler {
     return json_decode($response, TRUE);
   }
 }
+

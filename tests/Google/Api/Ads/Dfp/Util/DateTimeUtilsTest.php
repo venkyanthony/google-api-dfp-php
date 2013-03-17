@@ -19,21 +19,21 @@
  * @category   WebServices
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @author     Eric Koleda <eric.koleda@google.com>
+ * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
-require_once dirname(__FILE__) . '/../../../../../../src/Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
-require_once dirname(__FILE__) . '/../../../../../../src/Google/Api/Ads/Dfp/v201206/OrderService.php';
+require_once 'Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
+require_once 'Google/Api/Ads/Dfp/v201208/OrderService.php';
+
+date_default_timezone_set('America/New_York');
 
 /**
  * Unit tests for {@link DateTimeUtils}.
+ * @group small
  */
 class DateTimeUtilsTest extends PHPUnit_Framework_TestCase {
-
-  protected function setUp() {
-    date_default_timezone_set('America/New_York');
-  }
 
   /**
    * Test getting a DfpDateTime from a PHP DateTime.
@@ -137,3 +137,4 @@ class DateTimeUtilsTest extends PHPUnit_Framework_TestCase {
     return $data;
   }
 }
+

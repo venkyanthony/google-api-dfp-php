@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * Copyright 2012, Google Inc. All Rights Reserved.
+ * Copyright 2013, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201203
  * @category   WebServices
- * @copyright  2012, Google Inc. All Rights Reserved.
+ * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Vincent Tsao
  */
 
 /** Required classes. **/
-require_once dirname(__FILE__) . "/../Lib/DfpSoapClient.php";
+require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", FALSE)) {
 /**
@@ -826,6 +826,46 @@ class InvalidUrlError extends ApiError {
    */
   public function getXsiTypeName() {
     return "InvalidUrlError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("InventoryTargetingError", FALSE)) {
+/**
+ * Lists all inventory errors caused by associating a line item with a targeting
+ * expression.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class InventoryTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsInventoryTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InventoryTargetingError";
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
@@ -1730,6 +1770,46 @@ class RequiredError extends ApiError {
    */
   public function getXsiTypeName() {
     return "RequiredError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("RequiredNumberError", FALSE)) {
+/**
+ * A list of all errors to be used in conjunction with required number
+ * validators.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class RequiredNumberError extends ApiError {
+  /**
+   * @access public
+   * @var tnsRequiredNumberErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredNumberError";
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
@@ -2749,6 +2829,33 @@ class InvalidUrlErrorReason {
   }
 }}
 
+if (!class_exists("InventoryTargetingErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class InventoryTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InventoryTargetingError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("LabelEntityAssociationErrorReason", FALSE)) {
 /**
  * The reasons for the target error.
@@ -3096,6 +3203,33 @@ class RequiredErrorReason {
    */
   public function getXsiTypeName() {
     return "RequiredError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("RequiredNumberErrorReason", FALSE)) {
+/**
+ * Describes reasons for a number to be invalid.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201203
+ */
+class RequiredNumberErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201203";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredNumberError.Reason";
   }
 
   public function __construct() {
@@ -4264,6 +4398,7 @@ class OrderService extends DfpSoapClient {
     "InternalApiError" => "InternalApiError",
     "InvalidEmailError" => "InvalidEmailError",
     "InvalidUrlError" => "InvalidUrlError",
+    "InventoryTargetingError" => "InventoryTargetingError",
     "LabelEntityAssociationError" => "LabelEntityAssociationError",
     "Money" => "Money",
     "NotNullError" => "NotNullError",
@@ -4281,6 +4416,7 @@ class OrderService extends DfpSoapClient {
     "RangeError" => "RangeError",
     "RequiredCollectionError" => "RequiredCollectionError",
     "RequiredError" => "RequiredError",
+    "RequiredNumberError" => "RequiredNumberError",
     "ResumeAndOverbookOrders" => "ResumeAndOverbookOrders",
     "ResumeOrders" => "ResumeOrders",
     "RetractOrders" => "RetractOrders",
@@ -4311,6 +4447,7 @@ class OrderService extends DfpSoapClient {
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "InvalidEmailError.Reason" => "InvalidEmailErrorReason",
     "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
+    "InventoryTargetingError.Reason" => "InventoryTargetingErrorReason",
     "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
     "NotNullError.Reason" => "NotNullErrorReason",
     "OrderActionError.Reason" => "OrderActionErrorReason",
@@ -4324,6 +4461,7 @@ class OrderService extends DfpSoapClient {
     "RangeError.Reason" => "RangeErrorReason",
     "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
     "RequiredError.Reason" => "RequiredErrorReason",
+    "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
     "ServerError.Reason" => "ServerErrorReason",
     "StatementError.Reason" => "StatementErrorReason",
     "StringLengthError.Reason" => "StringLengthErrorReason",

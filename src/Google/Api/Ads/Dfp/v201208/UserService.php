@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * Copyright 2012, Google Inc. All Rights Reserved.
+ * Copyright 2013, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201208
  * @category   WebServices
- * @copyright  2012, Google Inc. All Rights Reserved.
+ * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Vincent Tsao
  */
 
 /** Required classes. **/
-require_once dirname(__FILE__) . "/../Lib/DfpSoapClient.php";
+require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", FALSE)) {
 /**
@@ -403,6 +403,45 @@ class CommonError extends ApiError {
    */
   public function getXsiTypeName() {
     return "CommonError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("CustomFieldValueError", FALSE)) {
+/**
+ * Errors specific to editing custom field values
+ * @package GoogleApiAdsDfp
+ * @subpackage v201208
+ */
+class CustomFieldValueError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCustomFieldValueErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201208";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomFieldValueError";
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
@@ -1240,6 +1279,45 @@ class String_ValueMapEntry {
   }
 }}
 
+if (!class_exists("TeamError", FALSE)) {
+/**
+ * Errors related to a Team.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201208
+ */
+class TeamError extends ApiError {
+  /**
+   * @access public
+   * @var tnsTeamErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201208";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "TeamError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("TypeError", FALSE)) {
 /**
  * An error for a field which is an invalid type.
@@ -1261,6 +1339,38 @@ class TypeError extends ApiError {
    */
   public function getXsiTypeName() {
     return "TypeError";
+  }
+
+  public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("UniqueError", FALSE)) {
+/**
+ * An error for a field which must satisfy a uniqueness constraint
+ * @package GoogleApiAdsDfp
+ * @subpackage v201208
+ */
+class UniqueError extends ApiError {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201208";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "UniqueError";
   }
 
   public function __construct($fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
@@ -1680,6 +1790,33 @@ class CommonErrorReason {
   }
 }}
 
+if (!class_exists("CustomFieldValueErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201208
+ */
+class CustomFieldValueErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201208";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomFieldValueError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("InternalApiErrorReason", FALSE)) {
 /**
  * The single reason for the internal API error.
@@ -1973,6 +2110,33 @@ class StatementErrorReason {
    */
   public function getXsiTypeName() {
     return "StatementError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("TeamErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201208
+ */
+class TeamErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201208";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "TeamError.Reason";
   }
 
   public function __construct() {
@@ -2981,6 +3145,7 @@ class UserService extends DfpSoapClient {
     "Value" => "Value",
     "ClientLogin" => "ClientLogin",
     "CommonError" => "CommonError",
+    "CustomFieldValueError" => "CustomFieldValueError",
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
     "DeactivateUsers" => "DeactivateUsers",
@@ -3001,8 +3166,10 @@ class UserService extends DfpSoapClient {
     "Statement" => "Statement",
     "StatementError" => "StatementError",
     "String_ValueMapEntry" => "String_ValueMapEntry",
+    "TeamError" => "TeamError",
     "TextValue" => "TextValue",
     "TypeError" => "TypeError",
+    "UniqueError" => "UniqueError",
     "UpdateResult" => "UpdateResult",
     "User" => "User",
     "UserRecord" => "UserRecord",
@@ -3010,6 +3177,7 @@ class UserService extends DfpSoapClient {
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
     "AuthenticationError.Reason" => "AuthenticationErrorReason",
     "CommonError.Reason" => "CommonErrorReason",
+    "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "InvalidEmailError.Reason" => "InvalidEmailErrorReason",
     "NotNullError.Reason" => "NotNullErrorReason",
@@ -3021,6 +3189,7 @@ class UserService extends DfpSoapClient {
     "RequiredError.Reason" => "RequiredErrorReason",
     "ServerError.Reason" => "ServerErrorReason",
     "StatementError.Reason" => "StatementErrorReason",
+    "TeamError.Reason" => "TeamErrorReason",
     "createUser" => "createUser",
     "createUserResponse" => "createUserResponse",
     "createUsers" => "createUsers",

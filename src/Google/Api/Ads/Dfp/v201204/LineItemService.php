@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * Copyright 2012, Google Inc. All Rights Reserved.
+ * Copyright 2013, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201204
  * @category   WebServices
- * @copyright  2012, Google Inc. All Rights Reserved.
+ * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao <api.vtsao@gmail.com>
+ * @author     Vincent Tsao
  */
 
 /** Required classes. **/
-require_once dirname(__FILE__) . "/../Lib/DfpSoapClient.php";
+require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("AdUnitTargeting", FALSE)) {
 /**
@@ -1512,7 +1512,7 @@ class DayPartTargetingError extends ApiError {
 if (!class_exists("DeliveryData", FALSE)) {
 /**
  * Holds the number of clicks or impressions, determined by
- * {@link LineItemSummary#costType}, delivered for a single line item for the
+ * {@link LineItem#costType}, delivered for a single line item for the
  * last 7 days
  * @package GoogleApiAdsDfp
  * @subpackage v201204
@@ -6006,7 +6006,7 @@ if (!class_exists("LineItemSummaryDuration", FALSE)) {
 /**
  * Specifies the time period used for limiting the number of ads served for a
  * {@link LineItem}. For valid and default values of duration for each line
- * item type, see {@link LineItemSummary#duration}.
+ * item type, see {@link LineItem#duration}.
  * @package GoogleApiAdsDfp
  * @subpackage v201204
  */
@@ -6479,7 +6479,7 @@ class RequiredNumberErrorReason {
 
 if (!class_exists("RequiredSizeErrorReason", FALSE)) {
 /**
- * {@link Creative#size} or {@link LineItemSummary#creativeSizes} is
+ * {@link Creative#size} or {@link LineItem#creativeSizes} is
  * missing.
  * @package GoogleApiAdsDfp
  * @subpackage v201204
@@ -7133,6 +7133,10 @@ if (!class_exists("getLineItemsByStatement", FALSE)) {
  * <tr>
  * <td>{@code lastModifiedDateTime}</td>
  * <td>{@link LineItem#lastModifiedDateTime}</td>
+ * </tr>
+ * <tr>
+ * <td>{@code creationDateTime}</td>
+ * <td>{@link LineItem#creationDateTime}</td>
  * </tr>
  * </table>
  * 
@@ -8783,6 +8787,10 @@ class LineItemService extends DfpSoapClient {
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
    * <td>{@link LineItem#lastModifiedDateTime}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code creationDateTime}</td>
+   * <td>{@link LineItem#creationDateTime}</td>
    * </tr>
    * </table>
    * 

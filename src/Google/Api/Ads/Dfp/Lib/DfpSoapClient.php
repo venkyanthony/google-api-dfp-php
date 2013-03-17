@@ -19,12 +19,13 @@
  * @category   WebServices
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @author     Adam Rogal <api.arogal@gmail.com>
- * @author     Eric Koleda <eric.koleda@google.com>
- * @author     Paul Rashidi <api.paulrashidi@gmail.com>
+ * @author     Adam Rogal
+ * @author     Eric Koleda
+ * @author     Paul Rashidi
+ * @author     Vincent Tsao
  * @see        AdsSoapClient
  */
-require_once dirname(__FILE__) . '/../../Common/Lib/AdsSoapClient.php';
+require_once 'Google/Api/Ads/Common/Lib/AdsSoapClient.php';
 
 /**
  * An extension of the {@link AdsSoapClient} for Google's DoubleClick for
@@ -133,3 +134,4 @@ class DfpSoapClient extends AdsSoapClient {
         . $this->GetLastFaultMessage();
   }
 }
+
