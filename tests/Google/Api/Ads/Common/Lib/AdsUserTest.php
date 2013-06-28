@@ -26,7 +26,6 @@
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
-require_once 'Google/Api/Ads/Common/Util/OAuthHandler.php';
 
 /**
  * Unit tests for {@link AdsUser}.
@@ -312,12 +311,10 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
    */
   public function testLoadSettings_Auth() {
     $server = 'http://localhost';
-    $oAuthHandlerClass = 'MockOAuthHandler';
     $oAuth2HandlerClass = 'SimpleOAuth2Handler';
     $settings = array(
         'AUTH' => array(
             'AUTH_SERVER' => $server,
-            'OAUTH_HANDLER_CLASS' => $oAuthHandlerClass,
             'OAUTH2_HANDLER_CLASS' => $oAuth2HandlerClass,
         ),
     );
@@ -327,8 +324,6 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
         self::DEFAULT_SERVER, self::DEFAULT_LOGS_DIR,
         $this->logsRelativePathBase);
     $this->assertEquals($server, $user->GetAuthServer());
-    $this->assertEquals($oAuthHandlerClass,
-        get_class($user->GetOAuthHandler()));
     $this->assertEquals($oAuth2HandlerClass,
         get_class($user->GetOAuth2Handler()));
   }
@@ -347,8 +342,6 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
         self::DEFAULT_SERVER, self::DEFAULT_LOGS_DIR,
         $this->logsRelativePathBase);
     $this->assertEquals('https://accounts.google.com', $user->GetAuthServer());
-    $this->assertEquals('MockOAuthHandler',
-        get_class($user->GetOAuthHandler()));
     $this->assertEquals('SimpleOAuth2Handler',
         get_class($user->GetOAuth2Handler()));
   }
@@ -415,6 +408,9 @@ class TestAdsUser extends AdsUser {
 
   const APPLICATION_NAME = 'GoogleTestPhp';
 
+  const OAUTH2_SCOPE = '';
+  const HANDLER_CLASS = 'SimpleOAuth2Handler';
+
   /**
    * Creates a new instance of this test subclass.
    */
@@ -437,53 +433,8 @@ class TestAdsUser extends AdsUser {
     return array(self::LIB_NAME, self::LIB_VERSION);
   }
 
-  /**
-   * @see AdsUser::GetOAuthScope()
-   */
-  public function GetOAuthScope($server = NULL) {
-    return '';
-  }
-
-  /**
-   * @see AdsUser::GetOAuth2Scope()
-   */
-  public function GetOAuth2Scope($server = NULL) {
-    return '';
-  }
-
-  /**
-   * @see AdsUser::GetDefaultOAuthHandlerClass()
-   */
-  protected function GetDefaultOAuthHandlerClass() {
-    $oauthHandler = 'MockOAuthHandler';
-    return new $oauthHandler();
+  public function GetDefaultOAuth2Handler($className = NULL) {
+    $className = !empty($className) ? $className : self::HANDLER_CLASS;
+    return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
   }
 }
-
-/**
- * A mock OAuth handler used for testing.
- */
-class MockOAuthHandler extends OAuthHandler {
-
-  /**
-   * @see OAuthHandler::GetRequestToken()
-   */
-  public function GetRequestToken($credentials, $scope, $server = NULL,
-      $callbackUrl = NULL, $applicationName = NULL) {
-  }
-
-  /**
-   * @see OAuthHandler::GetAccessToken()
-   */
-  public function GetAccessToken($credentials, $verifier,
-      $server = NULL) {
-  }
-
-  /**
-   * @see OAuthHandler::GetSignedRequestParameters()
-   */
-  public function GetSignedRequestParameters($credentials, $url,
-      $method = NULL) {
-  }
-}
-

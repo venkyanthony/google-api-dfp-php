@@ -6391,8 +6391,15 @@ class PublisherQueryLanguageSyntaxErrorReason {
 if (!class_exists("QuotaErrorReason", FALSE)) {
 /**
  * The number of requests made per second is too high and has exceeded the
- * allowable limit. Please wait before trying your request again. If you see
- * this error often, try increasing the wait time between requests.
+ * allowable limit. The recommended approach to handle this error is to wait
+ * about 5 seconds and then retry the request. Note that this does not
+ * guarantee the request will succeed. If it fails again, try increasing the
+ * wait time.
+ * <p>
+ * Another way to mitigate this error is to limit requests to 2 per second.
+ * Once again this does not guarantee that every request will succeed, but
+ * may help reduce the number of times you receive this error.
+ * </p>
  * @package GoogleApiAdsDfp
  * @subpackage v201206
  */
@@ -7185,6 +7192,10 @@ if (!class_exists("getLineItemsByStatement", FALSE)) {
  * <tr>
  * <td>{@code creationDateTime}</td>
  * <td>{@link LineItem#creationDateTime}</td>
+ * </tr>
+ * <tr>
+ * <td>{@code isMissingCreatives}</td>
+ * <td>{@link LineItem#isMissingCreatives}</td>
  * </tr>
  * </table>
  * 
@@ -8872,6 +8883,10 @@ class LineItemService extends DfpSoapClient {
    * <tr>
    * <td>{@code creationDateTime}</td>
    * <td>{@link LineItem#creationDateTime}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code isMissingCreatives}</td>
+   * <td>{@link LineItem#isMissingCreatives}</td>
    * </tr>
    * </table>
    * 

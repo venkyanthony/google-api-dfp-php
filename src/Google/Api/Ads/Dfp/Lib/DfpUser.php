@@ -36,6 +36,9 @@ require_once 'Google/Api/Ads/Dfp/Lib/DfpSoapClientFactory.php';
  */
 class DfpUser extends AdsUser {
 
+  const OAUTH2_SCOPE = 'https://www.google.com/apis/ads/publisher/';
+  const OAUTH2_HANDLER_CLASS = 'SimpleOAuth2Handler';
+
   /**
    * The name of the SOAP header that represents the user agent making API
    * calls.
@@ -88,13 +91,11 @@ class DfpUser extends AdsUser {
    * @param string $settingsIniPath the path to the settings INI file. If
    *     <var>NULL</var>, the default settings INI file will be loaded
    * @param string $authToken the authToken to use for requests
-   * @param array $oauthInfo the OAuth information to use for requests
    * @param array $oauth2Info the OAuth 2.0 information to use for requests
    */
   public function __construct($authenticationIniPath = NULL, $email = NULL,
       $password = NULL, $applicationName = NULL, $networkCode = NULL,
-      $settingsIniPath = NULL, $authToken = NULL, $oauthInfo = NULL,
-      $oauth2Info = NULL) {
+      $settingsIniPath = NULL, $authToken = NULL, $oauth2Info = NULL) {
     parent::__construct();
 
     $buildIniCommon = parse_ini_file(dirname(__FILE__) .
@@ -106,7 +107,7 @@ class DfpUser extends AdsUser {
     $this->libName = $buildIniDfp['LIB_NAME'];
 
     $apiProps = ApiPropertiesUtils::ParseApiPropertiesFile(dirname(__FILE__) .
-        '/dfp-api.properties');
+        '/api.properties');
     $versions = explode(',', $apiProps['api.versions']);
     $this->defaultVersion = $versions[count($versions) - 1];
     $this->defaultServer = $apiProps['api.server'];
@@ -128,15 +129,12 @@ class DfpUser extends AdsUser {
         $authenticationIni);
     $authToken = $this->GetAuthVarValue($authToken, 'authToken',
         $authenticationIni);
-    $oauthInfo = $this->GetAuthVarValue($oauthInfo, 'OAUTH',
-        $authenticationIni);
     $oauth2Info = $this->GetAuthVarValue($oauth2Info, 'OAUTH2',
         $authenticationIni);
 
     $this->SetEmail($email);
     $this->SetPassword($password);
     $this->SetAuthToken($authToken);
-    $this->SetOAuthInfo($oauthInfo);
     $this->SetOAuth2Info($oauth2Info);
     $this->SetApplicationName($applicationName);
     $this->SetClientLibraryUserAgent($applicationName);
@@ -296,14 +294,22 @@ class DfpUser extends AdsUser {
   }
 
   /**
+   * Get the default OAuth2 Handler for this user.
+   * @param NULL|string $className the name of the oauth2Handler class or NULL
+   * @return mixed the configured OAuth2Handler class
+   */
+  public function GetDefaultOAuth2Handler($className = NULL) {
+    $className = !empty($className) ? $className : self::OAUTH2_HANDLER_CLASS;
+    return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
+  }
+
+  /**
    * Validates the user and throws a validation error if there are any errors.
    * @throws ValidationException if there are any validation errors
    * @access private
    */
   private function ValidateUser() {
-    if ($this->GetOAuthInfo() != NULL) {
-      parent::ValidateOAuthInfo();
-    } else if ($this->GetOAuth2Info() != NULL) {
+    if ($this->GetOAuth2Info() !== NULL) {
       parent::ValidateOAuth2Info();
     } else if ($this->GetAuthToken() == NULL) {
       if (!isset($this->email)) {
@@ -323,24 +329,6 @@ class DfpUser extends AdsUser {
       throw new ValidationException('applicationName', NULL,
           'applicationName is required and cannot be NULL.');
     }
-  }
-
-  /**
-   * @see AdsUser::GetOAuthScope()
-   */
-  protected function GetOAuthScope($server = NULL) {
-    $server = isset($server) ? $server : $this->GetDefaultServer();
-    if (substr($server, -1) == '/') {
-      $server = substr($server, 0, -1);
-    }
-    return $server . '/apis/ads/publisher/';
-  }
-
-  /**
-   * @see AdsUser::GetOAuth2Scope()
-   */
-  protected function GetOAuth2Scope($server = NULL) {
-    return $this->GetOAuthScope($server);
   }
 
   /**

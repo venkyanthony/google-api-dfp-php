@@ -35,6 +35,7 @@ require_once 'Google/Api/Ads/Common/Util/Logger.php';
 require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
 require_once 'Google/Api/Ads/Common/Util/SoapRequestXmlFixer.php';
 require_once 'Google/Api/Ads/Common/Util/XmlUtils.php';
+require_once 'Google/Api/Ads/Common/Util/DeprecationUtils.php';
 
 /**
  * An extension of the {@link SoapClient} class intended to prepare
@@ -142,6 +143,12 @@ abstract class AdsSoapClient extends SoapClient {
   protected $lastHeaders;
 
   /**
+   * The transport layer override.
+   * @var null|SoapClient
+   */
+  protected $transportLayer;
+
+  /**
    * The constructor intended to be called by all sub-classes.
    * @param string $wsdl URI of the WSDL file or NULL if working in non-WSDL
    *     mode
@@ -175,6 +182,14 @@ abstract class AdsSoapClient extends SoapClient {
       $one_way = 0) {
     $this->lastRequest = $this->PrepareRequest($request, $this->lastArguments,
         $this->lastHeaders);
+
+    if (!empty($this->transportLayer)) {
+        $response = $this->transportLayer->__doRequest($this->lastRequest,
+            $location, $action, $version);
+
+        return $response;
+    }
+
     return parent::__doRequest($this->lastRequest,
         $location, $action, $version);
   }
@@ -192,6 +207,7 @@ abstract class AdsSoapClient extends SoapClient {
    */
   function __soapCall($function_name, $arguments, $options = NULL,
       $input_headers = NULL, &$output_headers = NULL) {
+    DeprecationUtils::CheckAdsUserUsingOAuth2($this->user);
     try {
       $input_headers[] = $this->GenerateSoapHeader();
       $this->lastHeaders = $input_headers;
@@ -397,8 +413,11 @@ abstract class AdsSoapClient extends SoapClient {
       trigger_error('The minimum required version of this client library'
           . ' is 5.2.0.', E_USER_ERROR);
     }
-    $addXsiTypes =
-        version_compare(PHP_VERSION, '5.2.7', '<') || PHP_OS == 'Darwin';
+    if (version_compare(PHP_VERSION, '5.2.6', '<') ||
+        (PHP_OS == 'Darwin' && version_compare(PHP_VERSION, '5.3.0', '<'))) {
+      $addXsiTypes = TRUE;
+    }
+
     $removeEmptyElements = version_compare(PHP_VERSION, '5.2.3', '<');
     $replaceReferences = version_compare(PHP_VERSION, '5.2.2', '>=');
 
@@ -573,5 +592,16 @@ abstract class AdsSoapClient extends SoapClient {
       trigger_error('Unknown type: ' . $type, E_USER_ERROR);
     }
   }
-}
 
+  /**
+   * Set the non-default transport layer mechanism.
+   *
+   * WARNING: to be used for testing purposes only.
+   *
+   * @param SoapClient $client the soap client to use.
+   * @return AdsSoapClient this prepared client.
+   */
+  public function __SetTransportLayer(SoapClient $client) {
+    $this->transportLayer = $client;
+  }
+}

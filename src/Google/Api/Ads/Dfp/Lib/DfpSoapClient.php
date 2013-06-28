@@ -59,24 +59,15 @@ class DfpSoapClient extends AdsSoapClient {
     foreach (get_object_vars($headerObject) as $var => $value) {
       switch ($var) {
         case 'authentication':
-          if ($this->user->GetOAuthInfo() != NULL) {
-            $oauthParameters =
-                $this->user->GetOAuthHandler()->GetSignedRequestParameters(
-                    $this->user->GetOAuthInfo(), $this->location);
-            $authentication = $this->Create('OAuth');
-            $authentication->parameters = 'OAuth '
-                . $this->user->GetOAuthHandler()->FormatParametersForHeader(
-                    $oauthParameters);
-          } else if ($this->user->GetOAuth2Info() != NULL) {
-            if ($this->user->IsOAuth2AccessTokenValid() &&
-                $this->user->CanRefreshOAuth2AccessToken()) {
-              $oAuth2Info = $this->user->RefreshOAuth2AccessToken();
-            }
-            if ($this->user->IsOAuth2AccessTokenValid()) {
-              $oauth2Parameters = $this->user->GetOAuth2Info();
+          $oAuth2Info = $this->user->GetOAuth2Info();
+          $oAuth2Handler = $this->user->GetOAuth2Handler();
+          if (!empty($oAuth2Info)) {
+            $oAuth2Info = $oAuth2Handler->GetOrRefreshAccessToken($oAuth2Info);
+            $this->user->SetOAuth2Info($oAuth2Info);
+            if ($oAuth2Handler->IsAccessTokenValid($oAuth2Info)) {
               $authentication = $this->Create('OAuth');
-              $authentication->parameters = $this->user->GetOAuth2Handler()->
-                  FormatCredentialsForHeader($oauth2Parameters);
+              $authentication->parameters =
+                  $oAuth2Handler->FormatCredentialsForHeader($oAuth2Info);
             }
           } else {
             $authentication = $this->Create('ClientLogin');

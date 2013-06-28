@@ -71,14 +71,8 @@ attempt to load the default authentication file at the path of "../auth.ini"
 relative to this file's directory. Any corresponding parameter which is not
 null will, however, overwrite any parameter loaded from the default INI.
 
-    $user = new DfpUser(NULL, $email, $password, $applicationName,
-        $networkCode);
-
-    or
-
-    // Used if user only has one network (most cases) and does not need to
-    // supply the network code.
-    $user = new DfpUser(NULL, $email, $password, $applicationName);
+    $user = new DfpUser(NULL, NULL, NULL, $applicationName, $networkCode, NULL,
+        NULL, $oauth2Info);
 
 
 How do I start?
@@ -112,7 +106,8 @@ library, do the following:
      creation time. Alternately, you can use the default constructor after
      completing the INI file as described above.
 
-     $user = new DfpUser(NULL, $email, $password, $applicationName);
+     $user = new DfpUser(NULL, NULL, NULL, $applicationName, $networkCode, NULL,
+         NULL, $oauth2Info);
 
   3) Optionally, enable logging to capture the content of the requests and
      responses. This example sends the information to a file:
@@ -156,37 +151,29 @@ Authentication Options
 ----------------------
 
 Authentication in the client library is handled by the DfpUser object, which
-has the following options.
-
-  - Email and Password: The email and password of the DFP account is used.
-    When the first service is created an AuthToken is generated using the
-    ClientLogin API using these credentials. The email and password can be be
-    stored in the auth.ini file, passed into the DfpUser constructor, or set
-    individually using the SetEmail() and SetPassword() methods. If the
-    AuthToken expires (they are valid for up to two weeks) it can be
-    regenerated using the RegenerateAuthToken() method.
-
-  - AuthToken: An existing AuthToken is used. It is recommended to reuse
-    AuthTokens since too many requests to the ClientLogin API can lead to
-    errors. You can pass the authToken in the contructor or set it using the
-    SetAuthToken() method.
-
-  - OAuth: The OAuth protocol is used. This protocol provides a way to access
-    an DFP account without needing possesion of the email or password.
-    Instead a permanent OAuth token is requested, authorized by the user
-    in their browser, and then upgraded for full access. The DfpUser
-    provides the RequestOAuthToken(), GetOAuthAuthorizationUrl(), and
-    UpgradeOAuthToken() methods to help simplify the process. Existing OAuth
-    tokens can be used by passing them into the contructor or by using the
-    SetOAuthInfo() method. See the example UseOAuth.php for an example of
-    how to use these methods.
+has the following options. OAuth 2 is recommended. ClientLogin is less secure
+and has been deprecated. See this link for more information:
+https://developers.google.com/accounts/docs/AuthForInstalledApps
 
   - OAuth 2.0: The OAuth 2.0 protocol is used. This protocol provides a way to
     access a DFP account without needing possesion of the email or password.
     Instead an OAuth 2.0 access token is requested, authorized by the user
     in their browser. A permanent refresh token can also be requested that can
     be used to generate a new access token when an access token expires. See the
-    example UseOAuth2.php for more information.
+    example GetRefreshToken.php for more information.
+
+  - (DEPRECATED) Email and Password: The email and password of the DFP account
+    is used. When the first service is created an AuthToken is generated using
+    the ClientLogin API using these credentials. The email and password can be
+    stored in the auth.ini file, passed into the DfpUser constructor, or set
+    individually using the SetEmail() and SetPassword() methods. If the
+    AuthToken expires (they are valid for up to two weeks) it can be
+    regenerated using the RegenerateAuthToken() method.
+
+  - (DEPRECATED) AuthToken: An existing AuthToken is used. It is recommended to
+    reuse AuthTokens since too many requests to the ClientLogin API can lead to
+    errors. You can pass the authToken in the contructor or set it using the
+    SetAuthToken() method.
 
 
 How do I enable logging?
@@ -414,8 +401,6 @@ Run environment:
     - SoapClient [http://us3.php.net/manual/en/book.soap.php] (--enable-soap)
     - OpenSSL [http://php.net/manual/en/book.openssl.php] (--with-ssl)
     - cURL [http://php.net/manual/en/book.curl.php] (--with-curl)
-  - Optional PHP extensions:
-    - OAuth [http://pecl.php.net/package/oauth]  (pecl install oauth)
 
 Build environment:
   - PHPUnit [http://www.phpunit.de/]

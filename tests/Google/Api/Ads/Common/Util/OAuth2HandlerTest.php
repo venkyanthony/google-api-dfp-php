@@ -34,16 +34,20 @@ require_once 'Google/Api/Ads/Common/Util/OAuth2Handler.php';
 class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
 
   private $oauth2Handler;
+  private $scope;
 
   public function setup() {
-    $this->oauth2Handler = new TestOAuth2Handler();
+    date_default_timezone_set('America/New_York');
+    $this->scope = 'TEST_SCOPE';
+
+    $this->oauth2Handler = new TestOAuth2Handler(NULL, $this->scope);
   }
 
   public function testGetAuthorizationUrl() {
     $credentials = array('client_id' => 'TEST_CLIENT_ID');
-    $scope = 'TEST_SCOPE';
 
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, $scope);
+
+    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials);
 
     $urlParts = parse_url($url);
     $this->assertEquals('https', $urlParts['scheme']);
@@ -64,15 +68,19 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
   }
 
   public function testGetAuthorizationUrl_AlternateServer() {
-    $this->oauth2Handler = new TestOAuth2Handler('http://www.foo.com');
-    $credentials = array('client_id' => 'TEST_CLIENT_ID');
+    $scheme = 'http';
+    $authServer = 'www.foo.com';
     $scope = 'TEST_SCOPE';
+    $this->oauth2Handler = new TestOAuth2Handler(
+        sprintf('%s://%s', $scheme, $authServer), $scope);
+    $credentials = array('client_id' => 'TEST_CLIENT_ID');
 
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, $scope);
+
+    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials);
 
     $urlParts = parse_url($url);
-    $this->assertEquals('http', $urlParts['scheme']);
-    $this->assertEquals('www.foo.com', $urlParts['host']);
+    $this->assertEquals($scheme, $urlParts['scheme']);
+    $this->assertEquals($authServer, $urlParts['host']);
   }
 
   /**
@@ -80,17 +88,14 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
    */
   public function testGetAuthorizationUrl_MissingClientId() {
     $credentials = array();
-    $scope = 'TEST_SCOPE';
-
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, $scope);
+    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials);
   }
 
   public function testGetAuthorizationUrl_RedirectUri() {
     $credentials = array('client_id' => 'TEST_CLIENT_ID');
-    $scope = 'TEST_SCOPE';
     $redirectUri = 'http://www.foo.com/callback';
 
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, $scope,
+    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials,
         $redirectUri);
 
     $urlParts = parse_url($url);
@@ -101,9 +106,8 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
 
   public function testGetAuthorizationUrl_Offline() {
     $credentials = array('client_id' => 'TEST_CLIENT_ID');
-    $scope = 'TEST_SCOPE';
 
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, $scope, NULL,
+    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, NULL,
         TRUE);
 
     $urlParts = parse_url($url);
@@ -114,16 +118,98 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
 
   public function testGetAuthorizationUrl_Params() {
     $credentials = array('client_id' => 'TEST_CLIENT_ID');
-    $scope = 'TEST_SCOPE';
     $params = array('foo' => 'bar');
 
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, $scope, NULL,
-        NULL, $params);
+    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, NULL, NULL,
+        $params);
 
     $urlParts = parse_url($url);
     $params = array();
     parse_str($urlParts['query'], $params);
     $this->assertEquals('bar', $params['foo']);
+  }
+
+  public function GetOrRefreshAccessToken_ValidAccessToken() {
+    $credentials = array(
+        'access_token' => 'TEST_ACCESS_TOKEN',
+        'expires_in' => '3600',
+        'timestamp' => time()
+    );
+    $this->assertSame($credentials,
+        $this->oauth2Handler->GetOrRefreshAccessToken($credentials));
+  }
+
+  public function testGetOrRefreshAccessToken_NoAccessToken() {
+    $credentials = array(
+        'refresh_token' => 'TEST_REFRESH_TOKEN',
+    );
+    try {
+      $this->oauth2Handler->GetOrRefreshAccessToken($credentials);
+      $this->fail('Should have thrown an exception.');
+    } catch (Exception $e) {
+      $this->assertSame(TestOAuth2Handler::REFRESH_TOKEN_MESSAGE,
+          $e->getMessage());
+    }
+  }
+
+  public function testGetOrRefreshAccessToken_ExpiredAccessToken() {
+    $credentials = array(
+        'refresh_token' => 'TEST_REFRESH_TOKEN',
+        'access_token' => 'TEST_ACCESS_TOKEN',
+        'expires_in' => '3600',
+        'timestamp' => strtotime('-1 day')
+    );
+    try {
+      $this->oauth2Handler->GetOrRefreshAccessToken($credentials);
+      $this->fail('Should have thrown an exception.');
+    } catch (Exception $e) {
+      $this->assertSame(TestOAuth2Handler::REFRESH_TOKEN_MESSAGE,
+          $e->getMessage());
+    }
+  }
+
+  public function testShouldRefreshAccessToken_ValidAccessToken() {
+    $credentials = array(
+        'access_token' => 'TEST_ACCESS_TOKEN',
+        'expires_in' => '3600',
+        'timestamp' => time()
+    );
+    $this->assertFalse(
+        $this->oauth2Handler->ShouldRefreshAccessToken($credentials));
+  }
+
+  public function testShouldRefreshAccessToken_TrueForMissingAccessToken() {
+    $credentials = array(
+        'expires_in' => '3600',
+        'timestamp' => time()
+    );
+    $this->assertTrue(
+        $this->oauth2Handler->ShouldRefreshAccessToken($credentials));
+  }
+
+  public function testShouldRefreshAccessToken_ExpiredAccessToken() {
+    $credentials = array(
+        'access_token' => 'TEST_ACCESS_TOKEN',
+        'expires_in' => '3600',
+        'timestamp' => strtotime('-1 day')
+    );
+    $this->assertTrue(
+        $this->oauth2Handler->ShouldRefreshAccessToken($credentials));
+  }
+
+  public function testShouldRefreshAccessToken_ExpiredInBufferAccessToken() {
+    $refreshBuffer = TestOAuth2Handler::REFRESH_BUFFER;
+    $expiresIn = 3600;
+
+    $secondsInterval = (int) $expiresIn - ($refreshBuffer / 2);
+
+    $credentials = array(
+        'access_token' => 'TEST_ACCESS_TOKEN',
+        'expires_in' => $expiresIn,
+        'timestamp' => strtotime(sprintf('-%d seconds', $secondsInterval))
+    );
+    $this->assertTrue(
+        $this->oauth2Handler->ShouldRefreshAccessToken($credentials));
   }
 
   public function testIsAccessTokenValid() {
@@ -136,13 +222,56 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
   }
 
   public function testIsAccessTokenValid_Expired() {
-    date_default_timezone_set('America/New_York');
     $credentials = array(
         'access_token' => 'TEST_ACCESS_TOKEN',
         'expires_in' => '3600',
         'timestamp' => strtotime('-1 day')
     );
     $this->assertFalse($this->oauth2Handler->IsAccessTokenValid($credentials));
+  }
+
+  public function testIsAccessTokenValid_ValidInRefreshBuffer() {
+    $refreshBuffer = TestOAuth2Handler::REFRESH_BUFFER;
+    $expiresIn = 3600;
+
+    $secondsInterval = (int) $expiresIn - ($refreshBuffer / 2);
+
+    $credentials = array(
+        'access_token' => 'TEST_ACCESS_TOKEN',
+        'expires_in' => $expiresIn,
+        'timestamp' => strtotime(sprintf('-%d seconds', $secondsInterval)),
+    );
+    $this->assertTrue($this->oauth2Handler->IsAccessTokenValid($credentials));
+  }
+
+  public function testIsAccessTokenExpiring_ExpiredWithinRefreshBuffer() {
+    $refreshBuffer = TestOAuth2Handler::REFRESH_BUFFER;
+    $expiresIn = 3600;
+
+    $secondsInterval = (int) $expiresIn - ($refreshBuffer / 2);
+
+    $credentials = array(
+        'access_token' => 'TEST_ACCESS_TOKEN',
+        'expires_in' => $expiresIn,
+        'timestamp' => strtotime(sprintf('-%d seconds', $secondsInterval)),
+    );
+    $this->assertTrue(
+      $this->oauth2Handler->IsAccessTokenExpiring($credentials));
+  }
+
+  public function testIsAccessTokenExpiring_ValidBeforeRefreshBuffer() {
+    $refreshBuffer = TestOAuth2Handler::REFRESH_BUFFER;
+    $expiresIn = 3600;
+
+    $secondsInterval = (int) $expiresIn - ($refreshBuffer * 2);
+
+    $credentials = array(
+        'access_token' => 'TEST_ACCESS_TOKEN',
+        'expires_in' => $expiresIn,
+        'timestamp' => strtotime(sprintf('-%d seconds', $secondsInterval)),
+    );
+    $this->assertFalse(
+      $this->oauth2Handler->IsAccessTokenExpiring($credentials));
   }
 
   public function testIsAccessTokenValid_MissingAccessToken() {
@@ -221,17 +350,16 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
 }
 
 class TestOAuth2Handler extends OAuth2Handler {
-  public function __construct($server = NULL) {
-    parent::__construct($server);
-  }
+  const GET_TOKEN_MESSAGE = 'Get not implemented.';
+  const REFRESH_TOKEN_MESSAGE = 'Refresh not implemented.';
 
   public function GetAccessToken(array $credentials, $code,
       $redirectUri = NULL) {
-    throw Exception('Not implemented.');
+    throw new Exception(self::GET_TOKEN_MESSAGE);
   }
 
   public function RefreshAccessToken(array $credentials) {
-    throw Exception('Not implemented.');
+    throw new Exception(self::REFRESH_TOKEN_MESSAGE);
   }
 }
 

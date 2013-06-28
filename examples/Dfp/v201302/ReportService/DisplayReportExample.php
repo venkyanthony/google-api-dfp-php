@@ -39,6 +39,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 require_once 'Google/Api/Ads/Dfp/Util/ReportUtils.php';
 
 try {
@@ -67,6 +68,10 @@ try {
   printf("Downloading report from URL '%s'.\n", $downloadUrl);
   $report = ReportUtils::DownloadReport($downloadUrl);
   printf("\n%s\n", $report);
+} catch (OAuth2Exception $e) {
+  ExampleUtils::CheckForOAuth2Errors($e);
+} catch (ValidationException $e) {
+  ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
   printf("%s\n", $e->getMessage());
 }

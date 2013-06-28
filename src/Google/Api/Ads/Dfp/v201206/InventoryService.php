@@ -2598,6 +2598,34 @@ class Value {
   }
 }}
 
+if (!class_exists("AdSenseAccountErrorReason", FALSE)) {
+/**
+ * An error occured while trying to associate an AdSense account with GFP. Unable to create an
+ * association with AdSense or Ad Exchange account.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201206
+ */
+class AdSenseAccountErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201206";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AdSenseAccountError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("AdSenseSettingsAdType", FALSE)) {
 /**
  * Specifies the type of ads that can be served through this {@link AdUnit}.
@@ -3342,8 +3370,15 @@ class PublisherQueryLanguageSyntaxErrorReason {
 if (!class_exists("QuotaErrorReason", FALSE)) {
 /**
  * The number of requests made per second is too high and has exceeded the
- * allowable limit. Please wait before trying your request again. If you see
- * this error often, try increasing the wait time between requests.
+ * allowable limit. The recommended approach to handle this error is to wait
+ * about 5 seconds and then retry the request. Note that this does not
+ * guarantee the request will succeed. If it fails again, try increasing the
+ * wait time.
+ * <p>
+ * Another way to mitigate this error is to limit requests to 2 per second.
+ * Once again this does not guarantee that every request will succeed, but
+ * may help reduce the number of times you receive this error.
+ * </p>
  * @package GoogleApiAdsDfp
  * @subpackage v201206
  */
@@ -4273,6 +4308,45 @@ class ActivateAdUnits extends AdUnitAction {
   }
 }}
 
+if (!class_exists("AdSenseAccountError", FALSE)) {
+/**
+ * Error for AdSense related API calls.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201206
+ */
+class AdSenseAccountError extends ApiError {
+  /**
+   * @access public
+   * @var tnsAdSenseAccountErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201206";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AdSenseAccountError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("AdUnitAfcSizeError", FALSE)) {
 /**
  * Caused by supplying sizes that are not compatible with the Afc sizes.
@@ -4590,10 +4664,11 @@ class InventoryService extends DfpSoapClient {
     "OAuth" => "DfpOAuth",
     "ActivateAdUnits" => "ActivateAdUnits",
     "AdUnitAction" => "AdUnitAction",
+    "AdSenseAccountError" => "AdSenseAccountError",
+    "ApiError" => "ApiError",
     "AdSenseSettings" => "AdSenseSettings",
     "AdSenseSettingsInheritedProperty" => "AdSenseSettingsInheritedProperty",
     "AdUnitAfcSizeError" => "AdUnitAfcSizeError",
-    "ApiError" => "ApiError",
     "AdUnitCodeError" => "AdUnitCodeError",
     "AdUnit" => "AdUnit",
     "AdUnitHierarchyError" => "AdUnitHierarchyError",
@@ -4650,6 +4725,7 @@ class InventoryService extends DfpSoapClient {
     "TypeError" => "TypeError",
     "UniqueError" => "UniqueError",
     "UpdateResult" => "UpdateResult",
+    "AdSenseAccountError.Reason" => "AdSenseAccountErrorReason",
     "AdSenseSettings.AdType" => "AdSenseSettingsAdType",
     "AdSenseSettings.BorderStyle" => "AdSenseSettingsBorderStyle",
     "AdSenseSettings.FontFamily" => "AdSenseSettingsFontFamily",

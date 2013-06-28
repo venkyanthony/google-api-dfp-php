@@ -37,6 +37,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
 
 try {
@@ -79,6 +80,10 @@ try {
   } else {
     print "No third party slot was found to update.\n";
   }
+} catch (OAuth2Exception $e) {
+  ExampleUtils::CheckForOAuth2Errors($e);
+} catch (ValidationException $e) {
+  ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
   print $e->getMessage() . "\n";
 }

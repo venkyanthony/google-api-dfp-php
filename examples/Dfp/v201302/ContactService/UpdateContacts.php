@@ -39,6 +39,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -73,6 +74,10 @@ try {
   } else {
     printf("No contacts were updated.\n");
   }
+} catch (OAuth2Exception $e) {
+  ExampleUtils::CheckForOAuth2Errors($e);
+} catch (ValidationException $e) {
+  ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
   printf("%s\n", $e->getMessage());
 }

@@ -1465,6 +1465,33 @@ class ActivityType {
   }
 }}
 
+if (!class_exists("ActivityErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class ActivityErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "ActivityError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("ApiVersionErrorReason", FALSE)) {
 /**
  * Indicates that the operation is not allowed in the version the request
@@ -1688,8 +1715,15 @@ class PublisherQueryLanguageSyntaxErrorReason {
 if (!class_exists("QuotaErrorReason", FALSE)) {
 /**
  * The number of requests made per second is too high and has exceeded the
- * allowable limit. Please wait before trying your request again. If you see
- * this error often, try increasing the wait time between requests.
+ * allowable limit. The recommended approach to handle this error is to wait
+ * about 5 seconds and then retry the request. Note that this does not
+ * guarantee the request will succeed. If it fails again, try increasing the
+ * wait time.
+ * <p>
+ * Another way to mitigate this error is to limit requests to 2 per second.
+ * Once again this does not guarantee that every request will succeed, but
+ * may help reduce the number of times you receive this error.
+ * </p>
  * @package GoogleApiAdsDfp
  * @subpackage v201302
  */
@@ -2301,6 +2335,45 @@ class updateActivityResponse {
   }
 }}
 
+if (!class_exists("ActivityError", FALSE)) {
+/**
+ * Errors relating to Activity and Activity Group services.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class ActivityError extends ApiError {
+  /**
+   * @access public
+   * @var tnsActivityErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "ActivityError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("ApiException", FALSE)) {
 /**
  * Exception class for holding a list of service errors.
@@ -2500,8 +2573,9 @@ class ActivityService extends DfpSoapClient {
     "Location" => "DfpLocation",
     "OAuth" => "DfpOAuth",
     "Activity" => "Activity",
-    "ActivityPage" => "ActivityPage",
+    "ActivityError" => "ActivityError",
     "ApiError" => "ApiError",
+    "ActivityPage" => "ActivityPage",
     "ApiException" => "ApiException",
     "ApplicationException" => "ApplicationException",
     "ApiVersionError" => "ApiVersionError",
@@ -2533,6 +2607,7 @@ class ActivityService extends DfpSoapClient {
     "UniqueError" => "UniqueError",
     "Activity.Status" => "ActivityStatus",
     "Activity.Type" => "ActivityType",
+    "ActivityError.Reason" => "ActivityErrorReason",
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
     "AuthenticationError.Reason" => "AuthenticationErrorReason",
     "CommonError.Reason" => "CommonErrorReason",

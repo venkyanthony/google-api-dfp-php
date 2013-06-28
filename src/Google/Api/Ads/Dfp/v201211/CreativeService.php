@@ -1889,6 +1889,45 @@ class LegacyDfpCreative extends Creative {
   }
 }}
 
+if (!class_exists("LineItemCreativeAssociationError", FALSE)) {
+/**
+ * Lists all errors associated with line item-to-creative association dates.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201211
+ */
+class LineItemCreativeAssociationError extends ApiError {
+  /**
+   * @access public
+   * @var tnsLineItemCreativeAssociationErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201211";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LineItemCreativeAssociationError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("LongCreativeTemplateVariableValue", FALSE)) {
 /**
  * Stores values of {@link CreativeTemplateVariable} of {@link VariableType#LONG}.
@@ -3040,6 +3079,9 @@ if (!class_exists("TextAdCreative", FALSE)) {
 /**
  * A simple plain text-based {@code Creative}. This creative is only available to small business
  * networks.
+ * 
+ * Starting in version v201306 this will be returned as a {@link TemplateCreative}
+ * identified with a {@link TemplateCreative#creativeTemplateId} of {@code 10000440}.
  * @package GoogleApiAdsDfp
  * @subpackage v201211
  */
@@ -4161,6 +4203,33 @@ class LabelEntityAssociationErrorReason {
   }
 }}
 
+if (!class_exists("LineItemCreativeAssociationErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201211
+ */
+class LineItemCreativeAssociationErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201211";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LineItemCreativeAssociationError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("NotNullErrorReason", FALSE)) {
 /**
  * The reasons for the target error.
@@ -4326,8 +4395,15 @@ class PublisherQueryLanguageSyntaxErrorReason {
 if (!class_exists("QuotaErrorReason", FALSE)) {
 /**
  * The number of requests made per second is too high and has exceeded the
- * allowable limit. Please wait before trying your request again. If you see
- * this error often, try increasing the wait time between requests.
+ * allowable limit. The recommended approach to handle this error is to wait
+ * about 5 seconds and then retry the request. Note that this does not
+ * guarantee the request will succeed. If it fails again, try increasing the
+ * wait time.
+ * <p>
+ * Another way to mitigate this error is to limit requests to 2 per second.
+ * Once again this does not guarantee that every request will succeed, but
+ * may help reduce the number of times you receive this error.
+ * </p>
  * @package GoogleApiAdsDfp
  * @subpackage v201211
  */
@@ -5237,12 +5313,6 @@ if (!class_exists("BaseDynamicAllocationCreative", FALSE)) {
  */
 class BaseDynamicAllocationCreative extends Creative {
   /**
-   * @access public
-   * @var string
-   */
-  public $codeSnippet;
-
-  /**
    * Gets the namesapce of this class
    * @return the namespace of this class
    */
@@ -5258,85 +5328,8 @@ class BaseDynamicAllocationCreative extends Creative {
     return "BaseDynamicAllocationCreative";
   }
 
-  public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
+  public function __construct($advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
     parent::__construct();
-    $this->codeSnippet = $codeSnippet;
-    $this->advertiserId = $advertiserId;
-    $this->id = $id;
-    $this->name = $name;
-    $this->size = $size;
-    $this->previewUrl = $previewUrl;
-    $this->appliedLabels = $appliedLabels;
-    $this->lastModifiedDateTime = $lastModifiedDateTime;
-    $this->customFieldValues = $customFieldValues;
-    $this->CreativeType = $CreativeType;
-  }
-}}
-
-if (!class_exists("AdExchangeCreative", FALSE)) {
-/**
- * An Ad Exchange dynamic allocation creative.
- * @package GoogleApiAdsDfp
- * @subpackage v201211
- */
-class AdExchangeCreative extends BaseDynamicAllocationCreative {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201211";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AdExchangeCreative";
-  }
-
-  public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    parent::__construct();
-    $this->codeSnippet = $codeSnippet;
-    $this->advertiserId = $advertiserId;
-    $this->id = $id;
-    $this->name = $name;
-    $this->size = $size;
-    $this->previewUrl = $previewUrl;
-    $this->appliedLabels = $appliedLabels;
-    $this->lastModifiedDateTime = $lastModifiedDateTime;
-    $this->customFieldValues = $customFieldValues;
-    $this->CreativeType = $CreativeType;
-  }
-}}
-
-if (!class_exists("AdSenseCreative", FALSE)) {
-/**
- * An AdSense dynamic allocation creative.
- * @package GoogleApiAdsDfp
- * @subpackage v201211
- */
-class AdSenseCreative extends BaseDynamicAllocationCreative {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201211";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AdSenseCreative";
-  }
-
-  public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
-    parent::__construct();
-    $this->codeSnippet = $codeSnippet;
     $this->advertiserId = $advertiserId;
     $this->id = $id;
     $this->name = $name;
@@ -6212,6 +6205,9 @@ if (!class_exists("FlashExpandableCreative", FALSE)) {
  * This creative will not work with iframe ad tags.
  * <p>
  * This creative is only available to small business networks.
+ * 
+ * Starting in version v201306 this will be returned as a {@link TemplateCreative}
+ * identified with a {@link TemplateCreative#creativeTemplateId} of {@code 10001160}.
  * @package GoogleApiAdsDfp
  * @subpackage v201211
  */
@@ -6472,6 +6468,9 @@ if (!class_exists("FlashPushdownCreative", FALSE)) {
  * This creative will not work with iframe ad tags.
  * <p>
  * This creative is only available to small business networks.
+ * 
+ * Starting in version v201306 this will be returned as a {@link TemplateCreative}
+ * identified with a {@link TemplateCreative#creativeTemplateId} of {@code 10001400}.
  * @package GoogleApiAdsDfp
  * @subpackage v201211
  */
@@ -6762,6 +6761,9 @@ if (!class_exists("FloatingFlashCreative", FALSE)) {
  * This creative will not work with iframe ad tags.
  * <p>
  * This creative is only available to small business networks.
+ * 
+ * Starting in version v201306 this will be returned as a {@link TemplateCreative}
+ * identified with a {@link TemplateCreative#creativeTemplateId} of {@code 10000560}.
  * @package GoogleApiAdsDfp
  * @subpackage v201211
  */
@@ -6876,6 +6878,50 @@ class FloatingFlashCreative extends HasDestinationUrlCreative {
     $this->displayTimeInSecond = $displayTimeInSecond;
     $this->thirdPartyImpressionTracker = $thirdPartyImpressionTracker;
     $this->destinationUrl = $destinationUrl;
+    $this->advertiserId = $advertiserId;
+    $this->id = $id;
+    $this->name = $name;
+    $this->size = $size;
+    $this->previewUrl = $previewUrl;
+    $this->appliedLabels = $appliedLabels;
+    $this->lastModifiedDateTime = $lastModifiedDateTime;
+    $this->customFieldValues = $customFieldValues;
+    $this->CreativeType = $CreativeType;
+  }
+}}
+
+if (!class_exists("HasHtmlSnippetDynamicAllocationCreative", FALSE)) {
+/**
+ * Dynamic allocation creative with a backfill code snippet.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201211
+ */
+class HasHtmlSnippetDynamicAllocationCreative extends BaseDynamicAllocationCreative {
+  /**
+   * @access public
+   * @var string
+   */
+  public $codeSnippet;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201211";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "HasHtmlSnippetDynamicAllocationCreative";
+  }
+
+  public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
+    parent::__construct();
+    $this->codeSnippet = $codeSnippet;
     $this->advertiserId = $advertiserId;
     $this->id = $id;
     $this->name = $name;
@@ -7346,6 +7392,82 @@ class VideoRedirectCreative extends BaseVideoCreative {
   }
 }}
 
+if (!class_exists("AdExchangeCreative", FALSE)) {
+/**
+ * An Ad Exchange dynamic allocation creative.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201211
+ */
+class AdExchangeCreative extends HasHtmlSnippetDynamicAllocationCreative {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201211";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AdExchangeCreative";
+  }
+
+  public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
+    parent::__construct();
+    $this->codeSnippet = $codeSnippet;
+    $this->advertiserId = $advertiserId;
+    $this->id = $id;
+    $this->name = $name;
+    $this->size = $size;
+    $this->previewUrl = $previewUrl;
+    $this->appliedLabels = $appliedLabels;
+    $this->lastModifiedDateTime = $lastModifiedDateTime;
+    $this->customFieldValues = $customFieldValues;
+    $this->CreativeType = $CreativeType;
+  }
+}}
+
+if (!class_exists("AdSenseCreative", FALSE)) {
+/**
+ * An AdSense dynamic allocation creative.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201211
+ */
+class AdSenseCreative extends HasHtmlSnippetDynamicAllocationCreative {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201211";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AdSenseCreative";
+  }
+
+  public function __construct($codeSnippet = NULL, $advertiserId = NULL, $id = NULL, $name = NULL, $size = NULL, $previewUrl = NULL, $appliedLabels = NULL, $lastModifiedDateTime = NULL, $customFieldValues = NULL, $CreativeType = NULL) {
+    parent::__construct();
+    $this->codeSnippet = $codeSnippet;
+    $this->advertiserId = $advertiserId;
+    $this->id = $id;
+    $this->name = $name;
+    $this->size = $size;
+    $this->previewUrl = $previewUrl;
+    $this->appliedLabels = $appliedLabels;
+    $this->lastModifiedDateTime = $lastModifiedDateTime;
+    $this->customFieldValues = $customFieldValues;
+    $this->CreativeType = $CreativeType;
+  }
+}}
+
 if (!class_exists("CreativeService", FALSE)) {
 /**
  * CreativeService
@@ -7367,6 +7489,7 @@ class CreativeService extends DfpSoapClient {
     "Creative" => "Creative",
     "BaseCreativeTemplateVariableValue" => "BaseCreativeTemplateVariableValue",
     "AdExchangeCreative" => "AdExchangeCreative",
+    "HasHtmlSnippetDynamicAllocationCreative" => "HasHtmlSnippetDynamicAllocationCreative",
     "AdSenseCreative" => "AdSenseCreative",
     "ApiError" => "ApiError",
     "ApiException" => "ApiException",
@@ -7426,6 +7549,7 @@ class CreativeService extends DfpSoapClient {
     "InvalidUrlError" => "InvalidUrlError",
     "LabelEntityAssociationError" => "LabelEntityAssociationError",
     "LegacyDfpCreative" => "LegacyDfpCreative",
+    "LineItemCreativeAssociationError" => "LineItemCreativeAssociationError",
     "LongCreativeTemplateVariableValue" => "LongCreativeTemplateVariableValue",
     "NotNullError" => "NotNullError",
     "NullError" => "NullError",
@@ -7485,6 +7609,7 @@ class CreativeService extends DfpSoapClient {
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
     "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
+    "LineItemCreativeAssociationError.Reason" => "LineItemCreativeAssociationErrorReason",
     "NotNullError.Reason" => "NotNullErrorReason",
     "NullError.Reason" => "NullErrorReason",
     "ParseError.Reason" => "ParseErrorReason",

@@ -1175,6 +1175,46 @@ class ContentTargeting {
   }
 }}
 
+if (!class_exists("CustomTargetingError", FALSE)) {
+/**
+ * Lists all errors related to {@link CustomTargetingKey} and
+ * {@link CustomTargetingValue} objects.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class CustomTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCustomTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("CustomCriteriaNode", FALSE)) {
 /**
  * A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom
@@ -3525,6 +3565,33 @@ class AdRuleFrequencyCapErrorReason {
   }
 }}
 
+if (!class_exists("AdRulePriorityErrorReason", FALSE)) {
+/**
+ * Reasons for an {@code AdRulePriorityError}.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class AdRulePriorityErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AdRulePriorityError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("AdRuleSlotBehavior", FALSE)) {
 /**
  * The types of behaviors for ads within a {@link BaseAdRuleSlot ad rule slot}.
@@ -3766,6 +3833,33 @@ class CustomCriteriaSetLogicalOperator {
    */
   public function getXsiTypeName() {
     return "CustomCriteriaSet.LogicalOperator";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("CustomTargetingErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class CustomTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomTargetingError.Reason";
   }
 
   public function __construct() {
@@ -4127,8 +4221,15 @@ class PublisherQueryLanguageSyntaxErrorReason {
 if (!class_exists("QuotaErrorReason", FALSE)) {
 /**
  * The number of requests made per second is too high and has exceeded the
- * allowable limit. Please wait before trying your request again. If you see
- * this error often, try increasing the wait time between requests.
+ * allowable limit. The recommended approach to handle this error is to wait
+ * about 5 seconds and then retry the request. Note that this does not
+ * guarantee the request will succeed. If it fails again, try increasing the
+ * wait time.
+ * <p>
+ * Another way to mitigate this error is to limit requests to 2 per second.
+ * Once again this does not guarantee that every request will succeed, but
+ * may help reduce the number of times you receive this error.
+ * </p>
  * @package GoogleApiAdsDfp
  * @subpackage v201302
  */
@@ -5140,6 +5241,45 @@ class OptimizedPoddingAdRuleSlot extends BaseAdRuleSlot {
   }
 }}
 
+if (!class_exists("AdRulePriorityError", FALSE)) {
+/**
+ * Errors associated with ad rule priorities.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class AdRulePriorityError extends ApiError {
+  /**
+   * @access public
+   * @var tnsAdRulePriorityErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AdRulePriorityError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("AdRuleSlotError", FALSE)) {
 /**
  * Errors related to ad rule slots.
@@ -6056,6 +6196,7 @@ class AdRuleService extends DfpSoapClient {
     "BaseAdRuleSlot" => "BaseAdRuleSlot",
     "OptimizedPoddingAdRuleSlot" => "OptimizedPoddingAdRuleSlot",
     "AdRulePage" => "AdRulePage",
+    "AdRulePriorityError" => "AdRulePriorityError",
     "AdRuleSlotError" => "AdRuleSlotError",
     "StandardPoddingAdRuleSlot" => "StandardPoddingAdRuleSlot",
     "AdUnitTargeting" => "AdUnitTargeting",
@@ -6083,6 +6224,7 @@ class AdRuleService extends DfpSoapClient {
     "CustomCriteriaLeaf" => "CustomCriteriaLeaf",
     "CustomCriteriaSet" => "CustomCriteriaSet",
     "CustomCriteriaNode" => "CustomCriteriaNode",
+    "CustomTargetingError" => "CustomTargetingError",
     "AudienceSegmentCriteria" => "AudienceSegmentCriteria",
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
@@ -6141,6 +6283,7 @@ class AdRuleService extends DfpSoapClient {
     "VideoPositionTarget" => "VideoPositionTarget",
     "AdRuleDateError.Reason" => "AdRuleDateErrorReason",
     "AdRuleFrequencyCapError.Reason" => "AdRuleFrequencyCapErrorReason",
+    "AdRulePriorityError.Reason" => "AdRulePriorityErrorReason",
     "AdRuleSlotBehavior" => "AdRuleSlotBehavior",
     "AdRuleSlotBumper" => "AdRuleSlotBumper",
     "AdRuleSlotError.Reason" => "AdRuleSlotErrorReason",
@@ -6150,6 +6293,7 @@ class AdRuleService extends DfpSoapClient {
     "CommonError.Reason" => "CommonErrorReason",
     "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
     "CustomCriteriaSet.LogicalOperator" => "CustomCriteriaSetLogicalOperator",
+    "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
     "AudienceSegmentCriteria.ComparisonOperator" => "AudienceSegmentCriteriaComparisonOperator",
     "DayOfWeek" => "DayOfWeek",
     "DeliveryTimeZone" => "DeliveryTimeZone",

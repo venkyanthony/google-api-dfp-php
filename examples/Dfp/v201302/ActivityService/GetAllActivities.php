@@ -40,6 +40,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 /**
  * Gets all activity group IDs.
@@ -125,6 +126,10 @@ try {
     } while ($offset < $page->totalResultSetSize);
   }
   printf("Number of results found: %d\n", $totalResultsCounter);
+} catch (OAuth2Exception $e) {
+  ExampleUtils::CheckForOAuth2Errors($e);
+} catch (ValidationException $e) {
+  ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
   printf("%s\n", $e->getMessage());
 }
