@@ -98,13 +98,10 @@ class DfpUser extends AdsUser {
       $settingsIniPath = NULL, $authToken = NULL, $oauth2Info = NULL) {
     parent::__construct();
 
-    $buildIniCommon = parse_ini_file(dirname(__FILE__) .
-        '/../../Common/Lib/build.ini', FALSE);
-    $this->libVersion = $buildIniCommon['LIB_VERSION'];
-
-    $buildIniDfp = parse_ini_file(dirname(__FILE__) . '/../Lib/build.ini',
+    $buildIniDfp = parse_ini_file(dirname(__FILE__) . '/build.ini',
         FALSE);
     $this->libName = $buildIniDfp['LIB_NAME'];
+    $this->libVersion = $buildIniDfp['LIB_VERSION'];
 
     $apiProps = ApiPropertiesUtils::ParseApiPropertiesFile(dirname(__FILE__) .
         '/api.properties');

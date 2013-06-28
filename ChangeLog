@@ -7,9 +7,8 @@
   UseOAuth2.php) and will read OAuth 2 client ID and secret credentials from
   the auth.ini file.
 - Access tokens are now automatically refreshed when they are close to
-  expiring (within 60 seconds) if a refresh token that is capable of
-  refreshing access tokens has been provided. This allows PHP scripts to be
-  long lived without issues.
+  expiring (within 60 seconds) if a refreshable token has been provided. This
+  allows PHP scripts to be long lived without issues.
 - Examples now capture OAuth2 errors and inform users how best to resolve
   them.
 
