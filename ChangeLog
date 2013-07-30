@@ -1,3 +1,6 @@
+2.17.1:
+- Reintroduced WSDL Interpreter for generating PHP stubs from WSDLS.
+
 2.17.0:
 - Added support for v201306.
 - Removed support for OAuth 1. Use OAuth 2 instead.
