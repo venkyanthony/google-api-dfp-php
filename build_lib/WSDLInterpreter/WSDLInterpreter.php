@@ -29,7 +29,7 @@
  * @copyright   2007 Kevin Vaughan
  * @license     http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
  *
- * Modified by Adam Rogal arogal@google.com for use with Ads APIs @ Google.
+ * Modified by Adam Rogal for use with Ads APIs @ Google.
  */
 
 /**
