@@ -1,5 +1,9 @@
 <?php
 /**
+ * A utility class to for converting PHP DateTime objects to DFP native objects.
+ *
+ * PHP version 5
+ *
  * Copyright 2011, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +30,8 @@
 
 /**
  * A utility class to for converting PHP DateTime objects to DFP native objects.
+ * @package GoogleApiAdsDfp
+ * @subpackage Util
  */
 class DateTimeUtils {
 

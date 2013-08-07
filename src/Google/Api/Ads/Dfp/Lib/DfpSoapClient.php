@@ -1,5 +1,10 @@
 <?php
 /**
+ * An extension of the {@link AdsSoapClient} for Google's DoubleClick for
+ * Publishers API.
+ *
+ * PHP version 5
+ *
  * Copyright 2011, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +23,8 @@
  * @subpackage Lib
  * @category   WebServices
  * @copyright  2011, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
+ *             Version 2.0
  * @author     Adam Rogal
  * @author     Eric Koleda
  * @author     Paul Rashidi
@@ -30,6 +36,8 @@ require_once 'Google/Api/Ads/Common/Lib/AdsSoapClient.php';
 /**
  * An extension of the {@link AdsSoapClient} for Google's DoubleClick for
  * Publishers API.
+ * @package GoogleApiAdsDfp
+ * @subpackage Lib
  */
 class DfpSoapClient extends AdsSoapClient {
 

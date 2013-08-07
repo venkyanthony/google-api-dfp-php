@@ -1,5 +1,9 @@
 <?php
 /**
+ * A collection of utility methods for working with reports.
+ *
+ * PHP version 5
+ *
  * Copyright 2011, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,6 +31,8 @@ require_once 'Google/Api/Ads/Common/Util/CurlUtils.php';
 
 /**
  * A collection of utility methods for working with reports.
+ * @package GoogleApiAdsDfp
+ * @subpackage Util
  */
 class ReportUtils {
 

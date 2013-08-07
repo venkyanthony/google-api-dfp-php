@@ -1,5 +1,10 @@
 <?php
 /**
+ * User class for the DoubleClick for Publishers API to create SOAP clients to
+ * the available API services.
+ *
+ * PHP version 5
+ *
  * Copyright 2011, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,6 +38,8 @@ require_once 'Google/Api/Ads/Dfp/Lib/DfpSoapClientFactory.php';
 /**
  * User class for the DoubleClick for Publishers API to create SOAP clients to
  * the available API services.
+ * @package GoogleApiAdsDfp
+ * @subpackage Lib
  */
 class DfpUser extends AdsUser {
 

@@ -1,5 +1,9 @@
 <?php
 /**
+ * A Helper class to facilitate loading assets in tests.
+ *
+ * PHP version 5
+ *
  * Copyright 2013, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -22,36 +26,31 @@
  *             Version 2.0
  * @author     Paul Matthews
  */
-
 require_once 'Google/Api/Ads/Common/Util/XmlUtils.php';
 
 /**
  * A Helper class to facilitate loading assets in tests.
- *
- * @package GoogleApiAdsAdWords
+ * @package GoogleApiAdsCommon
  * @subpackage Testing
  */
 class AssetHelper {
 
   /**
-   * Asset directory
-   *
+   * Asset directory.
    * @var string
-   **/
+   */
   private $assetDirectory;
 
   /**
-   * Default extension for this asset helper
-   *
+   * Default extension for this asset helper.
    * @var string
-   **/
+   */
   private $defaultExt;
 
   /**
    * Constructor.
-   *
-   * @param string $assetDirectory the path to the directory containing assets.
-   * @param null|string $defaultExt the default extension for the assets.
+   * @param string $assetDirectory the path to the directory containing assets
+   * @param null|string $defaultExt the default extension for the assets
    */
   public function __construct($assetDirectory, $defaultExt = null) {
     $this->defaultExt = $defaultExt ?: '';
@@ -60,9 +59,8 @@ class AssetHelper {
 
   /**
    * Get the full path to an asset.
-   *
    * @param string $assetName the name of the asset
-   * @param null|string $ext the extension of the asset, if applicable.
+   * @param null|string $ext the extension of the asset, if applicable
    * @return string the resultant path
    */
   public function getAssetPath($assetName, $ext = null) {
@@ -71,10 +69,9 @@ class AssetHelper {
   }
 
   /**
-   * Get an Asset
-   *
-   * @param string $assetName the asset name.
-   * @param null|string $ext the extension of the asset, if applicable.
+   * Get an Asset.
+   * @param string $assetName the asset name
+   * @param null|string $ext the extension of the asset, if applicable
    * @throws InvalidArgumentException if theres an issue finding the file
    * @return string the contents of the asset
    */
@@ -90,10 +87,9 @@ class AssetHelper {
   }
 
   /**
-   * Get an Asset as an XML Dom
-   *
-   * @param string $assetName the XML asset name.
-   * @param null|string $ext the extension of the asset, if applicable.
+   * Get an Asset as an XML Dom.
+   * @param string $assetName the XML asset name
+   * @param null|string $ext the extension of the asset, if applicable
    * @return string the contents of the asset
    * @throws InvalidArgumentException if theres an issue finding the file
    * @throws DOMException if the DOM could not be loaded
