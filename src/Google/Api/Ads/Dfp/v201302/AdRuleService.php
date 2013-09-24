@@ -1765,7 +1765,7 @@ class InternalApiError extends ApiError {
 
 if (!class_exists("InventoryTargeting", FALSE)) {
 /**
- * Contains criteria for targeting Inventory.
+ * A collection of targeted and excluded ad units and placements.
  * @package GoogleApiAdsDfp
  * @subpackage v201302
  */
@@ -1808,64 +1808,6 @@ class InventoryTargeting {
     $this->targetedAdUnits = $targetedAdUnits;
     $this->excludedAdUnits = $excludedAdUnits;
     $this->targetedPlacementIds = $targetedPlacementIds;
-  }
-}}
-
-if (!class_exists("AdUnitSize", FALSE)) {
-/**
- * An {@code AdUnitSize} represents the size of an ad in an ad unit. Starting
- * with v201108 this also represents the environment, and companions of a
- * particular ad in an ad unit. In most cases, it is a simple size with just a
- * width and a height (sometimes representing an aspect ratio).
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class AdUnitSize {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var tnsEnvironmentType
-   */
-  public $environmentType;
-
-  /**
-   * @access public
-   * @var AdUnitSize[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var string
-   */
-  public $fullDisplayString;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AdUnitSize";
-  }
-
-  public function __construct($size = NULL, $environmentType = NULL, $companions = NULL, $fullDisplayString = NULL) {
-    $this->size = $size;
-    $this->environmentType = $environmentType;
-    $this->companions = $companions;
-    $this->fullDisplayString = $fullDisplayString;
   }
 }}
 
@@ -2683,56 +2625,6 @@ class ServerError extends ApiError {
   }
 }}
 
-if (!class_exists("Size", FALSE)) {
-/**
- * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
- * <p>
- * For interstitial size (out-of-page), {@code Size} must be 1x1.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class Size {
-  /**
-   * @access public
-   * @var integer
-   */
-  public $width;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $height;
-
-  /**
-   * @access public
-   * @var boolean
-   */
-  public $isAspectRatio;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "Size";
-  }
-
-  public function __construct($width = NULL, $height = NULL, $isAspectRatio = NULL) {
-    $this->width = $width;
-    $this->height = $height;
-    $this->isAspectRatio = $isAspectRatio;
-  }
-}}
-
 if (!class_exists("SoapRequestHeader", FALSE)) {
 /**
  * Represents the SOAP request header used by API requests.
@@ -2832,11 +2724,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of
@@ -3941,33 +3840,6 @@ class DeliveryTimeZone {
    */
   public function getXsiTypeName() {
     return "DeliveryTimeZone";
-  }
-
-  public function __construct() {
-  }
-}}
-
-if (!class_exists("EnvironmentType", FALSE)) {
-/**
- * Enum for the valid environments in which ads can be shown.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class EnvironmentType {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "EnvironmentType";
   }
 
   public function __construct() {
@@ -6241,7 +6113,6 @@ class AdRuleService extends DfpSoapClient {
     "GeoTargeting" => "GeoTargeting",
     "InternalApiError" => "InternalApiError",
     "InventoryTargeting" => "InventoryTargeting",
-    "AdUnitSize" => "AdUnitSize",
     "MetroLocation" => "MetroLocation",
     "MobileCarrier" => "MobileCarrier",
     "MobileCarrierTargeting" => "MobileCarrierTargeting",
@@ -6265,7 +6136,6 @@ class AdRuleService extends DfpSoapClient {
     "RequiredError" => "RequiredError",
     "RequiredNumberError" => "RequiredNumberError",
     "ServerError" => "ServerError",
-    "Size" => "Size",
     "SoapRequestHeader" => "SoapRequestHeader",
     "SoapResponseHeader" => "SoapResponseHeader",
     "Statement" => "Statement",
@@ -6297,7 +6167,6 @@ class AdRuleService extends DfpSoapClient {
     "AudienceSegmentCriteria.ComparisonOperator" => "AudienceSegmentCriteriaComparisonOperator",
     "DayOfWeek" => "DayOfWeek",
     "DeliveryTimeZone" => "DeliveryTimeZone",
-    "EnvironmentType" => "EnvironmentType",
     "FrequencyCapBehavior" => "FrequencyCapBehavior",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "MidrollFrequencyType" => "MidrollFrequencyType",

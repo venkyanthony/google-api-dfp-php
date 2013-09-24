@@ -2220,11 +2220,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of

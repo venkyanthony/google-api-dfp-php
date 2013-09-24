@@ -2242,7 +2242,7 @@ class InvalidUrlError extends ApiError {
 
 if (!class_exists("InventoryTargeting", FALSE)) {
 /**
- * Contains criteria for targeting Inventory.
+ * A collection of targeted and excluded ad units and placements.
  * @package GoogleApiAdsDfp
  * @subpackage v201208
  */
@@ -2364,64 +2364,6 @@ class InventoryUnitError extends ApiError {
     $this->trigger = $trigger;
     $this->errorString = $errorString;
     $this->ApiErrorType = $ApiErrorType;
-  }
-}}
-
-if (!class_exists("AdUnitSize", FALSE)) {
-/**
- * An {@code AdUnitSize} represents the size of an ad in an ad unit. Starting
- * with v201108 this also represents the environment, and companions of a
- * particular ad in an ad unit. In most cases, it is a simple size with just a
- * width and a height (sometimes representing an aspect ratio).
- * @package GoogleApiAdsDfp
- * @subpackage v201208
- */
-class AdUnitSize {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var tnsEnvironmentType
-   */
-  public $environmentType;
-
-  /**
-   * @access public
-   * @var AdUnitSize[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var string
-   */
-  public $fullDisplayString;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201208";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AdUnitSize";
-  }
-
-  public function __construct($size = NULL, $environmentType = NULL, $companions = NULL, $fullDisplayString = NULL) {
-    $this->size = $size;
-    $this->environmentType = $environmentType;
-    $this->companions = $companions;
-    $this->fullDisplayString = $fullDisplayString;
   }
 }}
 
@@ -8114,7 +8056,6 @@ class ForecastService extends DfpSoapClient {
     "InventoryTargeting" => "InventoryTargeting",
     "InventoryTargetingError" => "InventoryTargetingError",
     "InventoryUnitError" => "InventoryUnitError",
-    "AdUnitSize" => "AdUnitSize",
     "LabelEntityAssociationError" => "LabelEntityAssociationError",
     "LineItemCreativeAssociationError" => "LineItemCreativeAssociationError",
     "LineItem" => "LineItem",

@@ -292,7 +292,7 @@ you have the option to enable pseudo-namespaces, so for example the type
 
 For the sake of backwards compatibility this feature is not enabled by default.
 It can be enabled by setting wsdl2php.enablePseudoNamespaces to "true" in the
-build.properties file and running the "generate" target in build.xml. This
+api.properties file and running the "generate" target in build.xml. This
 requires the source build of the library.
 
 Enabling pseudo-namespaces for an existing application make cause your code to

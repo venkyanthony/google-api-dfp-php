@@ -599,64 +599,6 @@ class InternalApiError extends ApiError {
   }
 }}
 
-if (!class_exists("AdUnitSize", FALSE)) {
-/**
- * An {@code AdUnitSize} represents the size of an ad in an ad unit. Starting
- * with v201108 this also represents the environment, and companions of a
- * particular ad in an ad unit. In most cases, it is a simple size with just a
- * width and a height (sometimes representing an aspect ratio).
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class AdUnitSize {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var tnsEnvironmentType
-   */
-  public $environmentType;
-
-  /**
-   * @access public
-   * @var AdUnitSize[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var string
-   */
-  public $fullDisplayString;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AdUnitSize";
-  }
-
-  public function __construct($size = NULL, $environmentType = NULL, $companions = NULL, $fullDisplayString = NULL) {
-    $this->size = $size;
-    $this->environmentType = $environmentType;
-    $this->companions = $companions;
-    $this->fullDisplayString = $fullDisplayString;
-  }
-}}
-
 if (!class_exists("NotNullError", FALSE)) {
 /**
  * Caused by supplying a null value for an attribute that cannot be null.
@@ -914,6 +856,45 @@ class PlacementAction {
 
   public function __construct($PlacementActionType = NULL) {
     $this->PlacementActionType = $PlacementActionType;
+  }
+}}
+
+if (!class_exists("PlacementError", FALSE)) {
+/**
+ * Class defining all validation errors for a placement.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class PlacementError extends ApiError {
+  /**
+   * @access public
+   * @var tnsPlacementErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "PlacementError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1368,56 +1349,6 @@ class SiteTargetingInfo {
   }
 }}
 
-if (!class_exists("Size", FALSE)) {
-/**
- * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
- * <p>
- * For interstitial size (out-of-page), {@code Size} must be 1x1.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class Size {
-  /**
-   * @access public
-   * @var integer
-   */
-  public $width;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $height;
-
-  /**
-   * @access public
-   * @var boolean
-   */
-  public $isAspectRatio;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "Size";
-  }
-
-  public function __construct($width = NULL, $height = NULL, $isAspectRatio = NULL) {
-    $this->width = $width;
-    $this->height = $height;
-    $this->isAspectRatio = $isAspectRatio;
-  }
-}}
-
 if (!class_exists("SoapRequestHeader", FALSE)) {
 /**
  * Represents the SOAP request header used by API requests.
@@ -1517,11 +1448,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of
@@ -1938,33 +1876,6 @@ class CommonErrorReason {
   }
 }}
 
-if (!class_exists("EnvironmentType", FALSE)) {
-/**
- * Enum for the valid environments in which ads can be shown.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class EnvironmentType {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "EnvironmentType";
-  }
-
-  public function __construct() {
-  }
-}}
-
 if (!class_exists("InternalApiErrorReason", FALSE)) {
 /**
  * The single reason for the internal API error.
@@ -2122,6 +2033,33 @@ class PermissionErrorReason {
    */
   public function getXsiTypeName() {
     return "PermissionError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("PlacementErrorReason", FALSE)) {
+/**
+ * Possible reasons for the error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class PlacementErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "PlacementError.Reason";
   }
 
   public function __construct() {
@@ -3362,7 +3300,6 @@ class PlacementService extends DfpSoapClient {
     "DeactivatePlacements" => "DeactivatePlacements",
     "EntityLimitReachedError" => "EntityLimitReachedError",
     "InternalApiError" => "InternalApiError",
-    "AdUnitSize" => "AdUnitSize",
     "NotNullError" => "NotNullError",
     "NullError" => "NullError",
     "NumberValue" => "NumberValue",
@@ -3370,6 +3307,7 @@ class PlacementService extends DfpSoapClient {
     "PermissionError" => "PermissionError",
     "Placement" => "Placement",
     "SiteTargetingInfo" => "SiteTargetingInfo",
+    "PlacementError" => "PlacementError",
     "PlacementPage" => "PlacementPage",
     "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
     "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
@@ -3379,7 +3317,6 @@ class PlacementService extends DfpSoapClient {
     "RequiredCollectionError" => "RequiredCollectionError",
     "RequiredError" => "RequiredError",
     "ServerError" => "ServerError",
-    "Size" => "Size",
     "SoapRequestHeader" => "SoapRequestHeader",
     "SoapResponseHeader" => "SoapResponseHeader",
     "Statement" => "Statement",
@@ -3393,13 +3330,13 @@ class PlacementService extends DfpSoapClient {
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
     "AuthenticationError.Reason" => "AuthenticationErrorReason",
     "CommonError.Reason" => "CommonErrorReason",
-    "EnvironmentType" => "EnvironmentType",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "InventoryStatus" => "InventoryStatus",
     "NotNullError.Reason" => "NotNullErrorReason",
     "NullError.Reason" => "NullErrorReason",
     "ParseError.Reason" => "ParseErrorReason",
     "PermissionError.Reason" => "PermissionErrorReason",
+    "PlacementError.Reason" => "PlacementErrorReason",
     "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
     "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
     "QuotaError.Reason" => "QuotaErrorReason",

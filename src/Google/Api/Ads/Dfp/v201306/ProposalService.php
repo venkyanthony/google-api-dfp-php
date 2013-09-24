@@ -875,6 +875,45 @@ class InternalApiError extends ApiError {
   }
 }}
 
+if (!class_exists("InvalidUrlError", FALSE)) {
+/**
+ * Lists all errors associated with URLs.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class InvalidUrlError extends ApiError {
+  /**
+   * @access public
+   * @var tnsInvalidUrlErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InvalidUrlError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("LabelEntityAssociationError", FALSE)) {
 /**
  * Errors specific to creating label entity associations.
@@ -2178,11 +2217,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of
@@ -2922,6 +2968,33 @@ class InternalApiErrorReason {
    */
   public function getXsiTypeName() {
     return "InternalApiError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("InvalidUrlErrorReason", FALSE)) {
+/**
+ * The URL contains invalid characters.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class InvalidUrlErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InvalidUrlError.Reason";
   }
 
   public function __construct() {
@@ -4405,6 +4478,7 @@ class ProposalService extends DfpSoapClient {
     "DropDownCustomFieldValue" => "DropDownCustomFieldValue",
     "ForecastError" => "ForecastError",
     "InternalApiError" => "InternalApiError",
+    "InvalidUrlError" => "InvalidUrlError",
     "LabelEntityAssociationError" => "LabelEntityAssociationError",
     "Money" => "Money",
     "NotNullError" => "NotNullError",
@@ -4452,6 +4526,7 @@ class ProposalService extends DfpSoapClient {
     "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
     "ForecastError.Reason" => "ForecastErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
+    "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
     "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
     "ProposalApprovalStatus" => "ProposalApprovalStatus",
     "NotNullError.Reason" => "NotNullErrorReason",

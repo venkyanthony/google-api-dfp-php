@@ -1,6 +1,7 @@
 <?php
 /**
- * A utility class to for converting PHP DateTime objects to DFP native objects.
+ * A utility class for converting PHP DateTime objects to DFP native objects and
+ * vice versa.
  *
  * PHP version 5
  *
@@ -30,34 +31,33 @@
 
 /**
  * A utility class to for converting PHP DateTime objects to DFP native objects.
+ *
  * @package GoogleApiAdsDfp
  * @subpackage Util
  */
 class DateTimeUtils {
 
   /**
+   * ISO-8601 date time format (example: 2005-08-15T15:52:01+00:00).
+   */
+  const ISO8601 = "Y-m-d\TH:i:sP";
+
+  /**
    * Format string used to format a DateTime for use with DFP PQL.
+   *
    * @var string
-   * @deprecated use the const DateTimeUtils::DFP_DATE_TIME_STRING_FORMAT
-   *     instead
+   * @deprecated
    */
   public static $DFP_DATE_TIME_STRING_FORMAT = 'Y-m-d\TH:i:s';
 
-  /**
-   * Format string used to format a DateTime for use with DFP PQL.
-   * @var string
-   */
-  const DFP_DATE_TIME_STRING_FORMAT = 'Y-m-d\TH:i:s';
+  const DFP_DATE_PATTERN = "%04d-%02d-%02d";
 
   /**
-   * The DateTimeUtils class is not meant to have any instances.
+   * {@link DateTimeUtils} is meant to be used statically.
    */
   private function __construct() {}
 
   /**
-   * Converts a PHP DateTime to a DfpDateTime.
-   * @param DateTime $dateTime a PHP DateTime object
-   * @return DfpDateTime a DfpDateTime object
    * @deprecated use ToDfpDateTime() instead
    */
   public static function GetDfpDateTime(DateTime $dateTime) {
@@ -65,19 +65,16 @@ class DateTimeUtils {
   }
 
   /**
-   * Converts a DfpDateTime to a PHP DateTime.
-   * @param DfpDateTime $dfpDateTime a DfpDateTime object
-   * @param string $timezone the timezone to use, optional
-   * @return DateTime a PHP DateTime object
    * @deprecated use FromDfpDateTime() instead
    */
   public static function GetDateTime(DfpDateTime $dfpDateTime,
-      string $timezone = NULL) {
-    return self::FromDfpDateTime($dfpDateTime, $timezone);
+      $timezone = null) {
+    return self::FromDfpDateTime($dfpDateTime);
   }
 
   /**
    * Converts a PHP DateTime to a DfpDateTime.
+   *
    * @param DateTime $dateTime a PHP DateTime object
    * @return DfpDateTime a DfpDateTime object
    */
@@ -90,70 +87,97 @@ class DateTimeUtils {
     $result->hour = (int) $dateTime->format('H');
     $result->minute = (int) $dateTime->format('i');
     $result->second = (int) $dateTime->format('s');
-    $result->timeZoneID = $dateTime->getTimezone()->getName();
+    $result->timeZoneID = $dateTime->format('e');
     return $result;
+  }
+
+  /**
+   * Converts a string in the form of {@code yyyy-MM-dd'T'HH:mm:ss±HH:mm} to a
+   * DfpDateTime.
+   */
+  public static function ToDfpDateTimeFromString($dateTime) {
+    return self::ToDfpDateTime(DateTime::createFromFormat(self::ISO8601,
+        $dateTime));
+  }
+
+  /**
+   * Converts a string in the form of {@code yyyy-MM-dd'T'HH:mm:ss±HH:mm} to a
+   * DfpDateTime in the time zone supplied.
+   */
+  public static function ToDfpDateTimeFromStringWithTimeZone($dateTime,
+      $timeZoneId) {
+    return self::ToDfpDateTime(
+        (new DateTime($dateTime, new DateTimeZone($timeZoneId))));
   }
 
   /**
    * Converts a DfpDateTime to a PHP DateTime.
+   *
    * @param DfpDateTime $dfpDateTime a DfpDateTime object
-   * @param string $timezone the timezone to use, optional
    * @return DateTime a PHP DateTime object
    */
-  public static function FromDfpDateTime(DfpDateTime $dfpDateTime,
-      string $timezone = NULL) {
-    if (!isset($timezone) && isset($dfpDateTime->timeZoneID)) {
-      $timezone = $dfpDateTime->timeZoneID;
-    }
+  public static function FromDfpDateTime(DfpDateTime $dfpDateTime) {
     $dateTimeString = sprintf("%d-%d-%dT%d:%d:%d", $dfpDateTime->date->year,
         $dfpDateTime->date->month, $dfpDateTime->date->day, $dfpDateTime->hour,
         $dfpDateTime->minute, $dfpDateTime->second);
-    if (isset($timezone)) {
-      return new DateTime($dateTimeString, new DateTimeZone($timezone));
-    } else {
-      return new DateTime($dateTimeString);
-    }
+    return new DateTime($dateTimeString,
+        new DateTimeZone($dfpDateTime->timeZoneID));
   }
 
   /**
-   * Converts a PHP DateTime to a DFP Date.
-   * @param DateTime $dateTime a PHP DateTime object
-   * @return Date a DFP Date object
+   * Returns string representation of the specified DFP date.
+   *
+   * @param Date $dfpDate the DFP date to stringify
+   * @return string a string representation of the DFP {@code Date} in
+   *     {@code yyyy-MM-dd}
    */
-  public static function ToDfpDate(DateTime $dateTime) {
-    // ToDfpDtateTime() not used because the DfpDateTime object may not be
-    // available.
-    $result = new Date();
-    $result->year = (int) $dateTime->format('Y');
-    $result->month = (int) $dateTime->format('m');
-    $result->day = (int) $dateTime->format('d');
-    return $result;
-  }
-
-  /**
-   * Converts a DFP Date to a PHP DateTime.
-   * @param Date $dfpDate a DFP Date object
-   * @return DateTime a PHP DateTime object
-   */
-  public static function FromDfpDate(Date $dfpDate,
-      string $timezone = NULL) {
-    // FromDfpDateTime() not used because the DfpDateTime object may not be
-    // available.
-    $dateString = sprintf("%d-%d-%d", $dfpDate->year, $dfpDate->month,
+  public static function ToString(Date $dfpDate) {
+    return sprintf(self::DFP_DATE_PATTERN, $dfpDate->year, $dfpDate->month,
         $dfpDate->day);
-    return new DateTime($dateString);
   }
 
   /**
-   * Converts a DfpDateTime to a DFP DateTime string.
-   * @param DfpDateTime $dfpDateTime a DfpDateTime object
-   * @param string timezone the timezone to use, optional
-   * @return string a DFP DateTime string
+   * Returns string representation of this DFP date time with time zone. If you
+   * need to convert the DFP date time into another time zone before filtering
+   * on it, please use {@link #ToStringForTimeZone()} instead.
+   *
+   * @param DateTime $dfpDateTime the DFP date time to stringify
+   * @return string a string representation of the DFP {@code DateTime} in
+   *     {@code yyyy-MM-dd'T'HH:mm:ss±HH:mm}, e.g.,
+   *     {@code 2013-09-013T12:02:03+08:00} or
+   *     {@code 2013-09-013T12:02:03Z} for Etc/GMT.
    */
-  public static function ToDfpDateTimeString(DfpDateTime $dfpDateTime,
-      string $timezone = NULL) {
-    $dateTime = self::GetDateTime($dfpDateTime, $timezone);
-    return $dateTime->format(self::DFP_DATE_TIME_STRING_FORMAT);
+  public static function ToStringWithTimeZone(DfpDateTime $dfpDateTime) {
+    return self::FromDfpDateTime($dfpDateTime)->format(self::ISO8601);
+  }
+
+  /**
+   * Returns string representation of this DFP date time with the specified time
+   * zone, preserving the millisecond instant.
+   * <p>
+   * This function is useful for finding the local time in another time zone,
+   * especially for filtering.
+   * <p>
+   * For example, if this date time holds 12:30 in Europe/London, the result
+   * from this method with Europe/Paris would be 13:30. You may also want to use
+   * this with your network's time zone, i.e.,
+   * <pre><code>
+   * $timeZoneId = $networkService->getCurrentNetwork()->timeZone;
+   * $pqlFilterStatement = "... WHERE startDateTime >
+   *     DateTimeUtils::ToString($apiDateTime, $timeZoneId)"
+   * </code></pre>
+   *
+   * @param DateTime $dfpDateTime the DFP date time to stringify into a new time
+   *     zone
+   * @param string $newZoneId the time zone ID of the new zone
+   * @return string a string representation of the DFP {@code DateTime} in
+   *          {@code yyyy-MM-dd'T'HH:mm:ss}
+   */
+  public static function ToStringForTimeZone(DfpDateTime $dfpDateTime,
+      $newZoneId) {
+    return self::FromDfpDateTime($dfpDateTime)->
+        setTimezone(new DateTimeZone($newZoneId))->
+        format(substr(self::ISO8601, 0, -1));
   }
 }
 

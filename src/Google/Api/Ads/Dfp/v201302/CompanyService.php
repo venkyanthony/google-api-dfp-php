@@ -724,156 +724,6 @@ class CompanyPage {
   }
 }}
 
-if (!class_exists("CreativePlaceholder", FALSE)) {
-/**
- * A {@code CreativePlaceholder} describes a slot that a creative is expected to
- * fill. This is used primarily to help in forecasting, and also to validate
- * that the correct creatives are associated with the line item. A
- * {@code CreativePlaceholder} must contain a size, and it can optionally
- * contain companions. Companions are only valid if the line item's environment
- * type is {@link EnvironmentType#VIDEO_PLAYER}.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class CreativePlaceholder {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var CreativePlaceholder[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var AppliedLabel[]
-   */
-  public $appliedLabels;
-
-  /**
-   * @access public
-   * @var AppliedLabel[]
-   */
-  public $effectiveAppliedLabels;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $id;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $expectedCreativeCount;
-
-  /**
-   * @access public
-   * @var tnsCreativeSizeType
-   */
-  public $creativeSizeType;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CreativePlaceholder";
-  }
-
-  public function __construct($size = NULL, $companions = NULL, $appliedLabels = NULL, $effectiveAppliedLabels = NULL, $id = NULL, $expectedCreativeCount = NULL, $creativeSizeType = NULL) {
-    $this->size = $size;
-    $this->companions = $companions;
-    $this->appliedLabels = $appliedLabels;
-    $this->effectiveAppliedLabels = $effectiveAppliedLabels;
-    $this->id = $id;
-    $this->expectedCreativeCount = $expectedCreativeCount;
-    $this->creativeSizeType = $creativeSizeType;
-  }
-}}
-
-if (!class_exists("CustomCriteriaNode", FALSE)) {
-/**
- * A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom
- * criteria node can either be a {@link CustomCriteriaSet} (a non-leaf node) or
- * a {@link CustomCriteria} (a leaf node). The custom criteria targeting tree is
- * subject to the rules defined on {@link Targeting#customTargeting}.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class CustomCriteriaNode {
-  /**
-   * @access public
-   * @var string
-   */
-  public $CustomCriteriaNodeType;
-
-  private $_parameterMap = array (
-    "CustomCriteriaNode.Type" => "CustomCriteriaNodeType",
-  );
-
-  /**
-   * Provided for setting non-php-standard named variables
-   * @param $var Variable name to set
-   * @param $value Value to set
-   */
-  public function __set($var, $value) { $this->{$this->_parameterMap[$var]} = $value; }
-
-  /**
-   * Provided for getting non-php-standard named variables
-   * @param $var Variable name to get.
-   * @return mixed Variable value
-   */
-  public function __get($var) {
-    if (!array_key_exists($var, $this->_parameterMap)) {
-      return NULL;
-    } else {
-      return $this->{$this->_parameterMap[$var]};
-    }
-  }
-
-  /**
-   * Provided for getting non-php-standard named variables
-   * @return array parameter map
-   */
-  protected function getParameterMap() {
-    return $this->_parameterMap;
-    }
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CustomCriteriaNode";
-  }
-
-  public function __construct($CustomCriteriaNodeType = NULL) {
-    $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
-  }
-}}
-
 if (!class_exists("Date", FALSE)) {
 /**
  * Represents a date.
@@ -1062,64 +912,6 @@ class InvalidEmailError extends ApiError {
     $this->trigger = $trigger;
     $this->errorString = $errorString;
     $this->ApiErrorType = $ApiErrorType;
-  }
-}}
-
-if (!class_exists("AdUnitSize", FALSE)) {
-/**
- * An {@code AdUnitSize} represents the size of an ad in an ad unit. Starting
- * with v201108 this also represents the environment, and companions of a
- * particular ad in an ad unit. In most cases, it is a simple size with just a
- * width and a height (sometimes representing an aspect ratio).
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class AdUnitSize {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var tnsEnvironmentType
-   */
-  public $environmentType;
-
-  /**
-   * @access public
-   * @var AdUnitSize[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var string
-   */
-  public $fullDisplayString;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AdUnitSize";
-  }
-
-  public function __construct($size = NULL, $environmentType = NULL, $companions = NULL, $fullDisplayString = NULL) {
-    $this->size = $size;
-    $this->environmentType = $environmentType;
-    $this->companions = $companions;
-    $this->fullDisplayString = $fullDisplayString;
   }
 }}
 
@@ -1515,56 +1307,6 @@ class ServerError extends ApiError {
   }
 }}
 
-if (!class_exists("Size", FALSE)) {
-/**
- * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
- * <p>
- * For interstitial size (out-of-page), {@code Size} must be 1x1.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class Size {
-  /**
-   * @access public
-   * @var integer
-   */
-  public $width;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $height;
-
-  /**
-   * @access public
-   * @var boolean
-   */
-  public $isAspectRatio;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "Size";
-  }
-
-  public function __construct($width = NULL, $height = NULL, $isAspectRatio = NULL) {
-    $this->width = $width;
-    $this->height = $height;
-    $this->isAspectRatio = $isAspectRatio;
-  }
-}}
-
 if (!class_exists("SoapRequestHeader", FALSE)) {
 /**
  * Represents the SOAP request header used by API requests.
@@ -1664,11 +1406,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of
@@ -1743,6 +1492,45 @@ class StatementError extends ApiError {
    */
   public function getXsiTypeName() {
     return "StatementError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("StringLengthError", FALSE)) {
+/**
+ * Errors for Strings which do not meet given length constraints.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class StringLengthError extends ApiError {
+  /**
+   * @access public
+   * @var tnsStringLengthErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "StringLengthError";
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
@@ -2169,142 +1957,6 @@ class CompanyErrorReason {
   }
 }}
 
-if (!class_exists("CreativeSizeType", FALSE)) {
-/**
- * Descriptions of the types of sizes a creative can be.  Not all creatives can
- * be described by a height-width pair, this provides additional context.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class CreativeSizeType {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CreativeSizeType";
-  }
-
-  public function __construct() {
-  }
-}}
-
-if (!class_exists("CustomCriteriaComparisonOperator", FALSE)) {
-/**
- * Specifies the available comparison operators.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class CustomCriteriaComparisonOperator {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CustomCriteria.ComparisonOperator";
-  }
-
-  public function __construct() {
-  }
-}}
-
-if (!class_exists("CustomCriteriaSetLogicalOperator", FALSE)) {
-/**
- * Specifies the available logical operators.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class CustomCriteriaSetLogicalOperator {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CustomCriteriaSet.LogicalOperator";
-  }
-
-  public function __construct() {
-  }
-}}
-
-if (!class_exists("AudienceSegmentCriteriaComparisonOperator", FALSE)) {
-/**
- * Specifies the available comparison operators.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class AudienceSegmentCriteriaComparisonOperator {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AudienceSegmentCriteria.ComparisonOperator";
-  }
-
-  public function __construct() {
-  }
-}}
-
-if (!class_exists("EnvironmentType", FALSE)) {
-/**
- * Enum for the valid environments in which ads can be shown.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class EnvironmentType {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "EnvironmentType";
-  }
-
-  public function __construct() {
-  }
-}}
-
 if (!class_exists("InternalApiErrorReason", FALSE)) {
 /**
  * The single reason for the internal API error.
@@ -2632,6 +2284,33 @@ class StatementErrorReason {
    */
   public function getXsiTypeName() {
     return "StatementError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("StringLengthErrorReason", FALSE)) {
+/**
+ * The value returned if the actual value is not exposed by the requested API version.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class StringLengthErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "StringLengthError.Reason";
   }
 
   public function __construct() {
@@ -3195,126 +2874,6 @@ class BooleanValue extends Value {
   }
 }}
 
-if (!class_exists("CustomCriteriaSet", FALSE)) {
-/**
- * A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode}
- * objects combined by the
- * {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom
- * criteria targeting tree is subject to the rules defined on
- * {@link Targeting#customTargeting}.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class CustomCriteriaSet extends CustomCriteriaNode {
-  /**
-   * @access public
-   * @var tnsCustomCriteriaSetLogicalOperator
-   */
-  public $logicalOperator;
-
-  /**
-   * @access public
-   * @var CustomCriteriaNode[]
-   */
-  public $children;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CustomCriteriaSet";
-  }
-
-  public function __construct($logicalOperator = NULL, $children = NULL, $CustomCriteriaNodeType = NULL) {
-    parent::__construct();
-    $this->logicalOperator = $logicalOperator;
-    $this->children = $children;
-    $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
-  }
-}}
-
-if (!class_exists("CustomCriteriaLeaf", FALSE)) {
-/**
- * A {@link CustomCriteriaLeaf} object represents a generic leaf of {@link CustomCriteria} tree
- * structure.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class CustomCriteriaLeaf extends CustomCriteriaNode {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CustomCriteriaLeaf";
-  }
-
-  public function __construct($CustomCriteriaNodeType = NULL) {
-    parent::__construct();
-    $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
-  }
-}}
-
-if (!class_exists("AudienceSegmentCriteria", FALSE)) {
-/**
- * An {@link AudienceSegmentCriteria} object is used to target {@link AudienceSegment} objects.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class AudienceSegmentCriteria extends CustomCriteriaLeaf {
-  /**
-   * @access public
-   * @var tnsAudienceSegmentCriteriaComparisonOperator
-   */
-  public $operator;
-
-  /**
-   * @access public
-   * @var integer[]
-   */
-  public $audienceSegmentIds;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AudienceSegmentCriteria";
-  }
-
-  public function __construct($operator = NULL, $audienceSegmentIds = NULL, $CustomCriteriaNodeType = NULL) {
-    parent::__construct();
-    $this->operator = $operator;
-    $this->audienceSegmentIds = $audienceSegmentIds;
-    $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
-  }
-}}
-
 if (!class_exists("DateTimeValue", FALSE)) {
 /**
  * Contains a date-time value.
@@ -3423,58 +2982,6 @@ class TextValue extends Value {
   }
 }}
 
-if (!class_exists("CustomCriteria", FALSE)) {
-/**
- * A {@link CustomCriteria} object is used to perform custom criteria targeting
- * on custom targeting keys of type {@link CustomTargetingKey.Type#PREDEFINED}
- * or {@link CustomTargetingKey.Type#FREEFORM}.
- * @package GoogleApiAdsDfp
- * @subpackage v201302
- */
-class CustomCriteria extends CustomCriteriaLeaf {
-  /**
-   * @access public
-   * @var integer
-   */
-  public $keyId;
-
-  /**
-   * @access public
-   * @var integer[]
-   */
-  public $valueIds;
-
-  /**
-   * @access public
-   * @var tnsCustomCriteriaComparisonOperator
-   */
-  public $operator;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201302";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CustomCriteria";
-  }
-
-  public function __construct($keyId = NULL, $valueIds = NULL, $operator = NULL, $CustomCriteriaNodeType = NULL) {
-    parent::__construct();
-    $this->keyId = $keyId;
-    $this->valueIds = $valueIds;
-    $this->operator = $operator;
-    $this->CustomCriteriaNodeType = $CustomCriteriaNodeType;
-  }
-}}
-
 if (!class_exists("CompanyService", FALSE)) {
 /**
  * CompanyService
@@ -3507,17 +3014,10 @@ class CompanyService extends DfpSoapClient {
     "Company" => "Company",
     "CompanyError" => "CompanyError",
     "CompanyPage" => "CompanyPage",
-    "CreativePlaceholder" => "CreativePlaceholder",
-    "CustomCriteria" => "CustomCriteria",
-    "CustomCriteriaLeaf" => "CustomCriteriaLeaf",
-    "CustomCriteriaSet" => "CustomCriteriaSet",
-    "CustomCriteriaNode" => "CustomCriteriaNode",
-    "AudienceSegmentCriteria" => "AudienceSegmentCriteria",
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
     "InternalApiError" => "InternalApiError",
     "InvalidEmailError" => "InvalidEmailError",
-    "AdUnitSize" => "AdUnitSize",
     "LabelEntityAssociationError" => "LabelEntityAssociationError",
     "NotNullError" => "NotNullError",
     "NumberValue" => "NumberValue",
@@ -3528,11 +3028,11 @@ class CompanyService extends DfpSoapClient {
     "QuotaError" => "QuotaError",
     "RequiredError" => "RequiredError",
     "ServerError" => "ServerError",
-    "Size" => "Size",
     "SoapRequestHeader" => "SoapRequestHeader",
     "SoapResponseHeader" => "SoapResponseHeader",
     "Statement" => "Statement",
     "StatementError" => "StatementError",
+    "StringLengthError" => "StringLengthError",
     "String_ValueMapEntry" => "String_ValueMapEntry",
     "TeamError" => "TeamError",
     "TextValue" => "TextValue",
@@ -3545,11 +3045,6 @@ class CompanyService extends DfpSoapClient {
     "Company.CreditStatus" => "CompanyCreditStatus",
     "Company.Type" => "CompanyType",
     "CompanyError.Reason" => "CompanyErrorReason",
-    "CreativeSizeType" => "CreativeSizeType",
-    "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
-    "CustomCriteriaSet.LogicalOperator" => "CustomCriteriaSetLogicalOperator",
-    "AudienceSegmentCriteria.ComparisonOperator" => "AudienceSegmentCriteriaComparisonOperator",
-    "EnvironmentType" => "EnvironmentType",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "InvalidEmailError.Reason" => "InvalidEmailErrorReason",
     "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
@@ -3562,6 +3057,7 @@ class CompanyService extends DfpSoapClient {
     "RequiredError.Reason" => "RequiredErrorReason",
     "ServerError.Reason" => "ServerErrorReason",
     "StatementError.Reason" => "StatementErrorReason",
+    "StringLengthError.Reason" => "StringLengthErrorReason",
     "TeamError.Reason" => "TeamErrorReason",
     "createCompanies" => "createCompanies",
     "createCompaniesResponse" => "createCompaniesResponse",

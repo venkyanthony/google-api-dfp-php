@@ -2138,7 +2138,7 @@ class InvalidUrlError extends ApiError {
 
 if (!class_exists("InventoryTargeting", FALSE)) {
 /**
- * Contains criteria for targeting Inventory.
+ * A collection of targeted and excluded ad units and placements.
  * @package GoogleApiAdsDfp
  * @subpackage v201208
  */
@@ -2221,64 +2221,6 @@ class InventoryTargetingError extends ApiError {
     $this->trigger = $trigger;
     $this->errorString = $errorString;
     $this->ApiErrorType = $ApiErrorType;
-  }
-}}
-
-if (!class_exists("AdUnitSize", FALSE)) {
-/**
- * An {@code AdUnitSize} represents the size of an ad in an ad unit. Starting
- * with v201108 this also represents the environment, and companions of a
- * particular ad in an ad unit. In most cases, it is a simple size with just a
- * width and a height (sometimes representing an aspect ratio).
- * @package GoogleApiAdsDfp
- * @subpackage v201208
- */
-class AdUnitSize {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var tnsEnvironmentType
-   */
-  public $environmentType;
-
-  /**
-   * @access public
-   * @var AdUnitSize[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var string
-   */
-  public $fullDisplayString;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201208";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AdUnitSize";
-  }
-
-  public function __construct($size = NULL, $environmentType = NULL, $companions = NULL, $fullDisplayString = NULL) {
-    $this->size = $size;
-    $this->environmentType = $environmentType;
-    $this->companions = $companions;
-    $this->fullDisplayString = $fullDisplayString;
   }
 }}
 
@@ -4341,11 +4283,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of
@@ -8707,7 +8656,6 @@ class LineItemService extends DfpSoapClient {
     "InvalidUrlError" => "InvalidUrlError",
     "InventoryTargeting" => "InventoryTargeting",
     "InventoryTargetingError" => "InventoryTargetingError",
-    "AdUnitSize" => "AdUnitSize",
     "LabelEntityAssociationError" => "LabelEntityAssociationError",
     "LineItemCreativeAssociationError" => "LineItemCreativeAssociationError",
     "LineItem" => "LineItem",

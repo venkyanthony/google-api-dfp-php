@@ -1,6 +1,6 @@
 <?php
 /**
- * A collection of utility methods for working with reports.
+ * A utility class for working with reports.
  *
  * PHP version 5
  *
@@ -52,11 +52,9 @@ class ReportUtils {
    *     the report, otherwise the size in bytes of the downloaded report
    */
   public static function DownloadReport($downloadUrl, $filePath = NULL) {
-    /* 
-     * This method should not be static and instantiation of this class should
-     * be allowed so we can "inject" CurlUtils, but would break too many things
-     * that rely on this method being static.
-     */
+    // TODO(vtsao): This method should not be static and instantiation of this
+    // class should be allowed so we can "inject" CurlUtils, but would break too
+    // many things that rely on this method being static.
     $curlUtils = new CurlUtils();
     $ch = $curlUtils->CreateSession($downloadUrl);
 

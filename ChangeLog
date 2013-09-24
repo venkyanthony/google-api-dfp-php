@@ -1,3 +1,14 @@
+2.18.0:
+- Added support for v201308.
+- Removed deprecated versions v201203, v201204, and v201206.
+- Added ToString and ToStringWithTimeZone functions in date utils to stringify
+  DfpDateTimes.
+- Pql utilities will now convert DfpDateTime and Date values into machine
+  readable strings. DfpDateTimes will be in ISO-8061 format, while Dates will be
+  in yyyy-MM-dd format.
+- Added result set combiner function in Pql utilities to easily combine result
+  sets from paged statements.
+
 2.17.1:
 - Reintroduced WSDL Interpreter for generating PHP stubs from WSDLS.
 

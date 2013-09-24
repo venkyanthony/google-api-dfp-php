@@ -233,49 +233,6 @@ class ApplicationException {
   }
 }}
 
-if (!class_exists("AppliedLabel", FALSE)) {
-/**
- * Represents a {@link Label} that can be applied to an entity. To negate an
- * inherited label, create an {@code AppliedLabel} with {@code labelId} as the
- * inherited label's ID and {@code isNegated} set to true.
- * @package GoogleApiAdsDfp
- * @subpackage v201306
- */
-class AppliedLabel {
-  /**
-   * @access public
-   * @var integer
-   */
-  public $labelId;
-
-  /**
-   * @access public
-   * @var boolean
-   */
-  public $isNegated;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201306";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AppliedLabel";
-  }
-
-  public function __construct($labelId = NULL, $isNegated = NULL) {
-    $this->labelId = $labelId;
-    $this->isNegated = $isNegated;
-  }
-}}
-
 if (!class_exists("Authentication", FALSE)) {
 /**
  * A representation of the authentication protocols that can be used.
@@ -381,6 +338,45 @@ class AuthenticationError extends ApiError {
   }
 }}
 
+if (!class_exists("BaseRateError", FALSE)) {
+/**
+ * An error having to do with {@link BaseRate}.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class BaseRateError extends ApiError {
+  /**
+   * @access public
+   * @var tnsBaseRateErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "BaseRateError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("ClientLogin", FALSE)) {
 /**
  * The credentials for the {@code ClientLogin} API authentication protocol.
@@ -455,87 +451,6 @@ class CommonError extends ApiError {
     $this->trigger = $trigger;
     $this->errorString = $errorString;
     $this->ApiErrorType = $ApiErrorType;
-  }
-}}
-
-if (!class_exists("CreativePlaceholder", FALSE)) {
-/**
- * A {@code CreativePlaceholder} describes a slot that a creative is expected to
- * fill. This is used primarily to help in forecasting, and also to validate
- * that the correct creatives are associated with the line item. A
- * {@code CreativePlaceholder} must contain a size, and it can optionally
- * contain companions. Companions are only valid if the line item's environment
- * type is {@link EnvironmentType#VIDEO_PLAYER}.
- * @package GoogleApiAdsDfp
- * @subpackage v201306
- */
-class CreativePlaceholder {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var CreativePlaceholder[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var AppliedLabel[]
-   */
-  public $appliedLabels;
-
-  /**
-   * @access public
-   * @var AppliedLabel[]
-   */
-  public $effectiveAppliedLabels;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $id;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $expectedCreativeCount;
-
-  /**
-   * @access public
-   * @var tnsCreativeSizeType
-   */
-  public $creativeSizeType;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201306";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CreativePlaceholder";
-  }
-
-  public function __construct($size = NULL, $companions = NULL, $appliedLabels = NULL, $effectiveAppliedLabels = NULL, $id = NULL, $expectedCreativeCount = NULL, $creativeSizeType = NULL) {
-    $this->size = $size;
-    $this->companions = $companions;
-    $this->appliedLabels = $appliedLabels;
-    $this->effectiveAppliedLabels = $effectiveAppliedLabels;
-    $this->id = $id;
-    $this->expectedCreativeCount = $expectedCreativeCount;
-    $this->creativeSizeType = $creativeSizeType;
   }
 }}
 
@@ -727,64 +642,6 @@ class InternalApiError extends ApiError {
     $this->trigger = $trigger;
     $this->errorString = $errorString;
     $this->ApiErrorType = $ApiErrorType;
-  }
-}}
-
-if (!class_exists("AdUnitSize", FALSE)) {
-/**
- * An {@code AdUnitSize} represents the size of an ad in an ad unit. Starting
- * with v201108 this also represents the environment, and companions of a
- * particular ad in an ad unit. In most cases, it is a simple size with just a
- * width and a height (sometimes representing an aspect ratio).
- * @package GoogleApiAdsDfp
- * @subpackage v201306
- */
-class AdUnitSize {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var tnsEnvironmentType
-   */
-  public $environmentType;
-
-  /**
-   * @access public
-   * @var AdUnitSize[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var string
-   */
-  public $fullDisplayString;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201306";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "AdUnitSize";
-  }
-
-  public function __construct($size = NULL, $environmentType = NULL, $companions = NULL, $fullDisplayString = NULL) {
-    $this->size = $size;
-    $this->environmentType = $environmentType;
-    $this->companions = $companions;
-    $this->fullDisplayString = $fullDisplayString;
   }
 }}
 
@@ -1547,56 +1404,6 @@ class ServerError extends ApiError {
   }
 }}
 
-if (!class_exists("Size", FALSE)) {
-/**
- * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
- * <p>
- * For interstitial size (out-of-page), {@code Size} must be 1x1.
- * @package GoogleApiAdsDfp
- * @subpackage v201306
- */
-class Size {
-  /**
-   * @access public
-   * @var integer
-   */
-  public $width;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $height;
-
-  /**
-   * @access public
-   * @var boolean
-   */
-  public $isAspectRatio;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201306";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "Size";
-  }
-
-  public function __construct($width = NULL, $height = NULL, $isAspectRatio = NULL) {
-    $this->width = $width;
-    $this->height = $height;
-    $this->isAspectRatio = $isAspectRatio;
-  }
-}}
-
 if (!class_exists("SoapRequestHeader", FALSE)) {
 /**
  * Represents the SOAP request header used by API requests.
@@ -1696,11 +1503,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of
@@ -2129,6 +1943,33 @@ class AuthenticationErrorReason {
   }
 }}
 
+if (!class_exists("BaseRateErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class BaseRateErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "BaseRateError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("CommonErrorReason", FALSE)) {
 /**
  * Describes reasons for common errors
@@ -2156,34 +1997,6 @@ class CommonErrorReason {
   }
 }}
 
-if (!class_exists("CreativeSizeType", FALSE)) {
-/**
- * Descriptions of the types of sizes a creative can be.  Not all creatives can
- * be described by a height-width pair, this provides additional context.
- * @package GoogleApiAdsDfp
- * @subpackage v201306
- */
-class CreativeSizeType {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201306";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CreativeSizeType";
-  }
-
-  public function __construct() {
-  }
-}}
-
 if (!class_exists("CustomTargetingErrorReason", FALSE)) {
 /**
  * The reasons for the target error.
@@ -2205,33 +2018,6 @@ class CustomTargetingErrorReason {
    */
   public function getXsiTypeName() {
     return "CustomTargetingError.Reason";
-  }
-
-  public function __construct() {
-  }
-}}
-
-if (!class_exists("EnvironmentType", FALSE)) {
-/**
- * Enum for the valid environments in which ads can be shown.
- * @package GoogleApiAdsDfp
- * @subpackage v201306
- */
-class EnvironmentType {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201306";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "EnvironmentType";
   }
 
   public function __construct() {
@@ -3585,21 +3371,19 @@ class RateCardService extends DfpSoapClient {
     "ApiException" => "ApiException",
     "ApplicationException" => "ApplicationException",
     "ApiVersionError" => "ApiVersionError",
-    "AppliedLabel" => "AppliedLabel",
     "Authentication" => "Authentication",
     "AuthenticationError" => "AuthenticationError",
+    "BaseRateError" => "BaseRateError",
     "BooleanValue" => "BooleanValue",
     "Value" => "Value",
     "ClientLogin" => "ClientLogin",
     "CommonError" => "CommonError",
-    "CreativePlaceholder" => "CreativePlaceholder",
     "CustomTargetingError" => "CustomTargetingError",
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
     "DateValue" => "DateValue",
     "DeactivateRateCards" => "DeactivateRateCards",
     "InternalApiError" => "InternalApiError",
-    "AdUnitSize" => "AdUnitSize",
     "NotNullError" => "NotNullError",
     "NullError" => "NullError",
     "NumberValue" => "NumberValue",
@@ -3617,7 +3401,6 @@ class RateCardService extends DfpSoapClient {
     "RequiredError" => "RequiredError",
     "RequiredNumberError" => "RequiredNumberError",
     "ServerError" => "ServerError",
-    "Size" => "Size",
     "SoapRequestHeader" => "SoapRequestHeader",
     "SoapResponseHeader" => "SoapResponseHeader",
     "Statement" => "Statement",
@@ -3631,10 +3414,9 @@ class RateCardService extends DfpSoapClient {
     "UpdateResult" => "UpdateResult",
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
     "AuthenticationError.Reason" => "AuthenticationErrorReason",
+    "BaseRateError.Reason" => "BaseRateErrorReason",
     "CommonError.Reason" => "CommonErrorReason",
-    "CreativeSizeType" => "CreativeSizeType",
     "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
-    "EnvironmentType" => "EnvironmentType",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "NotNullError.Reason" => "NotNullErrorReason",
     "NullError.Reason" => "NullErrorReason",

@@ -1169,87 +1169,6 @@ class CreativePage {
   }
 }}
 
-if (!class_exists("CreativePlaceholder", FALSE)) {
-/**
- * A {@code CreativePlaceholder} describes a slot that a creative is expected to
- * fill. This is used primarily to help in forecasting, and also to validate
- * that the correct creatives are associated with the line item. A
- * {@code CreativePlaceholder} must contain a size, and it can optionally
- * contain companions. Companions are only valid if the line item's environment
- * type is {@link EnvironmentType#VIDEO_PLAYER}.
- * @package GoogleApiAdsDfp
- * @subpackage v201208
- */
-class CreativePlaceholder {
-  /**
-   * @access public
-   * @var Size
-   */
-  public $size;
-
-  /**
-   * @access public
-   * @var CreativePlaceholder[]
-   */
-  public $companions;
-
-  /**
-   * @access public
-   * @var AppliedLabel[]
-   */
-  public $appliedLabels;
-
-  /**
-   * @access public
-   * @var AppliedLabel[]
-   */
-  public $effectiveAppliedLabels;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $id;
-
-  /**
-   * @access public
-   * @var integer
-   */
-  public $expectedCreativeCount;
-
-  /**
-   * @access public
-   * @var tnsCreativeSizeType
-   */
-  public $creativeSizeType;
-
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201208";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CreativePlaceholder";
-  }
-
-  public function __construct($size = NULL, $companions = NULL, $appliedLabels = NULL, $effectiveAppliedLabels = NULL, $id = NULL, $expectedCreativeCount = NULL, $creativeSizeType = NULL) {
-    $this->size = $size;
-    $this->companions = $companions;
-    $this->appliedLabels = $appliedLabels;
-    $this->effectiveAppliedLabels = $effectiveAppliedLabels;
-    $this->id = $id;
-    $this->expectedCreativeCount = $expectedCreativeCount;
-    $this->creativeSizeType = $creativeSizeType;
-  }
-}}
-
 if (!class_exists("CreativeSetError", FALSE)) {
 /**
  * Errors relating to creative sets & subclasses.
@@ -2768,11 +2687,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of
@@ -3973,34 +3899,6 @@ class CreativeSetErrorReason {
    */
   public function getXsiTypeName() {
     return "CreativeSetError.Reason";
-  }
-
-  public function __construct() {
-  }
-}}
-
-if (!class_exists("CreativeSizeType", FALSE)) {
-/**
- * Descriptions of the types of sizes a creative can be.  Not all creatives can
- * be described by a height-width pair, this provides additional context.
- * @package GoogleApiAdsDfp
- * @subpackage v201208
- */
-class CreativeSizeType {
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return "https://www.google.com/apis/ads/publisher/v201208";
-  }
-
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return "CreativeSizeType";
   }
 
   public function __construct() {
@@ -7514,7 +7412,6 @@ class CreativeService extends DfpSoapClient {
     "CreativeAssetMacroError" => "CreativeAssetMacroError",
     "CreativeError" => "CreativeError",
     "CreativePage" => "CreativePage",
-    "CreativePlaceholder" => "CreativePlaceholder",
     "CreativeSetError" => "CreativeSetError",
     "CustomCreative" => "CustomCreative",
     "CustomCreativeError" => "CustomCreativeError",
@@ -7594,7 +7491,6 @@ class CreativeService extends DfpSoapClient {
     "CreativeAssetMacroError.Reason" => "CreativeAssetMacroErrorReason",
     "CreativeError.Reason" => "CreativeErrorReason",
     "CreativeSetError.Reason" => "CreativeSetErrorReason",
-    "CreativeSizeType" => "CreativeSizeType",
     "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
     "FileError.Reason" => "FileErrorReason",
     "FlashExpandableCreative.ExpandDirection" => "FlashExpandableCreativeExpandDirection",

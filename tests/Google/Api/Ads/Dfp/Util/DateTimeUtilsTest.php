@@ -18,16 +18,15 @@
  * @subpackage Util
  * @category   WebServices
  * @copyright  2011, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
+ *             Version 2.0
  * @author     Eric Koleda
  * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
-require_once 'Google/Api/Ads/Dfp/v201208/OrderService.php';
-
-date_default_timezone_set('America/New_York');
+require_once 'Google/Api/Ads/Dfp/v201308/PublisherQueryLanguageService.php';
 
 /**
  * Unit tests for {@link DateTimeUtils}.
@@ -35,106 +34,184 @@ date_default_timezone_set('America/New_York');
  */
 class DateTimeUtilsTest extends PHPUnit_Framework_TestCase {
 
+  const TIME_ZONE_ID1 = 'America/New_York';
+  const TIME_ZONE_ID2 = 'PST8PDT';
+  const TIME_ZONE_ID3 = 'Europe/Moscow';
+
+  private $dfpDate1;
+  private $dfpDate2;
+  private $dfpDate3;
+  private $dateTime1;
+  private $dateTime2;
+  private $dateTime3;
+  private $dfpDateTime1;
+  private $dfpDateTime2;
+  private $dfpDateTime3;
+
+  private $stringDate1;
+  private $stringDate2;
+  private $stringDate3;
+  private $stringDateTime1;
+  private $stringDateTime2;
+  private $stringDateTime3;
+  private $stringDateTimeWithTimeZone1;
+  private $stringDateTimeWithTimeZone2;
+  private $stringDateTimeWithTimeZone3;
+
+  protected function setUp() {
+    $this->stringDate1 = '1983-06-02';
+    $this->stringDate2 = '2014-12-31';
+    $this->stringDate3 = '1999-09-23';
+
+    $this->stringDateTime1 = '1983-06-02T08:30:15';
+    $this->stringDateTime2 = '1983-06-02T00:00:00';
+    $this->stringDateTime3 = '1983-06-02T08:30:15';
+
+    $this->stringDateTimeWithTimeZone1 = '1983-06-02T08:30:15-04:00';
+    $this->stringDateTimeWithTimeZone2 = '1983-06-02T00:00:00-07:00';
+    $this->stringDateTimeWithTimeZone3 = '1983-06-02T08:30:15+04:00';
+
+    $this->dfpDate1 = new Date(1983, 6, 2);
+    $this->dfpDate2 = new Date(2014, 12, 31);
+    $this->dfpDate3 = new Date(1999, 9, 23);
+
+    $this->dateTime1 = new DateTime($this->stringDateTime1,
+        new DateTimeZone(self::TIME_ZONE_ID1));
+    $this->dateTime2 = new DateTime($this->stringDateTime2,
+        new DateTimeZone(self::TIME_ZONE_ID2));
+    $this->dateTime3 = new DateTime($this->stringDateTime3,
+        new DateTimeZone(self::TIME_ZONE_ID3));
+
+    $this->dfpDateTime1 = new DfpDateTime(new Date(1983, 6, 2), 8, 30, 15,
+        self::TIME_ZONE_ID1);
+    $this->dfpDateTime2 = new DfpDateTime(new Date(1983, 6, 2), 0, 0, 0,
+        self::TIME_ZONE_ID2);
+    $this->dfpDateTime3 = new DfpDateTime(new Date(1983, 6, 2), 8, 30, 15,
+        self::TIME_ZONE_ID3);
+  }
+
   /**
-   * Test getting a DfpDateTime from a PHP DateTime.
-   * @param DateTime $dateTime the PHP DateTime
-   * @param DfpDateTime $expected the expected DfpDateTime
    * @covers DateTimeUtils::ToDfpDateTime
-   * @dataProvider DateTimeProvider
    */
-  public function testToDfpDateTime(DateTime $dateTime,
-      DfpDateTime $expected) {
-    $dfpDateTime = DateTimeUtils::ToDfpDateTime($dateTime);
-    $this->assertEquals($expected, $dfpDateTime);
+  public function testToDfpDateTime() {
+    $this->assertEquals($this->dfpDateTime1,
+        DateTimeUtils::ToDfpDateTime($this->dateTime1));
+    $this->assertEquals($this->dfpDateTime2,
+        DateTimeUtils::ToDfpDateTime($this->dateTime2));
+    $this->assertEquals($this->dfpDateTime3,
+        DateTimeUtils::ToDfpDateTime($this->dateTime3));
   }
 
   /**
-   * Test getting a PHP DateTime from a DfpDateTime.
-   * @param DfpDateTime $dfpDateTime the DfpDateTime
-   * @param DateTime $expected the expected PHP DateTime
+   * @covers DateTimeUtils::ToDfpDateTimeFromString
+   */
+  public function _testToDfpDateTimeFromString() {
+    $actualDfpDateTime1 = DateTimeUtils::ToDfpDateTimeFromString(
+        $this->stringDateTimeWithTimeZone1);
+    self::assertEquals($this->dfpDateTime1, $actualDfpDateTime1);
+    $this->assertEquals('-04:00', $actualDfpDateTime1->timeZone);
+
+    $actualDfpDateTime2 = DateTimeUtils::ToDfpDateTimeFromString(
+        $this->stringDateTimeWithTimeZone2);
+    self::assertEquals($this->dfpDateTime2, $actualDfpDateTime2);
+    $this->assertEquals('-07:00', $actualDfpDateTime2->timeZone);
+
+    $actualDfpDateTime3 = DateTimeUtils::ToDfpDateTimeFromString(
+        $this->stringDateTimeWithTimeZone3);
+    self::assertEquals($this->dfpDateTime2, $actualDfpDateTime3);
+    $this->assertEquals('+04:00', $actualDfpDateTime3->timeZone);
+  }
+
+  /**
+   * @covers DateTimeUtils::ToDfpDateTimeFromStringWithTimeZone
+   */
+  public function _testToDfpDateTimeFromStringWithTimeZone() {
+    $self->assertTrue(self::isEqual($this->dfpDateTime1,
+        DateTimeUtils::ToDfpDateTimeFromStringWithTimeZone(
+            $this->stringDateTimeWithTimeZone1, self::TIME_ZONE_ID1)));
+    $self->assertTrue(self::assertEquals($this->dfpDateTime2->getTimestamp(),
+        DateTimeUtils::ToDfpDateTimeFromStringWithTimeZone(
+            $this->stringDateTimeWithTimeZone2, self::TIME_ZONE_ID2)));
+    $self->assertTrue(self::assertEquals($this->dfpDateTime3->getTimestamp(),
+        DateTimeUtils::ToDfpDateTimeFromStringWithTimeZone(
+            $this->stringDateTimeWithTimeZone3, self::TIME_ZONE_ID3)));
+  }
+
+  /**
    * @covers DateTimeUtils::FromDfpDateTime
-   * @dataProvider DateTimeProvider
    */
-  public function testFromDfpDateTime(DateTime $expected,
-      DfpDateTime $dfpDateTime) {
-    $dateTime = DateTimeUtils::FromDfpDateTime($dfpDateTime);
-    $this->assertEquals($expected, $dateTime);
+  public function testFromDfpDateTime() {
+    $this->assertEquals($this->dateTime1,
+        DateTimeUtils::FromDfpDateTime($this->dfpDateTime1));
+    $this->assertEquals($this->dateTime2,
+        DateTimeUtils::FromDfpDateTime($this->dfpDateTime2));
+    $this->assertEquals($this->dateTime3,
+        DateTimeUtils::FromDfpDateTime($this->dfpDateTime3));
   }
 
   /**
-   * Test getting a DFP Date from a PHP DateTime.
-   * @param DateTime $dateTime the PHP DateTime
-   * @param Date $expected the expected DFP Date
-   * @covers DateTimeUtils::ToDfpDate
-   * @dataProvider DateProvider
+   * @covers DateTimeUtils::ToString
    */
-  public function testToDfpDate(DateTime $dateTime,
-      Date $expected) {
-    $dfpDate = DateTimeUtils::ToDfpDate($dateTime);
-    $this->assertEquals($expected, $dfpDate);
+  public function testToString() {
+    $this->assertEquals($this->stringDate1,
+        DateTimeUtils::ToString($this->dfpDate1));
+    $this->assertEquals($this->stringDate2,
+        DateTimeUtils::ToString($this->dfpDate2));
+    $this->assertEquals($this->stringDate3,
+        DateTimeUtils::ToString($this->dfpDate3));
   }
 
   /**
-   * Test getting a PHP DateTime from a DFP Date.
-   * @param DateTime $expected the expected PHP DateTime
-   * @param Date $dfpDate the DFP Date
-   * @covers DateTimeUtils::FromDfpDate
-   * @dataProvider DateProvider
+   * @covers DateTimeUtils::ToStringWithTimeZone
    */
-  public function testFromDfpDate(DateTime $expected,
-      Date $dfpDate) {
-    $dateTime = DateTimeUtils::FromDfpDate($dfpDate);
-    $this->assertEquals($expected, $dateTime);
+  public function testToStringWithTimeZone() {
+    $this->assertEquals($this->stringDateTimeWithTimeZone1,
+        DateTimeUtils::ToStringWithTimeZone($this->dfpDateTime1));
+    $this->assertEquals($this->stringDateTimeWithTimeZone2,
+        DateTimeUtils::ToStringWithTimeZone($this->dfpDateTime2));
+    $this->assertEquals($this->stringDateTimeWithTimeZone3,
+        DateTimeUtils::ToStringWithTimeZone($this->dfpDateTime3));
   }
 
   /**
-   * Provides PHP DateTime objects along with the corresponding DfpDateTime
-   * objects.
-   * @return array an array of arrays of PHP DateTime objects and DfpDateTime
-   *     objects
+   * @covers DateTimeUtils::ToStringForTimeZone
    */
-  public function DateTimeProvider() {
-    $data = array();
+  public function testToStringForTimeZone() {
+    $this->assertEquals($this->stringDateTime1,
+        DateTimeUtils::ToStringForTimeZone($this->dfpDateTime1,
+        self::TIME_ZONE_ID1));
+    $this->assertEquals($this->stringDateTime2,
+        DateTimeUtils::ToStringForTimeZone($this->dfpDateTime2,
+        self::TIME_ZONE_ID2));
+    $this->assertEquals($this->stringDateTime3,
+        DateTimeUtils::ToStringForTimeZone($this->dfpDateTime3,
+        self::TIME_ZONE_ID3));
 
-    // Complete DateTime.
-    $dateTime = new DateTime('1983-06-02T08:30:15',
-        new DateTimeZone('Europe/Moscow'));
-    $dfpDateTime = new DfpDateTime(new Date(1983, 6, 2), 8, 30, 15,
-        'Europe/Moscow');
-    $data[] = array($dateTime, $dfpDateTime);
-
-    // Date only DateTime.
-    $dateTime =
-        new DateTime('1983-06-02', new DateTimeZone('Europe/Moscow'));
-    $dfpDateTime = new DfpDateTime(new Date(1983, 6, 2), 0, 0, 0,
-        'Europe/Moscow');
-    $data[] = array($dateTime, $dfpDateTime);
-
-    // No timezone specified.
-    $dateTime = new DateTime('1983-06-02T08:30:15',
-        new DateTimeZone(date_default_timezone_get()));
-    $dfpDateTime = new DfpDateTime(new Date(1983, 6, 2), 8, 30, 15,
-        date_default_timezone_get());
-    $data[] = array($dateTime, $dfpDateTime);
-
-    return $data;
+    $this->assertEquals($this->stringDateTime1,
+        DateTimeUtils::ToStringForTimeZone(DateTimeUtils::ToDfpDateTime(
+            $this->dateTime1->setTimeZone(
+                new DateTimeZone(self::TIME_ZONE_ID2))), self::TIME_ZONE_ID1));
+    $this->assertEquals($this->stringDateTime2,
+        DateTimeUtils::ToStringForTimeZone(DateTimeUtils::ToDfpDateTime(
+            $this->dateTime2->setTimeZone(
+                new DateTimeZone(self::TIME_ZONE_ID1))), self::TIME_ZONE_ID2));
+    $this->assertEquals($this->stringDateTime3,
+        DateTimeUtils::ToStringForTimeZone(DateTimeUtils::ToDfpDateTime(
+            $this->dateTime3->setTimeZone(
+                new DateTimeZone(self::TIME_ZONE_ID1))), self::TIME_ZONE_ID3));
   }
 
-  /**
-   * Provides PHP DateTime objects along with the corresponding DFP Date
-   * objects.
-   * @return array an array of arrays of PHP DateTime objects and DFP Date
-   *     objects
-   */
-  public function DateProvider() {
-    $data = array();
-
-    $dateTime = new DateTime('1983-06-02',
-        new DateTimeZone(date_default_timezone_get()));
-    $dfpDate = new Date(1983, 6, 2);
-    $data[] = array($dateTime, $dfpDate);
-
-    return $data;
+  public static function isEqual(DfpDateTime $expected,
+      DfpDateTime $actual) {
+    return $expected == $actual || ($expected->date->year == $actual->date->year
+        && $expected->date->month == $actual->date->month
+        && $expected->date->day == $actual->date->day
+        && $expected->hour == $actual->hour
+        && $expected->minute == $actual->minute
+        && $expected->second == $actual->second);
+        // TODO(vtsao): Figure out how to compare IANA versus offset time zones.
   }
 }
+
+date_default_timezone_set(DateTimeUtilsTest::TIME_ZONE_ID1);
 

@@ -643,6 +643,45 @@ class DfpOAuth extends Authentication {
   }
 }}
 
+if (!class_exists("ParseError", FALSE)) {
+/**
+ * Lists errors related to parsing.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class ParseError extends ApiError {
+  /**
+   * @access public
+   * @var tnsParseErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "ParseError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("PermissionError", FALSE)) {
 /**
  * Errors related to incorrect permission.
@@ -1221,11 +1260,18 @@ if (!class_exists("Statement", FALSE)) {
  * LIMIT 30"}.
  * </p>
  * <p>
- * Statements also support bind variables. These are substitutes for literals
+ * Statements support bind variables. These are substitutes for literals
  * and can be thought of as input parameters to a PQL query.
  * </p>
  * <p>
  * An example of such a query might be {@code "WHERE id = :idValue"}.
+ * </p>
+ * <p>
+ * Statements also support use of the LIKE keyword. This provides partial and
+ * wildcard string matching.
+ * </p>
+ * <p>
+ * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
  * </p>
  * If using an API version newer than V201010, the value for the variable
  * idValue must then be set with an object of type {@link Value} and is one of
@@ -1754,6 +1800,33 @@ class NotNullErrorReason {
    */
   public function getXsiTypeName() {
     return "NotNullError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("ParseErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class ParseErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "ParseError.Reason";
   }
 
   public function __construct() {
@@ -2537,6 +2610,7 @@ class ReportService extends DfpSoapClient {
     "InternalApiError" => "InternalApiError",
     "NotNullError" => "NotNullError",
     "NumberValue" => "NumberValue",
+    "ParseError" => "ParseError",
     "PermissionError" => "PermissionError",
     "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
     "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
@@ -2565,6 +2639,7 @@ class ReportService extends DfpSoapClient {
     "ExportFormat" => "ExportFormat",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "NotNullError.Reason" => "NotNullErrorReason",
+    "ParseError.Reason" => "ParseErrorReason",
     "PermissionError.Reason" => "PermissionErrorReason",
     "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
     "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",

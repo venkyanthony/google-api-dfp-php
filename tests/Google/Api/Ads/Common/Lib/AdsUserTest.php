@@ -163,7 +163,7 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
    */
   public function testLoadSettings_Server() {
     $defaultVersion = 'v2';
-    $defaultServer = 'https://sandbox.google.com';
+    $defaultServer = 'https://testing.google.com';
     $settings = array(
         'SERVER' => array(
             'DEFAULT_VERSION' => $defaultVersion,
@@ -438,3 +438,4 @@ class TestAdsUser extends AdsUser {
     return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
   }
 }
+
