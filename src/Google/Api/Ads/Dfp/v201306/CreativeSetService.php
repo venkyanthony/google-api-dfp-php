@@ -830,6 +830,46 @@ class DfpDateTime {
   }
 }}
 
+if (!class_exists("FeatureError", FALSE)) {
+/**
+ * Errors related to feature management.  If you attempt using a feature that is not available to
+ * the current network you'll receive a FeatureError with the missing feature as the trigger.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class FeatureError extends ApiError {
+  /**
+   * @access public
+   * @var tnsFeatureErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("FileError", FALSE)) {
 /**
  * A list of all errors to be used for problems related to files.
@@ -1368,6 +1408,46 @@ class RequiredError extends ApiError {
    */
   public function getXsiTypeName() {
     return "RequiredError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("RequiredNumberError", FALSE)) {
+/**
+ * A list of all errors to be used in conjunction with required number
+ * validators.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class RequiredNumberError extends ApiError {
+  /**
+   * @access public
+   * @var tnsRequiredNumberErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredNumberError";
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
@@ -2047,6 +2127,33 @@ class CustomCreativeErrorReason {
   }
 }}
 
+if (!class_exists("FeatureErrorReason", FALSE)) {
+/**
+ * A feature is being used that is not enabled on the current network.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class FeatureErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("FileErrorReason", FALSE)) {
 /**
  * The provided byte array is empty.
@@ -2401,6 +2508,33 @@ class RequiredErrorReason {
    */
   public function getXsiTypeName() {
     return "RequiredError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("RequiredNumberErrorReason", FALSE)) {
+/**
+ * Describes reasons for a number to be invalid.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class RequiredNumberErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "RequiredNumberError.Reason";
   }
 
   public function __construct() {
@@ -3052,6 +3186,7 @@ class CreativeSetService extends DfpSoapClient {
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
     "DateValue" => "DateValue",
+    "FeatureError" => "FeatureError",
     "FileError" => "FileError",
     "ImageError" => "ImageError",
     "InternalApiError" => "InternalApiError",
@@ -3066,6 +3201,7 @@ class CreativeSetService extends DfpSoapClient {
     "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
     "QuotaError" => "QuotaError",
     "RequiredError" => "RequiredError",
+    "RequiredNumberError" => "RequiredNumberError",
     "RequiredSizeError" => "RequiredSizeError",
     "ServerError" => "ServerError",
     "SoapRequestHeader" => "SoapRequestHeader",
@@ -3084,6 +3220,7 @@ class CreativeSetService extends DfpSoapClient {
     "CreativeError.Reason" => "CreativeErrorReason",
     "CreativeSetError.Reason" => "CreativeSetErrorReason",
     "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
+    "FeatureError.Reason" => "FeatureErrorReason",
     "FileError.Reason" => "FileErrorReason",
     "ImageError.Reason" => "ImageErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
@@ -3097,6 +3234,7 @@ class CreativeSetService extends DfpSoapClient {
     "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
     "QuotaError.Reason" => "QuotaErrorReason",
     "RequiredError.Reason" => "RequiredErrorReason",
+    "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
     "RequiredSizeError.Reason" => "RequiredSizeErrorReason",
     "ServerError.Reason" => "ServerErrorReason",
     "StatementError.Reason" => "StatementErrorReason",

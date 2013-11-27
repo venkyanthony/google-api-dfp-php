@@ -471,8 +471,9 @@ abstract class AdsUser {
    *     header.
    */
   public function SetClientLibraryUserAgent($applicationName) {
-    $this->SetHeaderValue($this->GetUserAgentHeaderName(), sprintf("%s (%s)", $applicationName,
-        implode(', ', $this->GetAllClientLibraryUserAgentParts())));
+    $this->SetHeaderValue($this->GetUserAgentHeaderName(), sprintf("%s (%s)",
+        $applicationName, implode(', ',
+        $this->GetAllClientLibraryUserAgentParts())));
   }
 
   /**

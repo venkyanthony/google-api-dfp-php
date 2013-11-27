@@ -648,6 +648,46 @@ class DfpDateTime {
   }
 }}
 
+if (!class_exists("FeatureError", FALSE)) {
+/**
+ * Errors related to feature management.  If you attempt using a feature that is not available to
+ * the current network you'll receive a FeatureError with the missing feature as the trigger.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class FeatureError extends ApiError {
+  /**
+   * @access public
+   * @var tnsFeatureErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("InternalApiError", FALSE)) {
 /**
  * Indicates that a server-side error has occured. {@code InternalApiError}s
@@ -1584,6 +1624,33 @@ class CommonErrorReason {
   }
 }}
 
+if (!class_exists("FeatureErrorReason", FALSE)) {
+/**
+ * A feature is being used that is not enabled on the current network.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class FeatureErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("InternalApiErrorReason", FALSE)) {
 /**
  * The single reason for the internal API error.
@@ -2039,6 +2106,9 @@ if (!class_exists("getActivitiesByStatement", FALSE)) {
  * 
  * <table>
  * <tr>
+ * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
+ * </tr>
+ * <tr>
  * <td>{@code id}</td>
  * <td>{@link Activity#id}</td>
  * </tr>
@@ -2059,8 +2129,6 @@ if (!class_exists("getActivitiesByStatement", FALSE)) {
  * <td>{@link Activity#activityGroupId}</td>
  * </tr>
  * </table>
- * 
- * <p><strong>Note:</strong> {@code activityGroupId} is required in the statement.
  * 
  * @param filterStatement a statement used to filter a set of activities.
  * @return the activities that match the given filter.
@@ -2594,6 +2662,7 @@ class ActivityService extends DfpSoapClient {
     "CommonError" => "CommonError",
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
+    "FeatureError" => "FeatureError",
     "InternalApiError" => "InternalApiError",
     "NotNullError" => "NotNullError",
     "NumberValue" => "NumberValue",
@@ -2618,6 +2687,7 @@ class ActivityService extends DfpSoapClient {
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
     "AuthenticationError.Reason" => "AuthenticationErrorReason",
     "CommonError.Reason" => "CommonErrorReason",
+    "FeatureError.Reason" => "FeatureErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "NotNullError.Reason" => "NotNullErrorReason",
     "PermissionError.Reason" => "PermissionErrorReason",
@@ -2691,6 +2761,9 @@ class ActivityService extends DfpSoapClient {
    * 
    * <table>
    * <tr>
+   * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
+   * </tr>
+   * <tr>
    * <td>{@code id}</td>
    * <td>{@link Activity#id}</td>
    * </tr>
@@ -2711,8 +2784,6 @@ class ActivityService extends DfpSoapClient {
    * <td>{@link Activity#activityGroupId}</td>
    * </tr>
    * </table>
-   * 
-   * <p><strong>Note:</strong> {@code activityGroupId} is required in the statement.
    * 
    * @param filterStatement a statement used to filter a set of activities.
    * @return the activities that match the given filter.

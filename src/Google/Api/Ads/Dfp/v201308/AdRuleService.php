@@ -1667,6 +1667,46 @@ class DeviceManufacturerTargeting {
   }
 }}
 
+if (!class_exists("FeatureError", FALSE)) {
+/**
+ * Errors related to feature management.  If you attempt using a feature that is not available to
+ * the current network you'll receive a FeatureError with the missing feature as the trigger.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201308
+ */
+class FeatureError extends ApiError {
+  /**
+   * @access public
+   * @var tnsFeatureErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201308";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("GeoTargeting", FALSE)) {
 /**
  * Provides line items the ability to target geographical locations. By default,
@@ -1808,6 +1848,46 @@ class InventoryTargeting {
     $this->targetedAdUnits = $targetedAdUnits;
     $this->excludedAdUnits = $excludedAdUnits;
     $this->targetedPlacementIds = $targetedPlacementIds;
+  }
+}}
+
+if (!class_exists("InventoryTargetingError", FALSE)) {
+/**
+ * Lists all inventory errors caused by associating a line item with a targeting
+ * expression.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201308
+ */
+class InventoryTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsInventoryTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201308";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InventoryTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -3923,6 +4003,33 @@ class DeliveryTimeZone {
   }
 }}
 
+if (!class_exists("FeatureErrorReason", FALSE)) {
+/**
+ * A feature is being used that is not enabled on the current network.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201308
+ */
+class FeatureErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201308";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("FrequencyCapBehavior", FALSE)) {
 /**
  * Types of behavior for frequency caps within ad rules.
@@ -3971,6 +4078,33 @@ class InternalApiErrorReason {
    */
   public function getXsiTypeName() {
     return "InternalApiError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("InventoryTargetingErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201308
+ */
+class InventoryTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201308";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "InventoryTargetingError.Reason";
   }
 
   public function __construct() {
@@ -6196,9 +6330,11 @@ class AdRuleService extends DfpSoapClient {
     "DeviceCategoryTargeting" => "DeviceCategoryTargeting",
     "DeviceManufacturer" => "DeviceManufacturer",
     "DeviceManufacturerTargeting" => "DeviceManufacturerTargeting",
+    "FeatureError" => "FeatureError",
     "GeoTargeting" => "GeoTargeting",
     "InternalApiError" => "InternalApiError",
     "InventoryTargeting" => "InventoryTargeting",
+    "InventoryTargetingError" => "InventoryTargetingError",
     "MetroLocation" => "MetroLocation",
     "MobileCarrier" => "MobileCarrier",
     "MobileCarrierTargeting" => "MobileCarrierTargeting",
@@ -6255,8 +6391,10 @@ class AdRuleService extends DfpSoapClient {
     "AudienceSegmentCriteria.ComparisonOperator" => "AudienceSegmentCriteriaComparisonOperator",
     "DayOfWeek" => "DayOfWeek",
     "DeliveryTimeZone" => "DeliveryTimeZone",
+    "FeatureError.Reason" => "FeatureErrorReason",
     "FrequencyCapBehavior" => "FrequencyCapBehavior",
     "InternalApiError.Reason" => "InternalApiErrorReason",
+    "InventoryTargetingError.Reason" => "InventoryTargetingErrorReason",
     "MidrollFrequencyType" => "MidrollFrequencyType",
     "MinuteOfHour" => "MinuteOfHour",
     "NotNullError.Reason" => "NotNullErrorReason",

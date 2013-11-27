@@ -1085,7 +1085,8 @@ class DropDownCustomFieldValue extends BaseCustomFieldValue {
 
 if (!class_exists("FeatureError", FALSE)) {
 /**
- * Errors related to features.
+ * Errors related to feature management.  If you attempt using a feature that is not available to
+ * the current network you'll receive a FeatureError with the missing feature as the trigger.
  * @package GoogleApiAdsDfp
  * @subpackage v201306
  */
@@ -3671,7 +3672,7 @@ class CustomTargetingErrorReason {
 
 if (!class_exists("FeatureErrorReason", FALSE)) {
 /**
- * The value returned if the actual value is not exposed by the requested API version.
+ * A feature is being used that is not enabled on the current network.
  * @package GoogleApiAdsDfp
  * @subpackage v201306
  */

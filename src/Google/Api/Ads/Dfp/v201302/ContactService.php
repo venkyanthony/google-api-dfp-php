@@ -678,6 +678,46 @@ class DfpDateTime {
   }
 }}
 
+if (!class_exists("FeatureError", FALSE)) {
+/**
+ * Errors related to feature management.  If you attempt using a feature that is not available to
+ * the current network you'll receive a FeatureError with the missing feature as the trigger.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class FeatureError extends ApiError {
+  /**
+   * @access public
+   * @var tnsFeatureErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("InternalApiError", FALSE)) {
 /**
  * Indicates that a server-side error has occured. {@code InternalApiError}s
@@ -1582,6 +1622,33 @@ class ContactErrorReason {
    */
   public function getXsiTypeName() {
     return "ContactError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("FeatureErrorReason", FALSE)) {
+/**
+ * A feature is being used that is not enabled on the current network.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201302
+ */
+class FeatureErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201302";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError.Reason";
   }
 
   public function __construct() {
@@ -2697,6 +2764,7 @@ class ContactService extends DfpSoapClient {
     "ContactPage" => "ContactPage",
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
+    "FeatureError" => "FeatureError",
     "InternalApiError" => "InternalApiError",
     "InvalidEmailError" => "InvalidEmailError",
     "NotNullError" => "NotNullError",
@@ -2720,6 +2788,7 @@ class ContactService extends DfpSoapClient {
     "CommonError.Reason" => "CommonErrorReason",
     "Contact.Status" => "ContactStatus",
     "ContactError.Reason" => "ContactErrorReason",
+    "FeatureError.Reason" => "FeatureErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "InvalidEmailError.Reason" => "InvalidEmailErrorReason",
     "NotNullError.Reason" => "NotNullErrorReason",

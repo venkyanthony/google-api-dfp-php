@@ -895,6 +895,46 @@ class CustomFieldValueError extends ApiError {
   }
 }}
 
+if (!class_exists("CustomTargetingError", FALSE)) {
+/**
+ * Lists all errors related to {@link CustomTargetingKey} and
+ * {@link CustomTargetingValue} objects.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201308
+ */
+class CustomTargetingError extends ApiError {
+  /**
+   * @access public
+   * @var tnsCustomTargetingErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201308";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomTargetingError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("Date", FALSE)) {
 /**
  * Represents a date.
@@ -1040,6 +1080,46 @@ class DropDownCustomFieldValue extends BaseCustomFieldValue {
     $this->customFieldOptionId = $customFieldOptionId;
     $this->customFieldId = $customFieldId;
     $this->BaseCustomFieldValueType = $BaseCustomFieldValueType;
+  }
+}}
+
+if (!class_exists("FeatureError", FALSE)) {
+/**
+ * Errors related to feature management.  If you attempt using a feature that is not available to
+ * the current network you'll receive a FeatureError with the missing feature as the trigger.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201308
+ */
+class FeatureError extends ApiError {
+  /**
+   * @access public
+   * @var tnsFeatureErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201308";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
   }
 }}
 
@@ -1820,7 +1900,7 @@ class Product {
 
 if (!class_exists("ProductError", FALSE)) {
 /**
- * A catch-all error that lists all generic errors associated with {@link Product}.
+ * A catch-all error that lists all generic errors associated with Product.
  * @package GoogleApiAdsDfp
  * @subpackage v201308
  */
@@ -3180,6 +3260,60 @@ class CustomFieldValueErrorReason {
    */
   public function getXsiTypeName() {
     return "CustomFieldValueError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("CustomTargetingErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201308
+ */
+class CustomTargetingErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201308";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "CustomTargetingError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("FeatureErrorReason", FALSE)) {
+/**
+ * A feature is being used that is not enabled on the current network.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201308
+ */
+class FeatureErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201308";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError.Reason";
   }
 
   public function __construct() {
@@ -5046,6 +5180,7 @@ class ProductService extends DfpSoapClient {
     "CreativePlaceholder" => "CreativePlaceholder",
     "CustomFieldValue" => "CustomFieldValue",
     "CustomFieldValueError" => "CustomFieldValueError",
+    "CustomTargetingError" => "CustomTargetingError",
     "Date" => "Date",
     "DateTimeValue" => "DateTimeValue",
     "DateValue" => "DateValue",
@@ -5054,6 +5189,7 @@ class ProductService extends DfpSoapClient {
     "DeviceCategory" => "DeviceCategory",
     "DeviceManufacturer" => "DeviceManufacturer",
     "DropDownCustomFieldValue" => "DropDownCustomFieldValue",
+    "FeatureError" => "FeatureError",
     "FrequencyCap" => "FrequencyCap",
     "GeoTargeting" => "GeoTargeting",
     "InternalApiError" => "InternalApiError",
@@ -5101,6 +5237,8 @@ class ProductService extends DfpSoapClient {
     "CommonError.Reason" => "CommonErrorReason",
     "CreativeSizeType" => "CreativeSizeType",
     "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
+    "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
+    "FeatureError.Reason" => "FeatureErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "LineItemType" => "LineItemType",
     "NotNullError.Reason" => "NotNullErrorReason",

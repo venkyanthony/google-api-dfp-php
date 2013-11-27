@@ -53,6 +53,8 @@ class DfpUser extends AdsUser {
    */
   const USER_AGENT_HEADER_NAME = 'applicationName';
 
+  const DEFAULT_APPLICATION_NAME = 'INSERT_APPLICATION_NAME_HERE';
+
   private $libVersion;
   private $libName;
 
@@ -106,7 +108,7 @@ class DfpUser extends AdsUser {
     parent::__construct();
 
     $buildIniDfp = parse_ini_file(dirname(__FILE__) . '/build.ini',
-        FALSE);
+        false);
     $this->libName = $buildIniDfp['LIB_NAME'];
     $this->libVersion = $buildIniDfp['LIB_VERSION'];
 
@@ -310,9 +312,8 @@ class DfpUser extends AdsUser {
   /**
    * Validates the user and throws a validation error if there are any errors.
    * @throws ValidationException if there are any validation errors
-   * @access private
    */
-  private function ValidateUser() {
+  public function ValidateUser() {
     if ($this->GetOAuth2Info() !== NULL) {
       parent::ValidateOAuth2Info();
     } else if ($this->GetAuthToken() == NULL) {
@@ -329,9 +330,14 @@ class DfpUser extends AdsUser {
       $this->RegenerateAuthToken();
     }
 
-    if ($this->GetApplicationName() == NULL) {
+    if ($this->GetApplicationName() === NULL
+        || trim($this->GetApplicationName()) === ''
+        || strpos($this->GetApplicationName(),
+            self::DEFAULT_APPLICATION_NAME) !== false) {
       throw new ValidationException('applicationName', NULL,
-          'applicationName is required and cannot be NULL.');
+          sprintf("The property applicationName is required and cannot be "
+              . "NULL, the empty string, or the default [%s]",
+              self::DEFAULT_APPLICATION_NAME));
     }
   }
 

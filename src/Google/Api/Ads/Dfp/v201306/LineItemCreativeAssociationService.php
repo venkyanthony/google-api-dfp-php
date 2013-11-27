@@ -792,6 +792,46 @@ class EntityLimitReachedError extends ApiError {
   }
 }}
 
+if (!class_exists("FeatureError", FALSE)) {
+/**
+ * Errors related to feature management.  If you attempt using a feature that is not available to
+ * the current network you'll receive a FeatureError with the missing feature as the trigger.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class FeatureError extends ApiError {
+  /**
+   * @access public
+   * @var tnsFeatureErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("FileError", FALSE)) {
 /**
  * A list of all errors to be used for problems related to files.
@@ -2595,6 +2635,34 @@ class Value {
   }
 }}
 
+if (!class_exists("AdSenseAccountErrorReason", FALSE)) {
+/**
+ * An error occured while trying to associate an AdSense account with GFP. Unable to create an
+ * association with AdSense or Ad Exchange account.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class AdSenseAccountErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AdSenseAccountError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("ApiVersionErrorReason", FALSE)) {
 /**
  * Indicates that the operation is not allowed in the version the request
@@ -2836,6 +2904,33 @@ class CustomCreativeErrorReason {
    */
   public function getXsiTypeName() {
     return "CustomCreativeError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("FeatureErrorReason", FALSE)) {
+/**
+ * A feature is being used that is not enabled on the current network.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class FeatureErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError.Reason";
   }
 
   public function __construct() {
@@ -4235,6 +4330,45 @@ class ActivateLineItemCreativeAssociations extends LineItemCreativeAssociationAc
   }
 }}
 
+if (!class_exists("AdSenseAccountError", FALSE)) {
+/**
+ * Error for AdSense related API calls.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class AdSenseAccountError extends ApiError {
+  /**
+   * @access public
+   * @var tnsAdSenseAccountErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "AdSenseAccountError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("ApiException", FALSE)) {
 /**
  * Exception class for holding a list of service errors.
@@ -4500,6 +4634,7 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
     "OAuth" => "DfpOAuth",
     "ActivateLineItemCreativeAssociations" => "ActivateLineItemCreativeAssociations",
     "LineItemCreativeAssociationAction" => "LineItemCreativeAssociationAction",
+    "AdSenseAccountError" => "AdSenseAccountError",
     "ApiError" => "ApiError",
     "ApiException" => "ApiException",
     "ApplicationException" => "ApplicationException",
@@ -4521,6 +4656,7 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
     "DateValue" => "DateValue",
     "DeactivateLineItemCreativeAssociations" => "DeactivateLineItemCreativeAssociations",
     "EntityLimitReachedError" => "EntityLimitReachedError",
+    "FeatureError" => "FeatureError",
     "FileError" => "FileError",
     "ImageError" => "ImageError",
     "InternalApiError" => "InternalApiError",
@@ -4561,6 +4697,7 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
     "TypeError" => "TypeError",
     "UniqueError" => "UniqueError",
     "UpdateResult" => "UpdateResult",
+    "AdSenseAccountError.Reason" => "AdSenseAccountErrorReason",
     "ApiVersionError.Reason" => "ApiVersionErrorReason",
     "AssetError.Reason" => "AssetErrorReason",
     "AudienceExtensionError.Reason" => "AudienceExtensionErrorReason",
@@ -4570,6 +4707,7 @@ class LineItemCreativeAssociationService extends DfpSoapClient {
     "CreativeError.Reason" => "CreativeErrorReason",
     "CreativeSetError.Reason" => "CreativeSetErrorReason",
     "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
+    "FeatureError.Reason" => "FeatureErrorReason",
     "FileError.Reason" => "FileErrorReason",
     "ImageError.Reason" => "ImageErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",

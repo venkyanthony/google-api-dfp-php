@@ -16,6 +16,18 @@ distributions. The library uses the native SoapClient class
 --enable-soap flag if building PHP from source. More information about
 compatibility can be found in the PHP Compatibility section of this README.
 
+
+Announcements and updates
+-------------------------
+
+For API and client library updates and news, please follow our Google+ Ads
+Developers page:
+https://plus.google.com/+GoogleAdsDevelopers/posts
+
+and our Google Ads Developers blog:
+http://googleadsdeveloper.blogspot.com/
+
+
 What's in the client library?
 -----------------------------
 
@@ -100,7 +112,7 @@ library, do the following:
      $path = dirname(__FILE__) . '/../../../src';
      set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
-     require_once 'Google/Api/Ads/Dfp/Lib/DfpUserUser.php';
+     require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
 
   2) Create a DfpUser instance, specifying the credentials at
      creation time. Alternately, you can use the default constructor after

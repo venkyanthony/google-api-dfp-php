@@ -71,8 +71,11 @@ class Pql {
    * @return array the string list of column labels
    */
   public static function GetColumnLabels(ResultSet $resultSet) {
-    return array_map(create_function('$columnType',
-        'return $columnType->labelName;'), $resultSet->columnTypes);
+    $columnLabels = array();
+    foreach ($resultSet->columnTypes as $columnType) {
+      $columnLabels[] = $columnType->labelName;
+    }
+    return $columnLabels;
   }
 
   /**
@@ -82,8 +85,7 @@ class Pql {
    * @return array the string list of row labels
    */
   public static function GetRowStringValues(Row $row) {
-    return array_map(create_function('$value',
-        'return Pql::ToString($value);'), $row->values);
+    return array_map(array('Pql', 'ToString'), $row->values);
   }
 
   /**

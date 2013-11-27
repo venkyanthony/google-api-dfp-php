@@ -1,3 +1,8 @@
+2.19.0:
+- Added support for v201311.
+- A valid application name is now required and must not be the default. Set it
+  in your auth.ini file using the applicationName key.
+
 2.18.0:
 - Added support for v201308.
 - Removed deprecated versions v201203, v201204, and v201206.

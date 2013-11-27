@@ -141,7 +141,7 @@ class DateTimeUtils {
    * need to convert the DFP date time into another time zone before filtering
    * on it, please use {@link #ToStringForTimeZone()} instead.
    *
-   * @param DateTime $dfpDateTime the DFP date time to stringify
+   * @param DfpDateTime $dfpDateTime the DFP date time to stringify
    * @return string a string representation of the DFP {@code DateTime} in
    *     {@code yyyy-MM-dd'T'HH:mm:ss±HH:mm}, e.g.,
    *     {@code 2013-09-013T12:02:03+08:00} or
@@ -167,8 +167,8 @@ class DateTimeUtils {
    *     DateTimeUtils::ToString($apiDateTime, $timeZoneId)"
    * </code></pre>
    *
-   * @param DateTime $dfpDateTime the DFP date time to stringify into a new time
-   *     zone
+   * @param DfpDateTime $dfpDateTime the DFP date time to stringify into a new
+   *     time zone
    * @param string $newZoneId the time zone ID of the new zone
    * @return string a string representation of the DFP {@code DateTime} in
    *          {@code yyyy-MM-dd'T'HH:mm:ss}

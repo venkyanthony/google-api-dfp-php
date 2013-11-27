@@ -795,6 +795,46 @@ class DropDownCustomFieldValue extends BaseCustomFieldValue {
   }
 }}
 
+if (!class_exists("FeatureError", FALSE)) {
+/**
+ * Errors related to feature management.  If you attempt using a feature that is not available to
+ * the current network you'll receive a FeatureError with the missing feature as the trigger.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class FeatureError extends ApiError {
+  /**
+   * @access public
+   * @var tnsFeatureErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
 if (!class_exists("ForecastError", FALSE)) {
 /**
  * Errors that can result from a forecast request.
@@ -941,6 +981,45 @@ class LabelEntityAssociationError extends ApiError {
    */
   public function getXsiTypeName() {
     return "LabelEntityAssociationError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("LineItemOperationError", FALSE)) {
+/**
+ * Lists all errors for executing operations on line items
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class LineItemOperationError extends ApiError {
+  /**
+   * @access public
+   * @var tnsLineItemOperationErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LineItemOperationError";
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
@@ -1137,6 +1216,45 @@ class PrecisionError extends ApiError {
    */
   public function getXsiTypeName() {
     return "PrecisionError";
+  }
+
+  public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
+    parent::__construct();
+    $this->reason = $reason;
+    $this->fieldPath = $fieldPath;
+    $this->trigger = $trigger;
+    $this->errorString = $errorString;
+    $this->ApiErrorType = $ApiErrorType;
+  }
+}}
+
+if (!class_exists("ProductError", FALSE)) {
+/**
+ * A catch-all error that lists all generic errors associated with Product.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class ProductError extends ApiError {
+  /**
+   * @access public
+   * @var tnsProductErrorReason
+   */
+  public $reason;
+
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "ProductError";
   }
 
   public function __construct($reason = NULL, $fieldPath = NULL, $trigger = NULL, $errorString = NULL, $ApiErrorType = NULL) {
@@ -2920,6 +3038,33 @@ class CustomFieldValueErrorReason {
   }
 }}
 
+if (!class_exists("FeatureErrorReason", FALSE)) {
+/**
+ * A feature is being used that is not enabled on the current network.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class FeatureErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "FeatureError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("ForecastErrorReason", FALSE)) {
 /**
  * Reason why a forecast could not be retrieved.
@@ -3028,6 +3173,33 @@ class LabelEntityAssociationErrorReason {
   }
 }}
 
+if (!class_exists("LineItemOperationErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class LineItemOperationErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "LineItemOperationError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
 if (!class_exists("ProposalApprovalStatus", FALSE)) {
 /**
  * Describes the {@link Proposal} status in terms of pending approvals of active user.
@@ -3130,6 +3302,33 @@ class PrecisionErrorReason {
    */
   public function getXsiTypeName() {
     return "PrecisionError.Reason";
+  }
+
+  public function __construct() {
+  }
+}}
+
+if (!class_exists("ProductErrorReason", FALSE)) {
+/**
+ * The reasons for the target error.
+ * @package GoogleApiAdsDfp
+ * @subpackage v201306
+ */
+class ProductErrorReason {
+  /**
+   * Gets the namesapce of this class
+   * @return the namespace of this class
+   */
+  public function getNamespace() {
+    return "https://www.google.com/apis/ads/publisher/v201306";
+  }
+
+  /**
+   * Gets the xsi:type name of this class
+   * @return the xsi:type name of this class
+   */
+  public function getXsiTypeName() {
+    return "ProductError.Reason";
   }
 
   public function __construct() {
@@ -3857,6 +4056,10 @@ if (!class_exists("getProposalsByStatement", FALSE)) {
  * <td>{@code approvalStatus}</td>
  * <td>{@link Proposal#approvalStatus}</td>
  * </tr>
+ * <tr>
+ * <td>{@code lastModifiedDateTime}</td>
+ * <td>{@link Proposal#lastModifiedDateTime}</td>
+ * </tr>
  * </table>
  * 
  * @param filterStatement a Publisher Query Language statement used to filter
@@ -4476,15 +4679,18 @@ class ProposalService extends DfpSoapClient {
     "DateTimeValue" => "DateTimeValue",
     "DateValue" => "DateValue",
     "DropDownCustomFieldValue" => "DropDownCustomFieldValue",
+    "FeatureError" => "FeatureError",
     "ForecastError" => "ForecastError",
     "InternalApiError" => "InternalApiError",
     "InvalidUrlError" => "InvalidUrlError",
     "LabelEntityAssociationError" => "LabelEntityAssociationError",
+    "LineItemOperationError" => "LineItemOperationError",
     "Money" => "Money",
     "NotNullError" => "NotNullError",
     "NumberValue" => "NumberValue",
     "PermissionError" => "PermissionError",
     "PrecisionError" => "PrecisionError",
+    "ProductError" => "ProductError",
     "ProposalActionError" => "ProposalActionError",
     "ProposalCompanyAssociation" => "ProposalCompanyAssociation",
     "Proposal" => "Proposal",
@@ -4524,14 +4730,17 @@ class ProposalService extends DfpSoapClient {
     "BillingSource" => "BillingSource",
     "CommonError.Reason" => "CommonErrorReason",
     "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
+    "FeatureError.Reason" => "FeatureErrorReason",
     "ForecastError.Reason" => "ForecastErrorReason",
     "InternalApiError.Reason" => "InternalApiErrorReason",
     "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
     "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
+    "LineItemOperationError.Reason" => "LineItemOperationErrorReason",
     "ProposalApprovalStatus" => "ProposalApprovalStatus",
     "NotNullError.Reason" => "NotNullErrorReason",
     "PermissionError.Reason" => "PermissionErrorReason",
     "PrecisionError.Reason" => "PrecisionErrorReason",
+    "ProductError.Reason" => "ProductErrorReason",
     "ProposalActionError.Reason" => "ProposalActionErrorReason",
     "ProposalCompanyAssociationType" => "ProposalCompanyAssociationType",
     "ProposalError.Reason" => "ProposalErrorReason",
@@ -4658,6 +4867,10 @@ class ProposalService extends DfpSoapClient {
    * <tr>
    * <td>{@code approvalStatus}</td>
    * <td>{@link Proposal#approvalStatus}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code lastModifiedDateTime}</td>
+   * <td>{@link Proposal#lastModifiedDateTime}</td>
    * </tr>
    * </table>
    * 
